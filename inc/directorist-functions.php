@@ -2932,3 +2932,89 @@ function dservice_single_listing_tags_icon()
 }
 
 add_filter('atbdp_single_listing_tags_icon', 'dservice_single_listing_tags_icon');
+
+// Add review & category in dashboard table.
+function directorist_dashboard_listing_th_2(){
+	echo '<th class="directorist-table-review">' . __( 'Review', 'direo' ) . '</th>';
+	echo '<th class="directorist-table-review">' . __( 'Category', 'direo' ) . '</th>';
+}
+add_action( 'directorist_dashboard_listing_th_2', 'directorist_dashboard_listing_th_2' );
+
+function directorist_dashboard_listing_td_2() {
+	$review = get_directorist_option( 'enable_review', 1 );
+	if ( ! $review ) return;
+	$reviews_count = ATBDP()->review->db->count( array( 'post_id' => get_the_ID() ) );
+	$cats          = get_the_terms( get_the_ID(), ATBDP_CATEGORY );
+	$cats          = $cats ? $cats : array();
+	?>
+	<td class="directorist_dashboard_rating">
+		<ul class="rating">
+			<?php
+			$average   = ATBDP()->review->get_average( get_the_ID() );
+			$star      = '<li><span class="la la-star rate_active"></span></li>';
+			$half_star = '<li><span class="la la-star-half-o rate_active"></span></li>';
+			$none_star = '<li><span class="la la-star-o"></span></li>';
+
+			if ( is_int( $average ) ) {
+				for ( $i = 1; $i <= 5; $i++ ) {
+
+					if ( $i <= $average ) {
+						echo wp_kses_post( $star );
+					} else {
+						echo wp_kses_post( $none_star );
+					}
+				}
+			} elseif ( ! is_int( $average ) ) {
+				$exp       = explode( '.', $average );
+				$float_num = $exp[0];
+
+				for ( $i = 1; $i <= 5; $i++ ) {
+					if ( $i <= $average ) {
+						echo wp_kses_post( $star );
+					} elseif ( ! empty( $average ) && $i > $average && $i <= $float_num + 1 ) {
+						echo wp_kses_post( $half_star );
+					} else {
+						echo wp_kses_post( $none_star );
+					}
+				}
+			}
+
+			$review_title = '';
+			if ( $reviews_count ) {
+				if ( 1 < $reviews_count ) {
+					$review_title = $reviews_count . esc_html__( ' Reviews', 'direo' );
+				} else {
+					$review_title = $reviews_count . esc_html__( ' Review', 'direo' );
+				}
+			}
+			?>
+
+			<li class="reviews">
+				<span class="atbd_count">
+					<?php echo sprintf( '(<b>%s</b> %s )', esc_attr( $average . '/5' ), esc_attr( $review_title ) ); ?>
+				</span>
+			</li>
+		</ul>
+	</td>
+
+	<td class="directorist_dashboard_category">
+		<ul>
+			<li>
+				<?php
+				if ( $cats ) {
+					foreach ( $cats as $cat ) {
+						$link          = ATBDP_Permalink::atbdp_get_category_page( $cat );
+						$space         = str_repeat( ' ', 1 );
+						$category_icon = $cats ? get_cat_icon( $cat->term_id ) : atbdp_icon_type() . '-tags';
+						$icon_type     = substr( $category_icon, 0, 2 );
+						$icon          = 'la' === $icon_type ? $icon_type . ' ' . $category_icon : 'fa ' . $category_icon;
+						echo sprintf( '%s<span><i class="%s"></i><a href="%s">%s</a></span>', esc_attr( $space ), esc_attr( $icon ), esc_url( $link ), esc_attr( $cat->name ) );
+					}
+				}
+				?>
+			</li>
+		</ul>
+	</td>
+	<?php
+}
+add_action( 'directorist_dashboard_listing_td_2', 'directorist_dashboard_listing_td_2' );
