@@ -3018,3 +3018,12 @@ function directorist_dashboard_listing_td_2() {
 	<?php
 }
 add_action( 'directorist_dashboard_listing_td_2', 'directorist_dashboard_listing_td_2' );
+
+function directorist_listing_types() {
+	$all_types = directory_types();
+	$types = [];
+	foreach( $all_types as $type) {
+		$types[ $type->slug ] = $type->name;
+	}
+	return $types;
+}
