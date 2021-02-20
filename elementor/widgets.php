@@ -549,7 +549,7 @@ class dservice_Profile extends Widget_Base
         <div class="author-area">
             <?php echo do_shortcode('[directorist_author_profile]'); ?>
         </div>
-    <?php
+        <?php
     }
 }
 
@@ -4062,11 +4062,47 @@ class dservice_SearchForm extends Widget_Base
     }
 
     protected function render()
-    { ?>
-
-        <?php echo do_shortcode( '[directorist_search_listing]' ); ?>
-
-    <?php
+    {
+        $settings = $this->get_settings_for_display();
+        $title = $settings['title'];
+        $subtitle = $settings['subtitle'];
+        $text_field = $settings['text_field'];
+        $category_field = $settings['category_field'];
+        $location_field = $settings['location_field'];
+        $popular = $settings['popular'];
+        $popular_count = $settings['popular_count'];
+        $style = $settings['style'];
+        $image = $settings['image'] ? $settings['image']['url'] : '';
+        $id = $settings['image'] ? $settings['image']['id'] : '';
+        if (!class_exists('Directorist_Base')) {
+            return;
+        }
+        ?>
+            <div class="search-form-wrapper <?php echo esc_attr($style); ?>">
+                <div class="row align-items-center">
+                    <div class="col-lg-<?php echo 'search-form-wrapper--one' == $style ? esc_html('12') : esc_html('9'); ?>">
+                        <div class="atbd_wrapper directory_search_area ads-advaced--wrapper" id="directorist">
+                            <div class="search-form-title">
+                                <?php
+                                echo !empty($title) ? sprintf('<h1>%s</h1>', wp_kses($title, array('span' => ''))) : '';
+                                echo !empty($subtitle) ? sprintf('<span class="subtitle">%s</span>', esc_attr($subtitle)) : ''; ?>
+                            </div>
+                            <?php echo do_shortcode( '[directorist_search_listing]' ); ?>
+                        </div>
+                    </div>
+                    <?php
+                    if ('search-form-wrapper--two' == $style) {
+                        $image_alt = function_exists('dservice_get_image_alt') ? dservice_get_image_alt($id) : ''; ?>
+                        <div class="col-lg-3 search-img-wrapper">
+                            <div class="search-form-img">
+                                <?php echo sprintf('<img src="%s" alt="%s">', esc_url($image), $image_alt); ?>
+                            </div>
+                        </div>
+                        <?php
+                    } ?>
+                </div>
+            </div>
+        <?php
     }
 }
 
@@ -4433,7 +4469,6 @@ class dservice_SingleCat extends Widget_Base
                     'layout' => 'map'
                 ]
             ]
-
         );
 
         $this->add_control(
