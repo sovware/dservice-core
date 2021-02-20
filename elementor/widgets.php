@@ -1,5 +1,6 @@
 <?php
-
+use \Directorist\Directorist_Listing_Search_Form;
+use Directorist\Helper;
 use Elementor\Controls_Manager;
 use Elementor\Core\Schemes;
 use Elementor\Repeater;
@@ -3925,52 +3926,11 @@ class dservice_SearchForm extends Widget_Base
         );
 
         $this->add_control(
-            'text_field',
-            [
-                'label' => __('Show Text Field?', 'dservice-core'),
-                'type' => Controls_Manager::SWITCHER,
-                'default' => 'yes',
-            ]
-        );
-
-        $this->add_control(
-            'category_field',
-            [
-                'label' => __('Show Category Field?', 'dservice-core'),
-                'type' => Controls_Manager::SWITCHER,
-                'default' => 'yes',
-            ]
-        );
-
-        $this->add_control(
-            'location_field',
-            [
-                'label' => __('Show Location Field?', 'dservice-core'),
-                'type' => Controls_Manager::SWITCHER,
-                'default' => 'yes',
-            ]
-        );
-
-        $this->add_control(
             'popular',
             [
                 'label' => __('Show Popular Category?', 'dservice-core'),
                 'type' => Controls_Manager::SWITCHER,
                 'default' => 'yes',
-            ]
-        );
-
-        $this->add_control(
-            'popular_count',
-            [
-                'label' => __('Number of Popular Categories', 'dservice-core'),
-                'type' => Controls_Manager::NUMBER,
-                'min' => 1,
-                'max' => 20,
-                'default' => 6,
-                'condition' => [
-                    'popular' => 'yes',
-                ],
             ]
         );
 
@@ -4010,19 +3970,31 @@ class dservice_SearchForm extends Widget_Base
         );
 
         $this->add_control(
-            'popular_cat_color',
+            'title_color',
             [
-                'label' => __('Text Color', 'dservice-core'),
+                'label' => __('Title  Color', 'dservice-core'),
                 'type' => Controls_Manager::COLOR,
                 'scheme' => [
                     'type' => Schemes\Color::get_type(),
-                    'value' => Schemes\Color::COLOR_4,
+                    'value' => Schemes\Color::COLOR_2,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .directorist-search-contents .directorist-listing-category-top ul li a p,
-                    {{WRAPPER}} .directorist-search-contents .directorist-listing-category-top ul li a span,
-                    {{WRAPPER}} .directorist-search-contents .directorist-search-top__title,
-                    {{WRAPPER}} .directorist-search-contents .directorist-search-top__subtitle' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .search-form-wrapper h1' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'subtitle_color',
+            [
+                'label' => __('Subtitle Color', 'dservice-core'),
+                'type' => Controls_Manager::COLOR,
+                'scheme' => [
+                    'type' => Schemes\Color::get_type(),
+                    'value' => Schemes\Color::COLOR_3,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .search-form-wrapper span.subtitle' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -4058,6 +4030,22 @@ class dservice_SearchForm extends Widget_Base
             ]
         );
 
+        $this->add_control(
+            'popular_cat_color',
+            [
+                'label' => __('Popular Category Color', 'dservice-core'),
+                'type' => Controls_Manager::COLOR,
+                'scheme' => [
+                    'type' => Schemes\Color::get_type(),
+                    'value' => Schemes\Color::COLOR_4,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .search-form-wrapper .directory_search_area .directory_home_category_area ul.categories li a' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+
         $this->end_controls_section();
     }
 
@@ -4066,14 +4054,11 @@ class dservice_SearchForm extends Widget_Base
         $settings = $this->get_settings_for_display();
         $title = $settings['title'];
         $subtitle = $settings['subtitle'];
-        $text_field = $settings['text_field'];
-        $category_field = $settings['category_field'];
-        $location_field = $settings['location_field'];
         $popular = $settings['popular'];
-        $popular_count = $settings['popular_count'];
         $style = $settings['style'];
         $image = $settings['image'] ? $settings['image']['url'] : '';
         $id = $settings['image'] ? $settings['image']['id'] : '';
+        $searchform = new Directorist_Listing_Search_Form( 'search_form', directorist_default_directory() );
         if (!class_exists('Directorist_Base')) {
             return;
         }
@@ -4081,13 +4066,42 @@ class dservice_SearchForm extends Widget_Base
             <div class="search-form-wrapper <?php echo esc_attr($style); ?>">
                 <div class="row align-items-center">
                     <div class="col-lg-<?php echo 'search-form-wrapper--one' == $style ? esc_html('12') : esc_html('9'); ?>">
-                        <div class="atbd_wrapper directory_search_area ads-advaced--wrapper" id="directorist">
+                        <div class="directorist-search-contents atbd_wrapper directory_search_area ads-advaced--wrapper">
                             <div class="search-form-title">
                                 <?php
                                 echo !empty($title) ? sprintf('<h1>%s</h1>', wp_kses($title, array('span' => ''))) : '';
                                 echo !empty($subtitle) ? sprintf('<span class="subtitle">%s</span>', esc_attr($subtitle)) : ''; ?>
                             </div>
-                            <?php echo do_shortcode( '[directorist_search_listing]' ); ?>
+                            <form class="directorist-search-form" action="<?php echo class_exists('Directorist_Base') ? ATBDP_Permalink::get_search_result_page_link() : ''; ?>" role="form">
+                                <div class="directorist-search-form-wrap directorist-with-search-border">
+                                    <div class="directorist-search-form-box">
+                                        <div class="directorist-search-form-top directorist-flex directorist-align-center directorist-search-form-inline">
+                                            <?php
+                                            foreach ( $searchform->form_data[0]['fields'] as $field ){
+                                                $searchform->field_template( $field );
+                                            }
+                                            if ( $searchform->more_filters_display !== 'always_open' ){
+                                                $searchform->more_buttons_template();
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php
+                                if ( $searchform->more_filters_display == 'always_open' ){
+                                    $searchform->advanced_search_form_fields_template();
+                                }
+                                else {
+                                    if ($searchform->has_more_filters_button) { ?>
+                                        <div class="<?php Helper::search_filter_class( $searchform->more_filters_display ); ?>">
+                                            <?php $searchform->advanced_search_form_fields_template();?>
+                                        </div>
+                                        <?php
+                                    }
+                                }
+                                ?>
+                            </form>
+                            <?php if ('yes' == $popular) : $searchform->top_categories_template(); endif; ?>
                         </div>
                     </div>
                     <?php
