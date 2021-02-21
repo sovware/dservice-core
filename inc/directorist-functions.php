@@ -508,24 +508,6 @@ function dservice_single_listings_settings_fields($settings)
 
 add_filter('atbdp_single_listings_settings_fields', 'dservice_single_listings_settings_fields');
 
-//Directorist all listing cat name .
-function dservice_all_categories_after_category_name($html, $term)
-{
-    $count = atbdp_listings_count_by_category($term->term_id);
-
-    $expired_listings  = atbdp_get_expired_listings(ATBDP_CATEGORY, $term->term_id);
-    $number_of_expired = $expired_listings->post_count;
-    $number_of_expired = !empty($number_of_expired) ? $number_of_expired : '0';
-    $total             = ($count) ? ($count - $number_of_expired) : $count;
-
-    if (1 < $total) {
-        return sprintf('<span>%s</span>', esc_attr($total) . esc_html__(' Listings', 'dservice-core'));
-    } else {
-        return sprintf('<span>%s</span>', esc_attr($total) . esc_html__(' Listing', 'dservice-core'));
-    }
-}
-
-add_filter('atbdp_all_categories_after_category_name', 'dservice_all_categories_after_category_name', 10, 2);
 
 
 function dservice_all_need_categories_after_category_name($html, $term)
@@ -2997,7 +2979,12 @@ function atbdp_all_listings_meta_count( $html, $term ) {
 	return '<span class="listing-count"> ' . $total . '<span class="listing-label">' . $str . '</span>' . '</span>';
 }
 add_filter( 'atbdp_all_locations_after_location_name', 'atbdp_all_listings_meta_count', 10, 2 );
-add_filter( 'atbdp_all_categories_after_category_name', 'atbdp_all_listings_meta_count', 10, 2 );
+
+function atbdp_all_listings_cat_meta_count( $html, $term ) {
+	$total = $term->count;
+	return '<span class="listing-count">' . $total . '</span>';
+}
+add_filter( 'atbdp_all_categories_after_category_name', 'atbdp_all_listings_cat_meta_count', 10, 2 );
 
 function directorist_listing_types() {
 	$all_types = directory_types();

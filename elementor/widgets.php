@@ -776,12 +776,13 @@ class dservice_Categories extends Widget_Base
             [
                 'label' => __('Categories Per Row', 'dservice-core'),
                 'type' => Controls_Manager::SELECT,
-                'default' => 'col-md-3 col-sm-6',
+                'default' => '4',
                 'options' => [
-                    'col-md-6 col-sm-6' => esc_html__('2 Items / Row', 'dservice'),
-                    'col-md-4 col-sm-6' => esc_html__('3 Items / Row', 'dservice'),
-                    'col-md-3 col-sm-6' => esc_html__('4 Items / Row', 'dservice'),
-                    'atbd_category_collum ' => esc_html__('5 Items / Row', 'dservice'),
+                    '6' => esc_html__('6 Items / Row', 'dlist-core'),
+                    '5' => esc_html__('5 Items / Row', 'dlist-core'),
+                    '4' => esc_html__('4 Items / Row', 'dlist-core'),
+                    '3' => esc_html__('3 Items / Row', 'dlist-core'),
+                    '2' => esc_html__('2 Items / Row', 'dlist-core'),
                 ],
                 'condition' => [
                     'cat_style' => 'grid',
@@ -896,7 +897,7 @@ class dservice_Categories extends Widget_Base
                                 </div>
                             </div>
                         </a>
-                <?php
+                        <?php
                     }
                     wp_reset_postdata();
                 } else {
