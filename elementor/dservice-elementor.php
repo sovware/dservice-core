@@ -40,44 +40,49 @@ if (!class_exists('dserviceWidgets')) {
 
             Plugin::instance()->widgets_manager->register_widget_type(new dservice_Heading());
             Plugin::instance()->widgets_manager->register_widget_type(new dservice_Accordion());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_AddListing_Form());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_Profile());
             Plugin::instance()->widgets_manager->register_widget_type(new dservice_Blogs());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_Categories());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_Checkout());
             Plugin::instance()->widgets_manager->register_widget_type(new dservice_ContactForm());
             Plugin::instance()->widgets_manager->register_widget_type(new dservice_ContactItems());
             Plugin::instance()->widgets_manager->register_widget_type(new dservice_Counter());
             Plugin::instance()->widgets_manager->register_widget_type(new dservice_CTA());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_Dashboard());
             Plugin::instance()->widgets_manager->register_widget_type(new dservice_FeatureBox());
             Plugin::instance()->widgets_manager->register_widget_type(new dservice_VideoPopup());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_Listings());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_ListingsCarousel());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_ListingsMap());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_Locations());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_Login());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_Transaction());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_Registration());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_Logos());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_NeedCategories());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_NeedLocations());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_NeedSingleCat());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_NeedSingleLoc());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_Needs());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_Payment());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_PricingPlan());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_SearchForm());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_SearchResult());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_SingleCat());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_SingleCatMap());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_SingleLoc());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_SingleLocMap());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_SingleTag());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_SingleTagMap());
             Plugin::instance()->widgets_manager->register_widget_type(new dservice_Team());
             Plugin::instance()->widgets_manager->register_widget_type(new dservice_Testimonial());
-            Plugin::instance()->widgets_manager->register_widget_type(new dservice_Booking());
+
+            if ( class_exists( 'Directorist_Base' ) ) {
+                Plugin::instance()->widgets_manager->register_widget_type(new dservice_AddListing_Form());
+                Plugin::instance()->widgets_manager->register_widget_type(new dservice_Profile());
+                Plugin::instance()->widgets_manager->register_widget_type(new dservice_Categories());
+                Plugin::instance()->widgets_manager->register_widget_type(new dservice_Checkout());
+                Plugin::instance()->widgets_manager->register_widget_type(new dservice_Dashboard());
+                Plugin::instance()->widgets_manager->register_widget_type(new dservice_Listings());
+                Plugin::instance()->widgets_manager->register_widget_type(new dservice_ListingsCarousel());
+                Plugin::instance()->widgets_manager->register_widget_type(new dservice_ListingsMap());
+                Plugin::instance()->widgets_manager->register_widget_type(new dservice_Locations());
+                Plugin::instance()->widgets_manager->register_widget_type(new dservice_Login());
+                Plugin::instance()->widgets_manager->register_widget_type(new dservice_Transaction());
+                Plugin::instance()->widgets_manager->register_widget_type(new dservice_Registration());
+                Plugin::instance()->widgets_manager->register_widget_type(new dservice_Logos());
+                if ( class_exists( 'Post_Your_Need' ) ) {
+                    Plugin::instance()->widgets_manager->register_widget_type(new dservice_NeedCategories());
+                    Plugin::instance()->widgets_manager->register_widget_type(new dservice_NeedLocations());
+                    Plugin::instance()->widgets_manager->register_widget_type(new dservice_NeedSingleCat());
+                    Plugin::instance()->widgets_manager->register_widget_type(new dservice_NeedSingleLoc());
+                    Plugin::instance()->widgets_manager->register_widget_type(new dservice_Needs());
+                }
+                Plugin::instance()->widgets_manager->register_widget_type(new dservice_Payment());
+                Plugin::instance()->widgets_manager->register_widget_type(new dservice_PricingPlan());
+                Plugin::instance()->widgets_manager->register_widget_type(new dservice_SearchForm());
+                Plugin::instance()->widgets_manager->register_widget_type(new dservice_SearchResult());
+                Plugin::instance()->widgets_manager->register_widget_type(new dservice_SingleCat());
+                Plugin::instance()->widgets_manager->register_widget_type(new dservice_SingleCatMap());
+                Plugin::instance()->widgets_manager->register_widget_type(new dservice_SingleLoc());
+                Plugin::instance()->widgets_manager->register_widget_type(new dservice_SingleLocMap());
+                Plugin::instance()->widgets_manager->register_widget_type(new dservice_SingleTag());
+                Plugin::instance()->widgets_manager->register_widget_type(new dservice_SingleTagMap());
+                Plugin::instance()->widgets_manager->register_widget_type(new dservice_Booking());
+            }
         }
 
         public function dservice_widget_category($manager)

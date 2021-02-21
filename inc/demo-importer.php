@@ -5,7 +5,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class DserviceDemo_Importer {
 
-
 	protected static $instance;
 
 	public function __construct() {

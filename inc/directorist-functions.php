@@ -542,34 +542,6 @@ function dservice_all_need_categories_after_category_name($html, $term)
 
 add_filter('atbdp_all_need_categories_after_category_name', 'dservice_all_need_categories_after_category_name', 10, 2);
 
-/*Directorist all location name */
-function dservice_all_locations_after_location_name($html, $term)
-{
-    $count = atbdp_listings_count_by_location($term->term_id);
-
-    $expired_listings  = atbdp_get_expired_listings(ATBDP_LOCATION, $term->term_id);
-    $number_of_expired = $expired_listings->post_count;
-    $number_of_expired = !empty($number_of_expired) ? $number_of_expired : '0';
-    $total             = ($count) ? ($count - $number_of_expired) : $count;
-    return 1 < $total ? sprintf('<p>%s</p>', $total . esc_html__(' Listings', 'dservice-core')) : sprintf('<p>%s</p>', $total . esc_html__(' Listing', 'dservice-core'));
-}
-
-add_filter('atbdp_all_locations_after_location_name', 'dservice_all_locations_after_location_name', 10, 2);
-
-
-function dservice_all_need_locations_after_location_name($html, $term)
-{
-    $count = pyn_needs_count_by_location($term->term_id);
-
-    $expired_listings  = atbdp_get_expired_listings(ATBDP_LOCATION, $term->term_id);
-    $number_of_expired = $expired_listings->post_count;
-    $number_of_expired = !empty($number_of_expired) ? $number_of_expired : '0';
-    $total             = ($count) ? ($count - $number_of_expired) : $count;
-    return 1 < $total ? sprintf('<p>%s</p>', $total . esc_html__(' Listings', 'dservice-core')) : sprintf('<p>%s</p>', $total . esc_html__(' Listing', 'dservice-core'));
-}
-
-add_filter('atbdp_all_need_locations_after_location_name', 'dservice_all_need_locations_after_location_name', 10, 2);
-
 /*========================================================
    Directorist atbdp_search_listing dependency maintain
 ========================================================= */
@@ -2904,14 +2876,14 @@ function dservice_added_class_before_listing_form()
 {
     echo sprintf('<div class="%s">', 'col-lg-8 offset-lg-2');
 }
-add_action('atbdb_before_add_listing_from_wrapper', 'dservice_added_class_before_listing_form');
+//add_action('atbdb_before_add_listing_from_wrapper', 'dservice_added_class_before_listing_form');
 
 /*============added class before listing for wrapper*/
 function dservice_added_class_after_listing_form()
 {
     echo '</div>';
 }
-add_action('atbdb_after_add_listing_from_wrapper', 'dservice_added_class_after_listing_form');
+//add_action('atbdb_after_add_listing_from_wrapper', 'dservice_added_class_after_listing_form');
 
 //Remove directorist elementor widgets
 add_filter('atbdp_elementor_widgets_activated', '__return_false');
@@ -3018,6 +2990,14 @@ function directorist_dashboard_listing_td_2() {
 	<?php
 }
 add_action( 'directorist_dashboard_listing_td_2', 'directorist_dashboard_listing_td_2' );
+
+function atbdp_all_listings_meta_count( $html, $term ) {
+	$total = $term->count;
+	$str = ( 1 == $total ) ? __( ' Listing', 'direo' ) : __( ' Listings', 'direo' );
+	return '<span class="listing-count"> ' . $total . '<span class="listing-label">' . $str . '</span>' . '</span>';
+}
+add_filter( 'atbdp_all_locations_after_location_name', 'atbdp_all_listings_meta_count', 10, 2 );
+add_filter( 'atbdp_all_categories_after_category_name', 'atbdp_all_listings_meta_count', 10, 2 );
 
 function directorist_listing_types() {
 	$all_types = directory_types();

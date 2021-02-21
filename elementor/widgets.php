@@ -690,7 +690,7 @@ class dservice_Categories extends Widget_Base
 
     public function get_title()
     {
-        return __('Popular Listing Categories', 'dservice-core');
+        return __('Listing Categories', 'dservice-core');
     }
 
     public function get_icon()
@@ -714,6 +714,34 @@ class dservice_Categories extends Widget_Base
             'categories',
             [
                 'label' => __('Popular Listing categories', 'dservice-core'),
+            ]
+        );
+
+        $this->add_control(
+            'types',
+            [
+                'label'    => __('Specify Listing Types', 'dservice-core'),
+                'type'     => Controls_Manager::SELECT2,
+                'multiple' => true,
+                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
+                'default'  => ['general'],
+                'condition' => [
+                    'cat_type!' => ['style3'],
+                ]
+            ]
+        );
+
+        $this->add_control(
+            'default_types',
+            [
+                'label'    => __('Set Default Listing Type', 'dservice-core'),
+                'type'     => Controls_Manager::SELECT,
+                'multiple' => true,
+                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
+                'default'  => 'general',
+                'condition' => [
+                    'cat_type!' => ['style3'],
+                ]
             ]
         );
 
@@ -773,20 +801,63 @@ class dservice_Categories extends Widget_Base
             ]
         );
 
+        $this->add_control(
+            'order_by',
+            [
+                'label'   => esc_html__('Order by', 'dservice-core'),
+                'type'    => Controls_Manager::SELECT,
+                'default' => 'id',
+                'options' => [
+                    'id'    => esc_html__(' Cat ID', 'dservice-core'),
+                    'count' => esc_html__('Listing Count', 'dservice-core'),
+                    'name'  => esc_html__('Category name (A-Z)', 'dservice-core'),
+                    'slug'  => esc_html__('Select Category', 'dservice-core'),
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'slug',
+            [
+                'label'     => esc_html__('Select Categories', 'dservice-core'),
+                'type'      => Controls_Manager::SELECT2,
+                'multiple'  => true,
+                'options'   => function_exists('dservice_listing_category') ? dservice_listing_category() : [],
+                'condition' => [
+                    'order_by' => 'slug'
+                ]
+            ]
+        );
+
+        $this->add_control(
+            'order_list',
+            [
+                'label'   => esc_html__('Categories Order', 'dservice-core'),
+                'type'    => Controls_Manager::SELECT,
+                'default' => 'desc',
+                'options' => array(
+                    'asc'  => esc_html__(' ASC', 'dservice-core'),
+                    'desc' => esc_html__(' DESC', 'dservice-core'),
+                ),
+            ]
+        );
+
         $this->end_controls_section();
     }
 
     protected function render()
     {
-        if (!class_exists('Directorist_Base')) {
-            return;
-        }
 
         $settings = $this->get_settings_for_display();
-        $number_cat = $settings['number_cat'];
+        $order_by   = $settings['order_by'];
+        $order_list = $settings['order_list'];
         $row = $settings['row'];
+        $slug       = $settings['slug'] ? implode( ',', $settings['slug'] ) : '';
+        $number_cat = $settings['number_cat'];
         $cat_style = $settings['cat_style'];
         $cat_type = $settings['cat_type'];
+        $default_types = $settings['default_types'];
+        $types = $settings['types'] ? implode( ',', $settings['types'] ) : '';
 
         $args = array(
             'type' => ATBDP_POST_TYPE,
@@ -832,53 +903,17 @@ class dservice_Categories extends Widget_Base
                     echo sprintf('<h4>%s</h4>', esc_html__('No categories are found!', 'dservice'));
                 } ?>
             </div>
-        <?php
-        } else { ?>
-            <div class="row">
-                <?php
-                if ($popular_cat) {
-                    foreach ($popular_cat as $key => $cat) {
-                        $link = class_exists('Directorist_Base') ? ATBDP_Permalink::atbdp_get_category_page((object)$cat) : '';
-                        $icon = get_cat_icon($cat->term_id);
-                        $icon_type = substr($icon, 0, 2);
-                        $image_id = get_term_meta($cat->term_id, 'image', true);
-                        $image = $image_id ? wp_get_attachment_image_src($image_id, 'dservice-popular-cat-2')[0] : '';
-                        $icon = ('la' === $icon_type) ? $icon_type . ' ' . $icon : 'fa ' . $icon; ?>
-
-                        <div class="<?php echo !empty($row) ? esc_attr($row) : esc_html('col-lg-3 col-md-4 col-sm-6'); ?> col-6">
-                            <a class="atbd_category_single <?php echo !$image ? esc_html('atbd_category-default') : ''; ?>" href="<?php echo esc_url($link); ?>">
-                                <figure>
-                                    <img src="<?php echo esc_url($image); ?>" alt="<?php echo function_exists('dservice_get_image_alt') ? dservice_get_image_alt($image_id) : ''; ?>" />
-                                    <figcaption class="overlay-bg">
-                                        <div class="cat-box">
-                                            <div>
-                                                <div class="icon">
-                                                    <span class="<?php echo esc_attr($icon); ?>"></span>
-                                                </div>
-                                                <div class="cat-info">
-                                                    <?php echo sprintf('<h4 class="cat-name">%s</h4>', esc_attr($cat->name)); ?>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </figcaption>
-                                </figure>
-                            </a>
-                        </div>
-
-                <?php
-                    }
-                    wp_reset_postdata();
-                } else {
-                    echo sprintf('<h4>%s</h4>', esc_html__('No categories are found!', 'dservice'));
-                } ?>
-            </div>
-        <?php
+            <?php
+        }
+        else {
+            echo do_shortcode( '[directorist_all_categories view="grid" orderby="' . esc_attr( $order_by ) . '" order="' . esc_attr( $order_list ) . '" cat_per_page="' . esc_attr( $number_cat ) . '" columns="' . esc_attr( $row ) . '" slug="' . esc_attr( $slug ) . '" directory_type="' . $types . '" default_directory_type="' . $default_types . '"]' );
         }
     }
 }
 
+
 //Locations
-class Dservice_Locations extends Widget_Base
+class dservice_Locations extends Widget_Base
 {
     public function get_name()
     {
@@ -892,7 +927,7 @@ class Dservice_Locations extends Widget_Base
 
     public function get_icon()
     {
-        return 'eicon-map-pin';
+        return ' eicon-map-pin';
     }
 
     public function get_categories()
@@ -945,14 +980,12 @@ class Dservice_Locations extends Widget_Base
         $this->add_control(
             'layout',
             [
-                'label'   => __('Style', 'dservice-core'),
-                'type'    => Controls_Manager::SELECT,
+                'label' => __('Locations Style', 'dservice-core'),
+                'type' => Controls_Manager::SELECT,
                 'default' => 'grid',
                 'options' => [
                     'grid' => esc_html__('Grid View', 'dservice-core'),
                     'list' => esc_html__('List View', 'dservice-core'),
-                    'masonry' => esc_html__('Masonry View', 'dservice-core'),
-                    'carousel' => esc_html__('Carousel View', 'dservice-core'),
                 ],
             ]
         );
@@ -960,8 +993,8 @@ class Dservice_Locations extends Widget_Base
         $this->add_control(
             'row',
             [
-                'label'   => __('Locations Per Row', 'dservice-core'),
-                'type'    => Controls_Manager::SELECT,
+                'label' => __('Locations Per Row', 'dservice-core'),
+                'type' => Controls_Manager::SELECT,
                 'default' => '2',
                 'options' => [
                     '5' => esc_html__('5 Items / Row', 'dservice-core'),
@@ -969,60 +1002,54 @@ class Dservice_Locations extends Widget_Base
                     '3' => esc_html__('3 Items / Row', 'dservice-core'),
                     '2' => esc_html__('2 Items / Row', 'dservice-core'),
                 ],
-                'condition' => [
-                    'layout!' => ['carousel','masonry'],
-                ]
             ]
         );
 
         $this->add_control(
             'number_loc',
             [
-                'label'   => __('Number of Locations to Show:', 'dservice-core'),
-                'type'    => Controls_Manager::NUMBER,
-                'min'     => 1,
-                'max'     => 1000,
-                'step'    => 1,
+                'label' => __('Number of Locations to Show:', 'dservice-core'),
+                'type' => Controls_Manager::NUMBER,
+                'min' => 1,
+                'max' => 1000,
+                'step' => 1,
                 'default' => 4,
-            ]
-        );
-
-        $this->add_control(
-            'order_by',
-            [
-                'label'   => __('Order by', 'dservice-core'),
-                'type'    => Controls_Manager::SELECT,
-                'default' => 'id',
-                'options' => [
-                    'id'    => esc_html__('Location ID', 'dservice-core'),
-                    'count' => esc_html__('Listing Count', 'dservice-core'),
-                    'name'  => esc_html__(' Location name (A-Z)', 'dservice-core'),
-                    'slug'  => esc_html__('Select Location', 'dservice-core'),
-                ],
             ]
         );
 
         $this->add_control(
             'slug',
             [
-                'label'    => __('Specify Locations', 'dservice-core'),
-                'type'     => Controls_Manager::SELECT2,
+                'label' => __('Specify Locations', 'dservice-core'),
+                'type' => Controls_Manager::SELECT2,
                 'multiple' => true,
-                'options'  => function_exists('dservice_listing_locations') ? dservice_listing_locations() : [],
-                'condition' => [
-                    'order_by' => 'slug',
-                ]
+                'options' => function_exists('dservice_listing_locations') ? dservice_listing_locations() : []
+            ]
+        );
+
+        $this->add_control(
+            'order_by',
+            [
+                'label' => __('Order by', 'dservice-core'),
+                'type' => Controls_Manager::SELECT,
+                'default' => 'id',
+                'options' => [
+                    'id' => esc_html__('Location ID', 'dservice-core'),
+                    'count' => esc_html__('Listing Count', 'dservice-core'),
+                    'name' => esc_html__(' Location name (A-Z)', 'dservice-core'),
+                    'slug' => esc_html__(' Location Slug', 'dservice-core'),
+                ],
             ]
         );
 
         $this->add_control(
             'order_list',
             [
-                'label'   => __('Locations Order', 'dservice-core'),
-                'type'    => Controls_Manager::SELECT,
+                'label' => __('Locations Order', 'dservice-core'),
+                'type' => Controls_Manager::SELECT,
                 'default' => 'desc',
                 'options' => [
-                    'asc'  => esc_html__(' ASC', 'dservice-core'),
+                    'asc' => esc_html__(' ASC', 'dservice-core'),
                     'desc' => esc_html__(' DESC', 'dservice-core'),
                 ],
             ]
@@ -1194,13 +1221,12 @@ class dservice_ContactForm extends Widget_Base
                     <div class="contact-wrapper__title">
                         <h4><?php echo esc_attr($title); ?></h4>
                     </div>
-                <?php
-                } ?>
+                <?php } ?>
                 <div class="contact-wrapper__fields">
                     <?php echo do_shortcode('[contact-form-7 id="' . intval(esc_attr($contact_form_id)) . '" ]'); ?>
                 </div>
             </div>
-        <?php
+            <?php
         }
     }
 }
@@ -2015,14 +2041,13 @@ class Dservice_Listings extends Widget_Base
         $this->add_control(
             'layout',
             [
-                'label'   => __('View As', 'dservice-core'),
-                'type'    => Controls_Manager::SELECT,
+                'label' => __('View As', 'dservice-core'),
+                'type' => Controls_Manager::SELECT,
                 'default' => 'grid',
                 'options' => [
                     'grid' => esc_html__('Grid View', 'dservice-core'),
                     'list' => esc_html__('List View', 'dservice-core'),
-                    'map'  => esc_html__('Map View', 'dservice-core'),
-                    'carousel'  => esc_html__('Carousel View', 'dservice-core'),
+                    'map' => esc_html__('Map View', 'dservice-core'),
                 ],
             ]
         );
@@ -2048,15 +2073,24 @@ class Dservice_Listings extends Widget_Base
                 ]
             ]
         );
-        
+
         $this->add_control(
             'header',
             [
-                'label'   => __('Show Header?', 'dservice-core'),
-                'type'    => Controls_Manager::SWITCHER,
-                'default' => 'no',
+                'label' => __('Show Header?', 'dservice-core'),
+                'type' => Controls_Manager::SWITCHER,
+                'default' => 'yes',
+            ]
+        );
+
+        $this->add_control(
+            'filter',
+            [
+                'label'     => __('Show Filter Button?', 'direo-core'),
+                'type'      => Controls_Manager::SWITCHER,
+                'default'   => 'no',
                 'condition' => [
-                    'layout!' => 'carousel'
+                    'header' => 'yes'
                 ]
             ]
         );
@@ -2064,75 +2098,15 @@ class Dservice_Listings extends Widget_Base
         $this->add_control(
             'title',
             [
-                'label'       => __('Listings Found Text', 'dservice-core'),
-                'type'        => Controls_Manager::TEXT,
-                'default'     => __('Listings Found', 'dservice-core'),
+                'label' => __('Listings Found Text', 'dservice-core'),
+                'type' => Controls_Manager::TEXT,
+                'default' => __('Listings Found', 'dservice-core'),
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'label_block' => true,
-                'condition'   => [
-                    'header' => 'yes',
-                    'layout!' => 'carousel'
-                ]
-            ]
-        );
-
-        $this->add_control(
-            'section_title',
-            [
-                'label'       => __('Section Title', 'dservice-core'),
-                'type'        => Controls_Manager::TEXT,
-                'label_block' => true,
-                'condition'   => [
-                    'layout' => 'carousel'
-                ]
-
-            ]
-        );
-
-        $this->add_control(
-            'view_more_label',
-            [
-                'label'       => __('View More Label', 'dservice-core'),
-                'type'        => Controls_Manager::TEXT,
-                'label_block' => true,
-                'condition'   => [
-                    'layout' => 'carousel'
-                ]
-            ]
-        );
-
-        $this->add_control(
-            'view_more_url',
-            [
-                'label'       => __('View More URL', 'dservice-core'),
-                'type'        => Controls_Manager::URL,
-                'label_block' => true,
-                'condition'   => [
-                    'layout' => 'carousel'
-                ]
-            ]
-        );
-
-        $this->add_control(
-            'filter',
-            [
-                'label'     => __('Show Filter Button?', 'dservice-core'),
-                'type'      => Controls_Manager::SWITCHER,
-                'default'   => 'no',
                 'condition' => [
-                    'header' => 'yes',
-                    'layout!' => 'carousel'
-                ]
-            ]
-        );
-
-        $this->add_control(
-            'sidebar',
-            [
-                'label'     => __('Show sidebar?', 'dservice-core'),
-                'type'      => Controls_Manager::SWITCHER,
-                'default'   => 'no',
-                'condition' => [
-                    'layout!' => 'map'
+                    'header' => 'yes'
                 ]
             ]
         );
@@ -2140,8 +2114,8 @@ class Dservice_Listings extends Widget_Base
         $this->add_control(
             'user',
             [
-                'label'   => __('Only For Logged In User?', 'dservice-core'),
-                'type'    => Controls_Manager::SWITCHER,
+                'label' => __('Only For Logged In User?', 'dservice-core'),
+                'type' => Controls_Manager::SWITCHER,
                 'default' => 'no',
             ]
         );
@@ -2149,8 +2123,8 @@ class Dservice_Listings extends Widget_Base
         $this->add_control(
             'redirect',
             [
-                'label'   => __('Redirect User?', 'dservice-core'),
-                'type'    => Controls_Manager::SWITCHER,
+                'label' => __('Redirect User?', 'dservice-core'),
+                'type' => Controls_Manager::SWITCHER,
                 'default' => 'no',
             ]
         );
@@ -2158,8 +2132,15 @@ class Dservice_Listings extends Widget_Base
         $this->add_control(
             'link',
             [
-                'label'     => __('Redirect Link', 'dservice-core'),
-                'type'      => Controls_Manager::URL,
+                'label' => __('Redirect Link', 'dservice-core'),
+                'type' => Controls_Manager::URL,
+                'dynamic' => [
+                    'active' => true,
+                ],
+                'default' => [
+                    'url' => '',
+                ],
+                'separator' => 'before',
                 'condition' => [
                     'redirect' => 'yes'
                 ]
@@ -2169,8 +2150,8 @@ class Dservice_Listings extends Widget_Base
         $this->add_control(
             'row',
             [
-                'label'   => __('Listings Per Row', 'dservice-core'),
-                'type'    => Controls_Manager::SELECT,
+                'label' => __('Listings Per Row', 'dservice-core'),
+                'type' => Controls_Manager::SELECT,
                 'default' => '3',
                 'options' => [
                     '5' => esc_html__('5 Items / Row', 'dservice-core'),
@@ -2179,7 +2160,7 @@ class Dservice_Listings extends Widget_Base
                     '2' => esc_html__('2 Items / Row', 'dservice-core'),
                 ],
                 'condition' => [
-                    'layout' => 'grid',
+                    'layout' => 'grid'
                 ]
             ]
         );
@@ -2187,63 +2168,64 @@ class Dservice_Listings extends Widget_Base
         $this->add_control(
             'map_height',
             [
-                'label'     => __('Map Height', 'dservice-core'),
-                'type'      => Controls_Manager::NUMBER,
-                'min'       => 300,
-                'max'       => 1980,
-                'default'   => 500,
+                'label' => __('Map Height', 'dservice-core'),
+                'type' => Controls_Manager::NUMBER,
+                'min' => 300,
+                'max' => 1980,
+                'default' => 500,
                 'condition' => [
                     'layout' => 'map'
                 ]
             ]
+
         );
 
         $this->add_control(
             'number_cat',
             [
-                'label'   => __('Number of Listings to Show:', 'dservice-core'),
-                'type'    => Controls_Manager::NUMBER,
-                'min'     => 1,
-                'max'     => 100,
-                'default' => 6,
+                'label' => __('Number of Listings to Show:', 'dservice-core'),
+                'type' => Controls_Manager::NUMBER,
+                'min' => 1,
+                'max' => 100,
+                'default' => 3,
             ]
         );
 
         $this->add_control(
             'cat',
             [
-                'label'    => __('Specify Categories', 'dservice-core'),
-                'type'     => Controls_Manager::SELECT2,
+                'label' => __('Specify Categories', 'dservice-core'),
+                'type' => Controls_Manager::SELECT2,
                 'multiple' => true,
-                'options'  => function_exists('dservice_listing_category') ? dservice_listing_category() : [],
+                'options' => function_exists('dservice_listing_category') ? dservice_listing_category() : []
             ]
         );
 
         $this->add_control(
             'tag',
             [
-                'label'    => __('Specify Tags', 'dservice-core'),
-                'type'     => Controls_Manager::SELECT2,
+                'label' => __('Specify Tags', 'dservice-core'),
+                'type' => Controls_Manager::SELECT2,
                 'multiple' => true,
-                'options'  => function_exists('dservice_listing_tags') ? dservice_listing_tags() : []
+                'options' => function_exists('dservice_listing_tags') ? dservice_listing_tags() : []
             ]
         );
 
         $this->add_control(
             'location',
             [
-                'label'    => __('Specify Locations', 'dservice-core'),
-                'type'     => Controls_Manager::SELECT2,
+                'label' => __('Specify Locations', 'dservice-core'),
+                'type' => Controls_Manager::SELECT2,
                 'multiple' => true,
-                'options'  => function_exists('dservice_listing_locations') ? dservice_listing_locations() : []
+                'options' => function_exists('dservice_listing_locations') ? dservice_listing_locations() : []
             ]
         );
 
         $this->add_control(
             'featured',
             [
-                'label'   => __('Show Featured Only?', 'dservice-core'),
-                'type'    => Controls_Manager::SWITCHER,
+                'label' => __('Show Featured Only?', 'dservice-core'),
+                'type' => Controls_Manager::SWITCHER,
                 'default' => 'no',
             ]
         );
@@ -2251,8 +2233,8 @@ class Dservice_Listings extends Widget_Base
         $this->add_control(
             'popular',
             [
-                'label'   => __('Show Popular Only?', 'dservice-core'),
-                'type'    => Controls_Manager::SWITCHER,
+                'label' => __('Show Popular Only?', 'dservice-core'),
+                'type' => Controls_Manager::SWITCHER,
                 'default' => 'no',
             ]
         );
@@ -2260,12 +2242,12 @@ class Dservice_Listings extends Widget_Base
         $this->add_control(
             'order_by',
             [
-                'label'   => __('Order by', 'dservice-core'),
-                'type'    => Controls_Manager::SELECT,
+                'label' => __('Order by', 'dservice-core'),
+                'type' => Controls_Manager::SELECT,
                 'default' => 'date',
                 'options' => [
                     'title' => esc_html__(' Title', 'dservice-core'),
-                    'date'  => esc_html__(' Date', 'dservice-core'),
+                    'date' => esc_html__(' Date', 'dservice-core'),
                     'price' => esc_html__(' Price', 'dservice-core'),
                 ],
                 'condition' => [
@@ -2277,11 +2259,11 @@ class Dservice_Listings extends Widget_Base
         $this->add_control(
             'order_list',
             [
-                'label'   => __('Listings Order', 'dservice-core'),
-                'type'    => Controls_Manager::SELECT,
+                'label' => __('Listings Order', 'dservice-core'),
+                'type' => Controls_Manager::SELECT,
                 'default' => 'desc',
                 'options' => [
-                    'asc'  => esc_html__(' ASC', 'dservice-core'),
+                    'asc' => esc_html__(' ASC', 'dservice-core'),
                     'desc' => esc_html__(' DESC', 'dservice-core'),
                 ],
                 'condition' => [
@@ -2293,12 +2275,9 @@ class Dservice_Listings extends Widget_Base
         $this->add_control(
             'show_pagination',
             [
-                'label'   => __('Show Pagination?', 'dservice-core'),
-                'type'    => Controls_Manager::SWITCHER,
-                'default' => 'no',
-                'condition' => [
-                    'layout!' => 'carousel'
-                ]
+                'label' => __('Show Pagination?', 'dservice-core'),
+                'type' => Controls_Manager::SWITCHER,
+                'default' => 'yes',
             ]
         );
 
@@ -2430,9 +2409,6 @@ class dservice_ListingsCarousel extends Widget_Base
         $contact = $settings['contact'];
         $phone = $settings['phone'];
         $date = $settings['date'];
-        if (!class_exists('Directorist_Base')) {
-            return;
-        }
 
         $has_featured = get_directorist_option('enable_featured_listing');
         if ($has_featured || is_fee_manager_active()) {
@@ -4160,6 +4136,7 @@ class dservice_SearchForm extends Widget_Base
 
     protected function render()
     {
+        $searchform = new Directorist_Listing_Search_Form( 'search_form', directorist_default_directory() );
         $settings = $this->get_settings_for_display();
         $title = $settings['title'];
         $subtitle = $settings['subtitle'];
@@ -4167,10 +4144,6 @@ class dservice_SearchForm extends Widget_Base
         $style = $settings['style'];
         $image = $settings['image'] ? $settings['image']['url'] : '';
         $id = $settings['image'] ? $settings['image']['id'] : '';
-        $searchform = new Directorist_Listing_Search_Form( 'search_form', directorist_default_directory() );
-        if (!class_exists('Directorist_Base')) {
-            return;
-        }
         ?>
             <div class="search-form-wrapper <?php echo esc_attr($style); ?>">
                 <div class="row align-items-center">
@@ -4181,13 +4154,16 @@ class dservice_SearchForm extends Widget_Base
                                 echo !empty($title) ? sprintf('<h1>%s</h1>', wp_kses($title, array('span' => ''))) : '';
                                 echo !empty($subtitle) ? sprintf('<span class="subtitle">%s</span>', esc_attr($subtitle)) : ''; ?>
                             </div>
-                            <form class="directorist-search-form" action="<?php echo class_exists('Directorist_Base') ? ATBDP_Permalink::get_search_result_page_link() : ''; ?>" role="form">
+                            <form action="<?php echo esc_url( ATBDP_Permalink::get_search_result_page_link() ); ?>" class="directorist-search-form">
                                 <div class="directorist-search-form-wrap directorist-with-search-border">
-                                <?php $searchform->directory_type_nav_template(); ?>
+                                    <?php $searchform->directory_type_nav_template(); ?>
 
-                                <input type="hidden" name="directory_type" id="listing_type" value="<?php echo esc_attr( $searchform->listing_type_slug() ); ?>">
+                                    <input type="hidden" name="directory_type" id="listing_type" value="<?php echo esc_attr( $searchform->listing_type_slug() ); ?>">
+
                                     <div class="directorist-search-form-box">
+
                                         <div class="directorist-search-form-top directorist-flex directorist-align-center directorist-search-form-inline">
+
                                             <?php
                                             foreach ( $searchform->form_data[0]['fields'] as $field ){
                                                 $searchform->field_template( $field );
@@ -4196,22 +4172,25 @@ class dservice_SearchForm extends Widget_Base
                                                 $searchform->more_buttons_template();
                                             }
                                             ?>
+
                                         </div>
+
+                                        <?php
+                                        if ( $searchform->more_filters_display == 'always_open' ){
+                                            $searchform->advanced_search_form_fields_template();
+                                        }
+                                        else {
+                                            if ($searchform->has_more_filters_button) { ?>
+                                                <div class="<?php Helper::search_filter_class( $searchform->more_filters_display ); ?>">
+                                                    <?php $searchform->advanced_search_form_fields_template();?>
+                                                </div>
+                                                <?php
+                                            }
+                                        }
+                                        ?>
+
                                     </div>
                                 </div>
-                                <?php
-                                if ( $searchform->more_filters_display == 'always_open' ){
-                                    $searchform->advanced_search_form_fields_template();
-                                }
-                                else {
-                                    if ($searchform->has_more_filters_button) { ?>
-                                        <div class="<?php Helper::search_filter_class( $searchform->more_filters_display ); ?>">
-                                            <?php $searchform->advanced_search_form_fields_template();?>
-                                        </div>
-                                        <?php
-                                    }
-                                }
-                                ?>
                             </form>
                             <?php if ('yes' == $popular) : $searchform->top_categories_template(); endif; ?>
                         </div>
