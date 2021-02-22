@@ -8,6 +8,8 @@
  * @version 1.0
  */
 
+use \Directorist\Directorist_Listing_Search_Form;
+use \Directorist\Helper;
 //Listings view as .
 function dservice_listings_view_as(){
 ?>
@@ -274,114 +276,39 @@ function dservice_popular_categories()
 
 function dservice_quick_search()
 {
-    if (!class_exists('Directorist_Base')) {
-        return false;
-    }
-    $search_location_address     = get_directorist_option('search_location_address', 'address');
-    $search_fields               = get_directorist_option('search_tsc_fields', array('search_text', 'search_category', 'search_location'));
-    $search_placeholder          = get_directorist_option('search_placeholder', esc_attr_x('What are you looking for?', 'placeholder', 'dservice-core'));
-    $search_location_placeholder = get_directorist_option('search_location_placeholder', esc_html__('Select a location', 'dservice-core'));
-
-    $query_args = array(
-        'parent'             => 0,
-        'term_id'            => 0,
-        'hide_empty'         => 0,
-        'orderby'            => 'name',
-        'order'              => 'asc',
-        'show_count'         => 0,
-        'single_only'        => 0,
-        'pad_counts'         => true,
-        'immediate_category' => 0,
-        'active_term_id'     => 0,
-        'ancestors'          => array(),
-    );
-
-    $list_type = isset($_GET['listing_type']) ? $_GET['listing_type'] : '';
-    $need_type = get_post_meta(get_the_ID(), '_need_post', true);
-
-    if (is_single()) {
-        $is_list = 'no' == $need_type ? 'checked' : '';
-        $is_need = 'yes' == $need_type ? 'checked' : '';
-    } else {
-        $is_list = 'listing' == $list_type || empty($list_type) ? 'checked' : '';
-        $is_need = 'need' == $list_type ? 'checked' : '';
-    }
     ob_start();
+    $searchform = new Directorist_Listing_Search_Form( 'search_form', directory_listing_type() );
+    $fields = $searchform->form_data[0]['fields'];
+    $text_field = $fields && ! empty( $fields['title'] ) ? $fields['title'] : '';
+    $location_field = $fields && ! empty( $fields['location'] ) ? $fields['location'] : '';
+    if ( empty( $text_field ) && empty( $location_field ) ) return;
     ?>
-
-    <div class="atbd_wrapper ads-advaced--wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <form action="<?php echo ATBDP_Permalink::get_search_result_page_link(); ?>" role="form" class="breadcrumb_quick_search">
-                    <div class="atbd_seach_fields_wrapper">
-                        <div class="atbdp-search-form">
-                            <?php if (in_array('search_text', $search_fields)) { ?>
-                                <div class="single_search_field search_query">
-                                    <input class="form-control search_fields" type="text" name="q" autocomplete="off" placeholder="<?php echo esc_html($search_placeholder); ?>">
-                                    <?php dservice_popular_categories(); ?>
-                                </div>
+        <div class="atbd_wrapper ads-advaced--wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form action="<?php echo ATBDP_Permalink::get_search_result_page_link(); ?>" role="form" class="breadcrumb_quick_search">
+                        <div class="atbd_seach_fields_wrapper">
+                            <div class="atbdp-search-form">
                                 <?php
-                            }
-                            if (in_array('search_location', $search_fields)) {
-                                if ('listing_location' == $search_location_address) {
-                                    ?>
-                                    <div class="single_search_field search_location">
-                                        <select name="in_loc" class="search_fields form-control" id="at_biz_dir-locationss">
-                                            <option value="">
-                                                <?php echo esc_attr($search_location_placeholder); ?>
-                                            </option>
-                                            <?php echo search_category_location_filter($query_args, ATBDP_LOCATION); ?>
-                                        </select>
-                                    </div>
-                                    <?php
-                                } else {
-                                    wp_enqueue_script('atbdp-geolocation');
-                                    $address = !empty($_GET['address']) ? $_GET['address'] : '';
-                                    ?>
-                                    <div class="single_search_field atbdp_map_address_field">
-                                        <div class="atbdp_get_address_field">
-                                            <input type="text" id="q_addressss" name="address" autocomplete="off" value="<?php echo esc_attr($address); ?>" placeholder="<?php echo esc_attr($search_location_placeholder); ?>" class="form-control location-name">
-                                            <span class="atbd_get_loc la la-crosshairs"></span>
+                                    $text_field ? $searchform->field_template( $text_field ) : '';
+                                    $location_field ? $searchform->field_template( $location_field ) : '';
+                                ?>
+                                <div class="quick_search_btn_wrapper">
+                                    <div class="atbd_submit_btn_wrapper">
+                                        <div class="atbd_submit_btn">
+                                            <button type="submit" class="btn btn-primary btn_search">
+                                                <i class="la la-search"></i>
+                                            </button>
                                         </div>
-                                        <?php
-                                        $select_listing_map = get_directorist_option('select_listing_map', 'google');
-                                        if ('google' != $select_listing_map) {
-                                            echo '<div class="address_result"></div>';
-                                        }
-                                        ?>
-                                        <input type="hidden" id="cityLat" name="cityLat" value="" />
-                                        <input type="hidden" id="cityLng" name="cityLng" value="" />
-                                    </div>
-                                    <?php
-                                }
-                            }
-                            ?>
-                            <div class="quick_search_btn_wrapper">
-                                <div class="atbd_submit_btn_wrapper">
-                                    <div class="atbd_submit_btn">
-                                        <button type="submit" class="btn btn-primary btn_search">
-                                            <i class="la la-search"></i>
-                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <?php if (class_exists('Post_Your_Need')) { ?>
-                        <div class="pyn-search-group m-0">
-                            <div class="pyn-search-radio">
-                                <input type="radio" id="q_listing" name="listing_type" value="listing" <?php echo esc_attr($is_list); ?>>
-                            </div>
-                            <div class="pyn-search-radio">
-                                <input type="radio" id="q_need" name="listing_type" value="need" <?php echo esc_attr($is_need); ?>>
-                            </div>
-                        </div>
-                    <?php } ?>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-    <?php
+        <?php
     return ob_get_clean();
 }
 
@@ -2993,4 +2920,10 @@ function directorist_listing_types() {
 		$types[ $type->slug ] = $type->name;
 	}
 	return $types;
+}
+
+function directory_listing_type() {
+    $listing_type = ! empty($_GET['directory_type']) ? $_GET['directory_type'] : directorist_default_directory();
+    $term = get_term_by( is_numeric( $listing_type ) ? 'id' : 'slug' , $listing_type, ATBDP_TYPE );
+    return $term->term_id;
 }

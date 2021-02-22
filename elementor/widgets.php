@@ -690,7 +690,7 @@ class dservice_Categories extends Widget_Base
 
     public function get_title()
     {
-        return __('Listing Categories', 'dservice-core');
+        return __('All Categories', 'dservice-core');
     }
 
     public function get_icon()
@@ -2307,7 +2307,8 @@ class Dservice_Listings extends Widget_Base
         $map_height = $settings['map_height'];
         $zoom_level      = $settings['zoom_level'] ? $settings['zoom_level']['size'] : '';
         $user = $settings['user'];
-        $web = 'yes' == $user ? $settings['link']['url'] : ''; ?>
+        $web = 'yes' == $user ? $settings['link']['url'] : '';
+        ?>
 
         <div id='listing-<?php echo esc_attr($layout); ?>'>
             <?php echo do_shortcode('[directorist_all_listing map_zoom_level="' . esc_attr( $zoom_level ) . '" view="' . esc_attr($layout) . '" orderby="' . esc_attr($order_by) . '" order="' . esc_attr($order_list) . '" listings_per_page="' . esc_attr($number_cat) . '" category="' . esc_attr($cat) . '" tag="' . esc_attr($tag) . '" location="' . esc_attr($location) . '" featured_only="' . esc_attr($featured) . '" popular_only="' . esc_attr($popular) . '" header="' . esc_attr($header) . '" header_title ="' . esc_attr($title) . '" columns="' . esc_attr($row) . '" show_pagination="' . esc_attr($show_pagination) . '" advanced_filter="'.esc_attr( $filter ) .'" map_height="' . $map_height . '" display_preview_image="yes" logged_in_user_only="' . esc_attr($user) . '" redirect_page_url="' . esc_attr($web) . '" directory_type="' . $types . '" default_directory_type="' . $default_types . '"]'); ?>
@@ -5418,6 +5419,28 @@ class dservice_SingleTag extends Widget_Base
             'single_tag',
             [
                 'label' => __('Single Listing Tag', 'dservice-core'),
+            ]
+        );
+
+        $this->add_control(
+            'types',
+            [
+                'label'    => __('Specify Listing Types', 'direo-core'),
+                'type'     => Controls_Manager::SELECT2,
+                'multiple' => true,
+                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
+                'default'  => ['general'],
+            ]
+        );
+        
+        $this->add_control(
+            'default_types',
+            [
+                'label'    => __('Set Default Listing Type', 'direo-core'),
+                'type'     => Controls_Manager::SELECT,
+                'multiple' => true,
+                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
+                'default'  => 'general',
             ]
         );
 
