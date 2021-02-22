@@ -283,31 +283,31 @@ function dservice_quick_search()
     $location_field = $fields && ! empty( $fields['location'] ) ? $fields['location'] : '';
     if ( empty( $text_field ) && empty( $location_field ) ) return;
     ?>
-        <div class="atbd_wrapper ads-advaced--wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <form action="<?php echo ATBDP_Permalink::get_search_result_page_link(); ?>" role="form" class="breadcrumb_quick_search">
-                        <div class="atbd_seach_fields_wrapper">
-                            <div class="atbdp-search-form">
-                                <?php
-                                    $text_field ? $searchform->field_template( $text_field ) : '';
-                                    $location_field ? $searchform->field_template( $location_field ) : '';
-                                ?>
-                                <div class="quick_search_btn_wrapper">
-                                    <div class="atbd_submit_btn_wrapper">
-                                        <div class="atbd_submit_btn">
-                                            <button type="submit" class="btn btn-primary btn_search">
-                                                <i class="la la-search"></i>
-                                            </button>
-                                        </div>
+    <div class="atbd_wrapper ads-advaced--wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <form action="<?php echo ATBDP_Permalink::get_search_result_page_link(); ?>" role="form" class="breadcrumb_quick_search">
+                    <div class="atbd_seach_fields_wrapper">
+                        <div class="atbdp-search-form">
+                            <?php
+                            $text_field ? $searchform->field_template( $text_field ) : '';
+                            $location_field ? $searchform->field_template( $location_field ) : '';
+                            ?>
+                            <div class="quick_search_btn_wrapper">
+                                <div class="atbd_submit_btn_wrapper">
+                                    <div class="atbd_submit_btn">
+                                        <button type="submit" class="btn btn-primary btn_search">
+                                            <i class="la la-search"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
         <?php
     return ob_get_clean();
 }
