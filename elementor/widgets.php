@@ -4146,9 +4146,6 @@ class dservice_SearchForm extends Widget_Base
         $style = $settings['style'];
         $image = $settings['image'] ? $settings['image']['url'] : '';
         $id = $settings['image'] ? $settings['image']['id'] : '';
-        wp_enqueue_script( 'directorist-search-form-listing' );
-		wp_enqueue_script( 'directorist-range-slider' );
-        wp_enqueue_script( 'directorist-search-listing' );
         ?>
             <div class="search-form-wrapper <?php echo esc_attr($style); ?>">
                 <div class="row align-items-center">
