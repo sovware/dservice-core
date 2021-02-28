@@ -115,7 +115,7 @@ add_action( 'save_post', 'dservice_save_meta_box_data' );
 ============================================================================*/
 if ( ! function_exists( 'dservice_single_add_meta_box' ) ) {
 	function dservice_single_add_meta_box() {
-		add_meta_box( 'dservice_single_menu', esc_html__( 'Header Option', 'dservice' ), 'dservice_single_meta_box_callback', array( 'at_biz_dir', 'product', 'post' ), 'side', 'default' );
+		add_meta_box( 'dservice_single_menu', esc_html__( 'Header Option', 'dservice-core' ), 'dservice_single_meta_box_callback', array( 'at_biz_dir', 'product', 'post' ), 'side', 'default' );
 	}
 
 	add_action( 'add_meta_boxes', 'dservice_single_add_meta_box' );
@@ -253,7 +253,7 @@ function vb_reg_new_user() {
 	$display_password = get_directorist_option( 'display_password_reg', 1 );
 	// Verify nonce
 	if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], 'vb_new_user' ) ) {
-		echo __( 'Ooops, something went wrong, please try again later.', 'dservice' );
+		echo __( 'Ooops, something went wrong, please try again later.', 'dservice-core' );
 		die();
 	}
 	// Post values
@@ -267,7 +267,7 @@ function vb_reg_new_user() {
 		$password = sanitize_text_field( $_POST['password'] );
 	}
 	if ( ! empty( $password ) && 5 > strlen( $password ) ) {
-		echo __( 'Password length must be greater than 5', 'dservice' );
+		echo __( 'Password length must be greater than 5', 'dservice-core' );
 		die();
 	}
 	/**
@@ -524,11 +524,11 @@ function dservice_recovery_password() {
 	$success = '';
 	$email   = trim( $_POST['user_login'] );
 	if ( empty( $email ) ) {
-		$error = esc_html__( 'Enter valid e-mail address', 'dservice' );
+		$error = esc_html__( 'Enter valid e-mail address', 'dservice-core' );
 	} elseif ( ! is_email( $email ) ) {
-		$error = esc_html__( 'Invalid e-mail address.', 'dservice' );
+		$error = esc_html__( 'Invalid e-mail address.', 'dservice-core' );
 	} elseif ( ! email_exists( $email ) ) {
-		$error = esc_html__( 'There is no user registered with that email address.', 'dservice' );
+		$error = esc_html__( 'There is no user registered with that email address.', 'dservice-core' );
 	} else {
 		$random_password = wp_generate_password(12, false);
 		$user = get_user_by('email', $email);
@@ -536,17 +536,17 @@ function dservice_recovery_password() {
 
 		// if  update user return true then lets send user an email containing the new password
 		if ($update_user) {
-			$subject = esc_html__('	Password Reset Request', 'dservice');
-			//$message = esc_html__('Your new password is: ', 'dservice') . $random_password;
+			$subject = esc_html__('	Password Reset Request', 'dservice-core');
+			//$message = esc_html__('Your new password is: ', 'dservice-core') . $random_password;
 
 			$site_name = wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
-			$message = __('Someone has requested a password reset for the following account:', 'dservice') . "<br>";
+			$message = __('Someone has requested a password reset for the following account:', 'dservice-core') . "<br>";
 			/* translators: %s: site name */
-			$message .= sprintf(__('Site Name: %s', 'dservice'), $site_name) . "<br>";
+			$message .= sprintf(__('Site Name: %s', 'dservice-core'), $site_name) . "<br>";
 			/* translators: %s: user login */
-			$message .= sprintf(__('User: %s', 'dservice'), $user->user_login) . "<br>";
-			$message .= __('If this was a mistake, just ignore this email and nothing will happen.', 'dservice') . "<br>";
-			$message .= __('To reset your password, visit the following address:', 'dservice') . "<br>";
+			$message .= sprintf(__('User: %s', 'dservice-core'), $user->user_login) . "<br>";
+			$message .= __('If this was a mistake, just ignore this email and nothing will happen.', 'dservice-core') . "<br>";
+			$message .= __('To reset your password, visit the following address:', 'dservice-core') . "<br>";
 			$link = array(
 					'key' => $random_password,
 					'user' => $email,
@@ -558,12 +558,12 @@ function dservice_recovery_password() {
 			$headers[] = 'Content-Type: text/html; charset=UTF-8';
 			$mail = wp_mail($email, $subject, $message, $headers);
 			if ($mail) {
-				$success = __('A password reset email has been sent to the email address on file for your account, but may take several minutes to show up in your inbox.', 'dservice');
+				$success = __('A password reset email has been sent to the email address on file for your account, but may take several minutes to show up in your inbox.', 'dservice-core');
 			} else {
-				$error = __('Password updated! But something went wrong sending email.', 'dservice');
+				$error = __('Password updated! But something went wrong sending email.', 'dservice-core');
 			}
 		} else {
-			$error = esc_html__('Oops something went wrong updaing your account.', 'dservice');
+			$error = esc_html__('Oops something went wrong updaing your account.', 'dservice-core');
 		}
 	}
 
@@ -601,7 +601,7 @@ function dservice_ajax_login() {
 				'loggedin' => false,
 				'message'  => __(
 					'Wrong username or password.',
-					'dservice'
+					'dservice-core'
 				),
 			)
 		);
@@ -613,7 +613,7 @@ function dservice_ajax_login() {
 				'loggedin' => true,
 				'message'  => __(
 					'Login successful',
-					'dservice'
+					'dservice-core'
 				),
 			)
 		);
@@ -624,16 +624,16 @@ function dservice_ajax_login() {
 function dservice_ajax_login_init() {
 	wp_enqueue_script( 'ajax-login-script', get_theme_file_uri( 'theme_assets/js/ajax-login-register-script.js' ), 'jquery', null, true );
 	$display_password = ( class_exists( 'Directorist_Base' ) ) ? get_directorist_option( 'display_password_reg', 1 ) : '';
-	$confirmation     = empty( $display_password ) ? __( ' Go to your inbox or spam/junk and get your password.', 'dservice' ) : __( ' Congratulations! Registration completed.', 'dservice' );
+	$confirmation     = empty( $display_password ) ? __( ' Go to your inbox or spam/junk and get your password.', 'dservice-core' ) : __( ' Congratulations! Registration completed.', 'dservice-core' );
 	wp_localize_script(
 		'ajax-login-script',
 		'dservice_ajax_login_object',
 		array(
 			'ajaxurl'                   => admin_url( 'admin-ajax.php' ),
 			'redirecturl'               => ( class_exists( 'Directorist_Base' ) ) ? ATBDP_Permalink::get_login_redirection_page_link() : home_url( '/' ),
-			'loadingmessage'            => esc_html__( 'Sending user info, please wait...', 'dservice' ),
+			'loadingmessage'            => esc_html__( 'Sending user info, please wait...', 'dservice-core' ),
 			'registration_confirmation' => $confirmation,
-			'login_failed'              => esc_html__( 'Sorry! Login failed', 'dservice' ),
+			'login_failed'              => esc_html__( 'Sorry! Login failed', 'dservice-core' ),
 		)
 	);
 
@@ -647,7 +647,7 @@ function dservice_dashboard_notification() {
 		?>
 		<div class="alert alert-danger">
 			<i class="la la-times-circle"></i>
-			<?php _e( 'Link appears to be invalid.', 'dservice' ); ?>
+			<?php _e( 'Link appears to be invalid.', 'dservice-core' ); ?>
 		</div>
 		<?php
 	}
@@ -655,7 +655,7 @@ function dservice_dashboard_notification() {
 		?>
 		<div class="alert alert-success">
 			<i class="la la-check-circle"></i>
-		<?php _e( 'Renewed successfully.', 'dservice' ); ?>
+		<?php _e( 'Renewed successfully.', 'dservice-core' ); ?>
 		</div>
 		<?php
 	}

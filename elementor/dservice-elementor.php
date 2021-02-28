@@ -90,7 +90,7 @@ if (!class_exists('dserviceWidgets')) {
             $manager->add_category(
                 'dservice_category',
                 [
-                    'title' => __('dservice', 'dservice-core'),
+                    'title' => __('dservice-core', 'dservice-core'),
                 ]
             );
         }

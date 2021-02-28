@@ -335,7 +335,7 @@ function dservice_listings_review_price()
                     <?php
                     $review_title = '';
                     if ( $reviews_count ) {
-                        $review_title = 1 == $reviews_count ? $reviews_count . esc_html__(' Review', 'dservice') : $reviews_count . esc_html__(' Reviews', 'dservice');
+                        $review_title = 1 == $reviews_count ? $reviews_count . esc_html__(' Review', 'dservice-core') : $reviews_count . esc_html__(' Reviews', 'dservice-core');
                     }
                     $star      = '<i class="la la-star rate_active"></i>';
                     $half_star = '<i class="la la-star-half-o rate_active"></i>';
@@ -1454,11 +1454,11 @@ function dservice_ajax_callback_send_contact_email()
         // Send a copy to admin( only if applicable ).
         dservice_email_admin_listing_contact();
 
-        $data['message'] = esc_html__('Your message sent successfully.', 'dservice');
+        $data['message'] = esc_html__('Your message sent successfully.', 'dservice-core');
     } else {
 
         $data['error']   = 1;
-        $data['message'] = esc_html__('Sorry! Please try again.', 'dservice');
+        $data['message'] = esc_html__('Sorry! Please try again.', 'dservice-core');
     }
     echo wp_json_encode($data);
     wp_die();
@@ -1563,14 +1563,14 @@ add_filter('atbdp_avatar_size', 'dservice_avatar_size');
 
 function dservice_new_plan_slider_image_limit_label()
 {
-    return __('Listing Gallery Image Limit', 'dservice');
+    return __('Listing Gallery Image Limit', 'dservice-core');
 }
 
 add_filter('atbdp_new_plan_slider_image_limit_label', 'dservice_new_plan_slider_image_limit_label');
 
 function dservice_add_listing_slider_image_button_text()
 {
-    return __('Upload Gallery Images', 'dservice');
+    return __('Upload Gallery Images', 'dservice-core');
 }
 
 add_filter('atbdp_add_listing_slider_image_button_default_text', 'dservice_add_listing_slider_image_button_text');
@@ -1693,8 +1693,8 @@ add_filter('atbdp_single_listing_tags_icon', 'dservice_single_listing_tags_icon'
 
 // Add review & category in dashboard table.
 function directorist_dashboard_listing_th_2(){
-	echo '<th class="directorist-table-review">' . __( 'Review', 'direo' ) . '</th>';
-	echo '<th class="directorist-table-review">' . __( 'Category', 'direo' ) . '</th>';
+	echo '<th class="directorist-table-review">' . __( 'Review', 'dservice-core' ) . '</th>';
+	echo '<th class="directorist-table-review">' . __( 'Category', 'dservice-core' ) . '</th>';
 }
 add_action( 'directorist_dashboard_listing_th_2', 'directorist_dashboard_listing_th_2' );
 
@@ -1740,9 +1740,9 @@ function directorist_dashboard_listing_td_2() {
 			$review_title = '';
 			if ( $reviews_count ) {
 				if ( 1 < $reviews_count ) {
-					$review_title = $reviews_count . esc_html__( ' Reviews', 'direo' );
+					$review_title = $reviews_count . esc_html__( ' Reviews', 'dservice-core' );
 				} else {
-					$review_title = $reviews_count . esc_html__( ' Review', 'direo' );
+					$review_title = $reviews_count . esc_html__( ' Review', 'dservice-core' );
 				}
 			}
 			?>
@@ -1779,7 +1779,7 @@ add_action( 'directorist_dashboard_listing_td_2', 'directorist_dashboard_listing
 
 function atbdp_all_listings_meta_count( $html, $term ) {
 	$total = $term->count;
-	$str = ( 1 == $total ) ? __( ' Listing', 'direo' ) : __( ' Listings', 'direo' );
+	$str = ( 1 == $total ) ? __( ' Listing', 'dservice-core' ) : __( ' Listings', 'dservice-core' );
 	return '<span class="listing-count"> ' . $total . '<span class="listing-label">' . $str . '</span>' . '</span>';
 }
 add_filter( 'atbdp_all_locations_after_location_name', 'atbdp_all_listings_meta_count', 10, 2 );

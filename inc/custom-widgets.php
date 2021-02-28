@@ -48,7 +48,7 @@ class dservice_subscribe_widget extends WP_Widget {
 
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'form' ) ); ?>">
-				<b><?php esc_html_e( 'Mailchimp Action Url', 'dservice' ); ?></b>
+				<b><?php esc_html_e( 'Mailchimp Action Url', 'dservice-core' ); ?></b>
 			</label>
 			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'form' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'form' ) ); ?>" type="text" value="<?php echo esc_attr( $form ); ?>" />
 		</p>
@@ -161,14 +161,14 @@ class dservice_popular_post_widget extends WP_Widget {
 
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>">
-				<b><?php esc_html_e( 'Title', 'dservice' ); ?></b>
+				<b><?php esc_html_e( 'Title', 'dservice-core' ); ?></b>
 			</label>
 			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 		</p>
 
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'post_count' ) ); ?>">
-				<b><?php esc_html_e( 'How many posts you want to show ?', 'dservice' ); ?></b>
+				<b><?php esc_html_e( 'How many posts you want to show ?', 'dservice-core' ); ?></b>
 			</label>
 
 			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'post_count' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'post_count' ) ); ?>" type="text" value="<?php echo esc_attr( $post_count ); ?> " />
@@ -276,14 +276,14 @@ class dservice_latest_post_widget extends WP_Widget {
 
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>">
-				<b><?php esc_html_e( 'Title', 'dservice' ); ?></b>
+				<b><?php esc_html_e( 'Title', 'dservice-core' ); ?></b>
 			</label>
 			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 		</p>
 
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'post_count' ) ); ?>">
-				<b><?php esc_html_e( 'How many posts you want to show ?', 'dservice' ); ?></b>
+				<b><?php esc_html_e( 'How many posts you want to show ?', 'dservice-core' ); ?></b>
 			</label>
 
 			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'post_count' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'post_count' ) ); ?>" type="text" value="<?php echo esc_attr( $post_count ); ?> " />
@@ -369,13 +369,13 @@ class dservice_connect_follow_widget extends WP_Widget {
 
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>">
-				<b><?php esc_html_e( 'Title', 'dservice' ); ?></b>
+				<b><?php esc_html_e( 'Title', 'dservice-core' ); ?></b>
 			</label>
 			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 		</p>
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'social' ) ); ?>">
-				<b><?php esc_html_e( 'How many social field would you want? & hit save.', 'dservice' ); ?></b>
+				<b><?php esc_html_e( 'How many social field would you want? & hit save.', 'dservice-core' ); ?></b>
 			</label>
 		</p>
 
@@ -671,7 +671,7 @@ class dservice_sponsor_widget extends WP_Widget {
 																			<?php
 																			$publish_date_format = get_directorist_option( 'publish_date_format', 'time_ago' );
 																			if ( 'time_ago' === $publish_date_format ) {
-																				printf( esc_html__( 'Posted %s ago', 'dservice' ), human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) );
+																				printf( esc_html__( 'Posted %s ago', 'dservice-core' ), human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) );
 																			} else {
 																				echo get_the_date();
 																			}
@@ -702,7 +702,7 @@ class dservice_sponsor_widget extends WP_Widget {
 					} else {
 						?>
 						<p class="atbdp_nlf">
-							<?php esc_html_e( 'No listing found.', 'dservice' ); ?>
+							<?php esc_html_e( 'No listing found.', 'dservice-core' ); ?>
 						</p>
 						<?php
 					}
@@ -719,13 +719,13 @@ class dservice_sponsor_widget extends WP_Widget {
 		?>
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>">
-				<b><?php esc_html_e( 'Title', 'dservice' ); ?></b>
+				<b><?php esc_html_e( 'Title', 'dservice-core' ); ?></b>
 			</label>
 			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 		</p>
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'posts_per' ) ); ?>">
-				<b><?php esc_html_e( 'How many listing you want to show ?', 'dservice' ); ?></b>
+				<b><?php esc_html_e( 'How many listing you want to show ?', 'dservice-core' ); ?></b>
 			</label>
 			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'posts_per' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'posts_per' ) ); ?>" type="text" value="<?php echo esc_attr( $posts_per ); ?>" />
 		</p>
@@ -796,7 +796,7 @@ class dservice_icon_title_widget extends WP_Widget {
 		?>
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'social' ) ); ?>">
-				<b><?php esc_html_e( 'How many social field would you want? & hit save.', 'dservice' ); ?></b>
+				<b><?php esc_html_e( 'How many social field would you want? & hit save.', 'dservice-core' ); ?></b>
 			</label>
 		</p>
 

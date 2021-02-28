@@ -752,8 +752,8 @@ class dservice_Categories extends Widget_Base
                 'type' => Controls_Manager::SELECT,
                 'default' => 'default',
                 'options' => [
-                    'default' => esc_html__('Default', 'dservice'),
-                    'popular' => esc_html__('Popular', 'dservice'),
+                    'default' => esc_html__('Default', 'dservice-core'),
+                    'popular' => esc_html__('Popular', 'dservice-core'),
                 ],
             ]
         );
@@ -765,8 +765,8 @@ class dservice_Categories extends Widget_Base
                 'type' => Controls_Manager::SELECT,
                 'default' => 'masonry',
                 'options' => [
-                    'masonry' => esc_html__('Masonry', 'dservice'),
-                    'grid' => esc_html__('Grid', 'dservice'),
+                    'masonry' => esc_html__('Masonry', 'dservice-core'),
+                    'grid' => esc_html__('Grid', 'dservice-core'),
                 ],
             ]
         );
@@ -901,7 +901,7 @@ class dservice_Categories extends Widget_Base
                     }
                     wp_reset_postdata();
                 } else {
-                    echo sprintf('<h4>%s</h4>', esc_html__('No categories are found!', 'dservice'));
+                    echo sprintf('<h4>%s</h4>', esc_html__('No categories are found!', 'dservice-core'));
                 } ?>
             </div>
             <?php
@@ -4120,8 +4120,8 @@ class dservice_SearchForm extends Widget_Base
                 'type' => Controls_Manager::SELECT,
                 'default' => 'search-form-wrapper--one',
                 'options' => [
-                    'search-form-wrapper--one' => esc_html__('Style 1', 'dservice'),
-                    'search-form-wrapper--two' => esc_html__('Style 2', 'dservice'),
+                    'search-form-wrapper--one' => esc_html__('Style 1', 'dservice-core'),
+                    'search-form-wrapper--two' => esc_html__('Style 2', 'dservice-core'),
                 ],
             ]
         );
