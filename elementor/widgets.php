@@ -3197,6 +3197,28 @@ class dservice_NeedCategories extends Widget_Base
         );
 
         $this->add_control(
+            'types',
+            [
+                'label'    => __('Specify Listing Types', 'dservice-core'),
+                'type'     => Controls_Manager::SELECT2,
+                'multiple' => true,
+                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
+                'default'  => ['need-listings'],
+            ]
+        );
+
+        $this->add_control(
+            'default_types',
+            [
+                'label'    => __('Set Default Listing Type', 'dservice-core'),
+                'type'     => Controls_Manager::SELECT,
+                'multiple' => true,
+                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
+                'default'  => 'need-listings',
+            ]
+        );
+
+        $this->add_control(
             'layout',
             [
                 'label' => __('Category Layout', 'dservice-core'),
@@ -3332,18 +3354,19 @@ class dservice_NeedCategories extends Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
+        $default_types = $settings['default_types'];
+        $types = $settings['types'] ? implode( ',', $settings['types'] ) : '';
         $number_cat = $settings['number_cat'];
         $order_by = $settings['order_by'];
         $order_list = $settings['order_list'];
         $row = $settings['row'];
         $slug = $settings['slug'] ? implode($settings['slug'], []) : '';
         $cat_style = $settings['cat_style'];
-        $layout = $settings['layout'];
-        $user = $settings['user'];
-        $web = 'yes' == $user ? $settings['link']['url'] : ''; ?>
+        ?>
 
         <div id="<?php echo esc_attr($cat_style); ?>">
-            <?php echo do_shortcode('[directorist_need_categories view="' . esc_attr($layout) . '" orderby="' . esc_attr($order_by) . '" order="' . esc_attr($order_list) . '" cat_per_page="' . esc_attr($number_cat) . '" columns="' . esc_attr($row) . '" slug="' . esc_attr($slug) . '" logged_in_user_only="' . esc_attr($user) . '" redirect_page_url="' . esc_attr($web) . '"]'); ?>
+            <?php echo do_shortcode( '[directorist_all_categories view="layout" orderby="' . esc_attr( $order_by ) . '" order="' . esc_attr( $order_list ) . '" cat_per_page="' . esc_attr( $number_cat ) . '" columns="' . esc_attr( $row ) . '" slug="' . esc_attr( $slug ) . '" directory_type="' . $types . '" default_directory_type="' . $default_types . '"]' );
+            ?>
         </div>
     <?php
     }
@@ -3383,6 +3406,28 @@ class dservice_NeedLocations extends Widget_Base
             'need_locations',
             [
                 'label' => __('Need Locations', 'dservice-core'),
+            ]
+        );
+
+        $this->add_control(
+            'types',
+            [
+                'label'    => __('Specify Listing Types', 'dservice-core'),
+                'type'     => Controls_Manager::SELECT2,
+                'multiple' => true,
+                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
+                'default'  => ['need-listings'],
+            ]
+        );
+
+        $this->add_control(
+            'default_types',
+            [
+                'label'    => __('Set Default Listing Type', 'dservice-core'),
+                'type'     => Controls_Manager::SELECT,
+                'multiple' => true,
+                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
+                'default'  => 'need-listings',
             ]
         );
 
@@ -3506,6 +3551,8 @@ class dservice_NeedLocations extends Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
+        $default_types = $settings['default_types'];
+        $types = $settings['types'] ? implode( ',', $settings['types'] ) : '';
         $number_loc = $settings['number_loc'];
         $order_by = $settings['order_by'];
         $order_list = $settings['order_list'];
@@ -3515,7 +3562,7 @@ class dservice_NeedLocations extends Widget_Base
         $user = $settings['user'];
         $web = 'yes' == $user ? $settings['link']['url'] : '';
 
-        echo do_shortcode('[directorist_need_locations view="' . esc_attr($layout) . '" orderby="' . esc_attr($order_by) . '" order="' . esc_attr($order_list) . '" loc_per_page="' . esc_attr($number_loc) . '" columns="' . esc_attr($row) . '" slug="' . esc_attr($slug) . '" logged_in_user_only="' . esc_attr($user) . '" redirect_page_url="' . esc_attr($web) . '"]');
+        echo do_shortcode('[directorist_all_locations view="' . esc_attr($layout) . '" orderby="' . esc_attr($order_by) . '" order="' . esc_attr($order_list) . '" loc_per_page="' . esc_attr($number_loc) . '" columns="' . esc_attr($row) . '" slug="' . esc_attr($slug) . '" logged_in_user_only="' . esc_attr($user) . '" redirect_page_url="' . esc_attr($web) . '" directory_type="' . $types . '" default_directory_type="' . $default_types . '"]');
     }
 }
 
@@ -3557,6 +3604,28 @@ class dservice_NeedSingleCat extends Widget_Base
         );
 
         $this->add_control(
+            'types',
+            [
+                'label'    => __('Specify Listing Types', 'dservice-core'),
+                'type'     => Controls_Manager::SELECT2,
+                'multiple' => true,
+                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
+                'default'  => ['need-listings'],
+            ]
+        );
+
+        $this->add_control(
+            'default_types',
+            [
+                'label'    => __('Set Default Listing Type', 'dservice-core'),
+                'type'     => Controls_Manager::SELECT,
+                'multiple' => true,
+                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
+                'default'  => 'need-listings',
+            ]
+        );
+
+        $this->add_control(
             'number',
             [
                 'label' => __('Number of Needs to Show:', 'dservice-core'),
@@ -3582,10 +3651,12 @@ class dservice_NeedSingleCat extends Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
+        $default_types = $settings['default_types'];
+        $types = $settings['types'] ? implode( ',', $settings['types'] ) : '';
         $number = $settings['number'];
         $pagination = $settings['pagination'];
 
-        echo do_shortcode('[directorist_need_category listings_per_page="' . $number . '" show_pagination="' . $pagination . '"]');
+        echo do_shortcode('[directorist_category listings_per_page="' . $number . '" show_pagination="' . $pagination . '" directory_type="' . $types . '" default_directory_type="' . $default_types . '" header="no" action_before_after_loop="no" display_preview_image="no"]');
     }
 }
 
@@ -3627,6 +3698,28 @@ class dservice_NeedSingleLoc extends Widget_Base
         );
 
         $this->add_control(
+            'types',
+            [
+                'label'    => __('Specify Listing Types', 'dservice-core'),
+                'type'     => Controls_Manager::SELECT2,
+                'multiple' => true,
+                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
+                'default'  => ['need-listings'],
+            ]
+        );
+
+        $this->add_control(
+            'default_types',
+            [
+                'label'    => __('Set Default Listing Type', 'dservice-core'),
+                'type'     => Controls_Manager::SELECT,
+                'multiple' => true,
+                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
+                'default'  => 'need-listings',
+            ]
+        );
+
+        $this->add_control(
             'number',
             [
                 'label' => __('Number of Needs to Show:', 'dservice-core'),
@@ -3652,10 +3745,12 @@ class dservice_NeedSingleLoc extends Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
+        $default_types = $settings['default_types'];
+        $types = $settings['types'] ? implode( ',', $settings['types'] ) : '';
         $number = $settings['number'];
         $pagination = $settings['pagination'];
 
-        echo do_shortcode('[directorist_need_location listings_per_page="' . $number . '" show_pagination="' . $pagination . '"]');
+        echo do_shortcode('[directorist_location listings_per_page="' . $number . '" show_pagination="' . $pagination . '" directory_type="' . $types . '" default_directory_type="' . $default_types . '"]');
     }
 }
 
@@ -3697,29 +3792,24 @@ class dservice_Needs extends Widget_Base
         );
 
         $this->add_control(
-            'avatar',
+            'types',
             [
-                'label' => __('Show Author Avatar?', 'dservice-core'),
-                'type' => Controls_Manager::SWITCHER,
-                'default' => 'yes',
+                'label'    => __('Specify Listing Types', 'dservice-core'),
+                'type'     => Controls_Manager::SELECT2,
+                'multiple' => true,
+                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
+                'default'  => ['need-listings'],
             ]
         );
 
         $this->add_control(
-            'category',
+            'default_types',
             [
-                'label' => __('Show Category?', 'dservice-core'),
-                'type' => Controls_Manager::SWITCHER,
-                'default' => 'yes',
-            ]
-        );
-
-        $this->add_control(
-            'budget',
-            [
-                'label' => __('Show Budget Amount?', 'dservice-core'),
-                'type' => Controls_Manager::SWITCHER,
-                'default' => 'yes',
+                'label'    => __('Set Default Listing Type', 'dservice-core'),
+                'type'     => Controls_Manager::SELECT,
+                'multiple' => true,
+                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
+                'default'  => 'need-listings',
             ]
         );
 
@@ -3797,15 +3887,17 @@ class dservice_Needs extends Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
+        $default_types = $settings['default_types'];
+        $types = $settings['types'] ? implode( ',', $settings['types'] ) : '';
         $avatar = $settings['avatar'];
-        $budget = $settings['budget'];
         $columns = $settings['columns'];
         $number = $settings['number'];
         $order = $settings['order_by'];
         $order_list = $settings['order_list'];
         $pagination = $settings['pagination'];
+        
+        echo do_shortcode('[directorist_all_listing view="grid" listings_per_page="' . esc_attr($number) . '" columns="' . esc_attr($columns) . '" show_pagination="' . esc_attr($pagination) . '" display_preview_image="no" display_author="' . esc_attr($avatar) . '" display_category="' . esc_attr($avatar) . '" order_by="' . esc_attr($order) . '" sort_by="' . esc_attr($order_list) . '" directory_type="' . $types . '" default_directory_type="' . $default_types . '" header="no"]');
 
-        echo do_shortcode('[directorist_all_needs display_author="' . esc_attr($avatar) . '" display_category="' . esc_attr($avatar) . '" display_budget="' . esc_attr($budget) . '" columns="' . esc_attr($columns) . '" show_pagination="' . esc_attr($pagination) . '" posts_per_page="' . esc_attr($number) . '" order_by="' . esc_attr($order) . '" sort_by="' . esc_attr($order_list) . '"]');
     }
 }
 
@@ -4427,7 +4519,7 @@ class Dservice_SearchResult extends Widget_Base
         $user            = $settings['user'];
         $web             = 'yes' == $user ? $settings['link']['url'] : '';
 
-        echo do_shortcode('[directorist_search_result view="' . esc_attr($layout) . '" orderby="' . esc_attr($order_by) . '" order="' . esc_attr($order_list) . '" listings_per_page="' . esc_attr($number_cat) . '" header="' . esc_attr($header) . '" columns="' . esc_attr($row) . '" show_pagination="' . esc_attr($show_pagination) . '" map_height="' . $map_height . '" logged_in_user_only="' . esc_attr($user) . '" redirect_page_url="' . esc_attr($web) . '" directory_type="' . $types . '" default_directory_type="' . $default_types . '" directory_type="' . $types . '" default_directory_type="' . $default_types . '"]');
+        echo do_shortcode('[directorist_search_result view="' . esc_attr($layout) . '" orderby="' . esc_attr($order_by) . '" order="' . esc_attr($order_list) . '" listings_per_page="' . esc_attr($number_cat) . '" header="' . esc_attr($header) . '" columns="' . esc_attr($row) . '" show_pagination="' . esc_attr($show_pagination) . '" map_height="' . $map_height . '" logged_in_user_only="' . esc_attr($user) . '" redirect_page_url="' . esc_attr($web) . '" directory_type="' . $types . '" default_directory_type="' . $default_types . '"]');
     }
 }
 
@@ -4739,7 +4831,7 @@ class Dservice_SingleCat extends Widget_Base
         $user            = $settings['user'];
         $web             = 'yes' == $user ? $settings['link']['url'] : '';
 
-        echo do_shortcode('[directorist_category view="' . esc_attr($layout) . '" orderby="' . esc_attr($order_by) . '" order="' . esc_attr($order_list) . '" listings_per_page="' . esc_attr($number_cat) . '" category="' . esc_attr($cat) . '" tag="' . esc_attr($tag) . '" location="' . esc_attr($location) . '" featured_only="' . esc_attr($featured) . '" popular_only="' . esc_attr($popular) . '" header="' . esc_attr($header) . '" header_title ="' . esc_attr($title) . '" columns="' . esc_attr($row) . '" action_before_after_loop="' . esc_attr($sidebar) . '" show_pagination="' . esc_attr($show_pagination) . '" advanced_filter="' . esc_attr($filter) . '" map_height="' . $map_height . '" display_preview_image="yes" logged_in_user_only="' . esc_attr($user) . '" redirect_page_url="' . esc_attr($web) . '" directory_type="' . $types . '" default_directory_type="' . $default_types . '" directory_type="' . $types . '" default_directory_type="' . $default_types . '"]');
+        echo do_shortcode('[directorist_category view="' . esc_attr($layout) . '" orderby="' . esc_attr($order_by) . '" order="' . esc_attr($order_list) . '" listings_per_page="' . esc_attr($number_cat) . '" category="' . esc_attr($cat) . '" tag="' . esc_attr($tag) . '" location="' . esc_attr($location) . '" featured_only="' . esc_attr($featured) . '" popular_only="' . esc_attr($popular) . '" header="' . esc_attr($header) . '" header_title ="' . esc_attr($title) . '" columns="' . esc_attr($row) . '" action_before_after_loop="' . esc_attr($sidebar) . '" show_pagination="' . esc_attr($show_pagination) . '" advanced_filter="' . esc_attr($filter) . '" map_height="' . $map_height . '" display_preview_image="yes" logged_in_user_only="' . esc_attr($user) . '" redirect_page_url="' . esc_attr($web) . '" directory_type="' . $types . '" default_directory_type="' . $default_types . '"]');
     }
 }
 
@@ -5215,7 +5307,7 @@ class Dservice_SingleLoc extends Widget_Base
         $user            = $settings['user'];
         $web             = 'yes' == $user ? $settings['link']['url'] : '';
 
-        echo do_shortcode('[directorist_location view="' . esc_attr($layout) . '" orderby="' . esc_attr($order_by) . '" order="' . esc_attr($order_list) . '" listings_per_page="' . esc_attr($number_cat) . '" category="' . esc_attr($cat) . '" tag="' . esc_attr($tag) . '" location="' . esc_attr($location) . '" featured_only="' . esc_attr($featured) . '" popular_only="' . esc_attr($popular) . '" header="' . esc_attr($header) . '" header_title ="' . esc_attr($title) . '" columns="' . esc_attr($row) . '" action_before_after_loop="' . esc_attr($sidebar) . '" show_pagination="' . esc_attr($show_pagination) . '" advanced_filter="' . esc_attr($filter) . '" map_height="' . $map_height . '" display_preview_image="yes" logged_in_user_only="' . esc_attr($user) . '" redirect_page_url="' . esc_attr($web) . '" directory_type="' . $types . '" default_directory_type="' . $default_types . '" directory_type="' . $types . '" default_directory_type="' . $default_types . '"]');
+        echo do_shortcode('[directorist_location view="' . esc_attr($layout) . '" orderby="' . esc_attr($order_by) . '" order="' . esc_attr($order_list) . '" listings_per_page="' . esc_attr($number_cat) . '" category="' . esc_attr($cat) . '" tag="' . esc_attr($tag) . '" location="' . esc_attr($location) . '" featured_only="' . esc_attr($featured) . '" popular_only="' . esc_attr($popular) . '" header="' . esc_attr($header) . '" header_title ="' . esc_attr($title) . '" columns="' . esc_attr($row) . '" action_before_after_loop="' . esc_attr($sidebar) . '" show_pagination="' . esc_attr($show_pagination) . '" advanced_filter="' . esc_attr($filter) . '" map_height="' . $map_height . '" display_preview_image="yes" logged_in_user_only="' . esc_attr($user) . '" redirect_page_url="' . esc_attr($web) . '" directory_type="' . $types . '" default_directory_type="' . $default_types . '"]');
     }
 }
 
