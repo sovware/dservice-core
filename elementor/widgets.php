@@ -3159,748 +3159,6 @@ class dservice_Logos extends Widget_Base
     }
 }
 
-//Need categories
-class dservice_NeedCategories extends Widget_Base
-{
-    public function get_name()
-    {
-        return 'need_categories';
-    }
-
-    public function get_title()
-    {
-        return __('Need Categories', 'dservice-core');
-    }
-
-    public function get_icon()
-    {
-        return ' far fa-question-circle';
-    }
-
-    public function get_keywords()
-    {
-        return ['need', 'categories', 'need categories',];
-    }
-
-    public function get_categories()
-    {
-        return ['dservice_category'];
-    }
-
-    protected function _register_controls()
-    {
-        $this->start_controls_section(
-            'need_categories',
-            [
-                'label' => __('Need Categories', 'dservice-core'),
-            ]
-        );
-
-        $this->add_control(
-            'types',
-            [
-                'label'    => __('Specify Listing Types', 'dservice-core'),
-                'type'     => Controls_Manager::SELECT2,
-                'multiple' => true,
-                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
-                'default'  => ['need-listings'],
-            ]
-        );
-
-        $this->add_control(
-            'default_types',
-            [
-                'label'    => __('Set Default Listing Type', 'dservice-core'),
-                'type'     => Controls_Manager::SELECT,
-                'multiple' => true,
-                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
-                'default'  => 'need-listings',
-            ]
-        );
-
-        $this->add_control(
-            'layout',
-            [
-                'label' => __('Category Layout', 'dservice-core'),
-                'type' => Controls_Manager::SELECT,
-                'default' => 'grid',
-                'options' => [
-                    'grid' => esc_html__('Grid View', 'dservice-core'),
-                    'list' => esc_html__('List View', 'dservice-core'),
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'cat_style',
-            [
-                'label' => __('Category Style', 'dservice-core'),
-                'type' => Controls_Manager::SELECT,
-                'default' => 'category-style1',
-                'options' => [
-                    'category-style1' => esc_html__('Style 1', 'dservice-core'),
-                    'category-style-two' => esc_html__('Style 2', 'dservice-core'),
-                ],
-                'condition' => [
-                    'layout' => 'grid',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'row',
-            [
-                'label' => __('Categories Per Row', 'dservice-core'),
-                'type' => Controls_Manager::SELECT,
-                'default' => '3',
-                'options' => [
-                    '5' => esc_html__('5 Items / Row', 'dservice-core'),
-                    '4' => esc_html__('4 Items / Row', 'dservice-core'),
-                    '3' => esc_html__('3 Items / Row', 'dservice-core'),
-                    '2' => esc_html__('2 Items / Row', 'dservice-core'),
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'number_cat',
-            [
-                'label' => __('Number of categories to Show:', 'dservice-core'),
-                'type' => Controls_Manager::NUMBER,
-                'min' => 1,
-                'max' => 1000,
-                'step' => 1,
-                'default' => 6,
-            ]
-        );
-
-        $this->add_control(
-            'order_by',
-            [
-                'label' => __('Order by', 'dservice-core'),
-                'type' => Controls_Manager::SELECT,
-                'default' => 'id',
-                'options' => [
-                    'id' => esc_html__(' Cat ID', 'dservice-core'),
-                    'count' => esc_html__('Needs Count', 'dservice-core'),
-                    'name' => esc_html__(' Category name (A-Z)', 'dservice-core'),
-                    'slug' => esc_html__('Select Category', 'dservice-core'),
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'slug',
-            [
-                'label' => __('Specify Locations', 'dservice-core'),
-                'type' => Controls_Manager::SELECT2,
-                'multiple' => true,
-                'options' => function_exists('dservice_listing_category') ? dservice_listing_category() : []
-            ]
-        );
-
-        $this->add_control(
-            'order_list',
-            [
-                'label' => __('Locations Order', 'dservice-core'),
-                'type' => Controls_Manager::SELECT,
-                'default' => 'desc',
-                'options' => [
-                    'asc' => esc_html__(' ASC', 'dservice-core'),
-                    'desc' => esc_html__(' DESC', 'dservice-core'),
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'user',
-            [
-                'label' => __('Only For Logged In User?', 'dservice-core'),
-                'type' => Controls_Manager::SWITCHER,
-                'default' => 'no',
-            ]
-        );
-
-        $this->add_control(
-            'redirect',
-            [
-                'label' => __('Redirect User?', 'dservice-core'),
-                'type' => Controls_Manager::SWITCHER,
-                'default' => 'no',
-            ]
-        );
-
-        $this->add_control(
-            'link',
-            [
-                'label' => __('Redirect Link', 'dservice-core'),
-                'type' => Controls_Manager::URL,
-                'dynamic' => [
-                    'active' => true,
-                ],
-                'default' => [
-                    'url' => '',
-                ],
-                'separator' => 'before',
-                'condition' => [
-                    'redirect' => 'yes'
-                ]
-            ]
-        );
-
-        $this->end_controls_section();
-    }
-
-    protected function render()
-    {
-        $settings = $this->get_settings_for_display();
-        $default_types = $settings['default_types'];
-        $types = $settings['types'] ? implode( ',', $settings['types'] ) : '';
-        $number_cat = $settings['number_cat'];
-        $order_by = $settings['order_by'];
-        $order_list = $settings['order_list'];
-        $row = $settings['row'];
-        $slug = $settings['slug'] ? implode($settings['slug'], []) : '';
-        $cat_style = $settings['cat_style'];
-        ?>
-
-        <div id="<?php echo esc_attr($cat_style); ?>">
-            <?php echo do_shortcode( '[directorist_all_categories view="layout" orderby="' . esc_attr( $order_by ) . '" order="' . esc_attr( $order_list ) . '" cat_per_page="' . esc_attr( $number_cat ) . '" columns="' . esc_attr( $row ) . '" slug="' . esc_attr( $slug ) . '" directory_type="' . $types . '" default_directory_type="' . $default_types . '"]' );
-            ?>
-        </div>
-    <?php
-    }
-}
-
-//Need locations
-class dservice_NeedLocations extends Widget_Base
-{
-    public function get_name()
-    {
-        return 'need_locations';
-    }
-
-    public function get_title()
-    {
-        return __('Need Locations', 'dservice-core');
-    }
-
-    public function get_icon()
-    {
-        return ' far fa-question-circle';
-    }
-
-    public function get_categories()
-    {
-        return ['dservice_category'];
-    }
-
-    public function get_keywords()
-    {
-        return ['locations', 'need locations',];
-    }
-
-    protected function _register_controls()
-    {
-        $this->start_controls_section(
-            'need_locations',
-            [
-                'label' => __('Need Locations', 'dservice-core'),
-            ]
-        );
-
-        $this->add_control(
-            'types',
-            [
-                'label'    => __('Specify Listing Types', 'dservice-core'),
-                'type'     => Controls_Manager::SELECT2,
-                'multiple' => true,
-                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
-                'default'  => ['need-listings'],
-            ]
-        );
-
-        $this->add_control(
-            'default_types',
-            [
-                'label'    => __('Set Default Listing Type', 'dservice-core'),
-                'type'     => Controls_Manager::SELECT,
-                'multiple' => true,
-                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
-                'default'  => 'need-listings',
-            ]
-        );
-
-        $this->add_control(
-            'layout',
-            [
-                'label' => __('Locations Layout', 'dservice-core'),
-                'type' => Controls_Manager::SELECT,
-                'default' => 'grid',
-                'options' => [
-                    'grid' => esc_html__('Grid View', 'dservice-core'),
-                    'list' => esc_html__('List View', 'dservice-core'),
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'row',
-            [
-                'label' => __('Location Per Row', 'dservice-core'),
-                'type' => Controls_Manager::SELECT,
-                'default' => '3',
-                'options' => [
-                    '5' => esc_html__('5 Items / Row', 'dservice-core'),
-                    '4' => esc_html__('4 Items / Row', 'dservice-core'),
-                    '3' => esc_html__('3 Items / Row', 'dservice-core'),
-                    '2' => esc_html__('2 Items / Row', 'dservice-core'),
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'number_loc',
-            [
-                'label' => __('Number of locations to Show:', 'dservice-core'),
-                'type' => Controls_Manager::NUMBER,
-                'min' => 1,
-                'max' => 1000,
-                'step' => 1,
-                'default' => 4,
-            ]
-        );
-
-        $this->add_control(
-            'order_by',
-            [
-                'label' => __('Order by', 'dservice-core'),
-                'type' => Controls_Manager::SELECT,
-                'default' => 'id',
-                'options' => [
-                    'id' => esc_html__(' Cat ID', 'dservice-core'),
-                    'count' => esc_html__('Needs Count', 'dservice-core'),
-                    'name' => esc_html__(' Category name (A-Z)', 'dservice-core'),
-                    'slug' => esc_html__('Select Category', 'dservice-core'),
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'slug',
-            [
-                'label' => __('Specify Locations', 'dservice-core'),
-                'type' => Controls_Manager::SELECT2,
-                'multiple' => true,
-                'options' => function_exists('dservice_listing_locations') ? dservice_listing_locations() : []
-            ]
-        );
-
-        $this->add_control(
-            'order_list',
-            [
-                'label' => __('Locations Order', 'dservice-core'),
-                'type' => Controls_Manager::SELECT,
-                'default' => 'desc',
-                'options' => [
-                    'asc' => esc_html__(' ASC', 'dservice-core'),
-                    'desc' => esc_html__(' DESC', 'dservice-core'),
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'user',
-            [
-                'label' => __('Only For Logged In User?', 'dservice-core'),
-                'type' => Controls_Manager::SWITCHER,
-                'default' => 'no',
-            ]
-        );
-
-        $this->add_control(
-            'redirect',
-            [
-                'label' => __('Redirect User?', 'dservice-core'),
-                'type' => Controls_Manager::SWITCHER,
-                'default' => 'no',
-            ]
-        );
-
-        $this->add_control(
-            'link',
-            [
-                'label' => __('Redirect Link', 'dservice-core'),
-                'type' => Controls_Manager::URL,
-                'dynamic' => [
-                    'active' => true,
-                ],
-                'default' => [
-                    'url' => '',
-                ],
-                'separator' => 'before',
-                'condition' => [
-                    'redirect' => 'yes'
-                ]
-            ]
-        );
-
-        $this->end_controls_section();
-    }
-
-    protected function render()
-    {
-        $settings = $this->get_settings_for_display();
-        $default_types = $settings['default_types'];
-        $types = $settings['types'] ? implode( ',', $settings['types'] ) : '';
-        $number_loc = $settings['number_loc'];
-        $order_by = $settings['order_by'];
-        $order_list = $settings['order_list'];
-        $row = $settings['row'];
-        $slug = $settings['slug'] ? implode($settings['slug'], []) : '';
-        $layout = $settings['layout'];
-        $user = $settings['user'];
-        $web = 'yes' == $user ? $settings['link']['url'] : '';
-
-        echo do_shortcode('[directorist_all_locations view="' . esc_attr($layout) . '" orderby="' . esc_attr($order_by) . '" order="' . esc_attr($order_list) . '" loc_per_page="' . esc_attr($number_loc) . '" columns="' . esc_attr($row) . '" slug="' . esc_attr($slug) . '" logged_in_user_only="' . esc_attr($user) . '" redirect_page_url="' . esc_attr($web) . '" directory_type="' . $types . '" default_directory_type="' . $default_types . '"]');
-    }
-}
-
-//Need single category
-class dservice_NeedSingleCat extends Widget_Base
-{
-    public function get_name()
-    {
-        return 'need_single_category';
-    }
-
-    public function get_title()
-    {
-        return __('Need Single Category', 'dservice-core');
-    }
-
-    public function get_icon()
-    {
-        return ' far fa-question-circle';
-    }
-
-    public function get_keywords()
-    {
-        return ['single category', 'need category', 'category',];
-    }
-
-    public function get_categories()
-    {
-        return ['dservice_category'];
-    }
-
-    protected function _register_controls()
-    {
-        $this->start_controls_section(
-            'need_single_category',
-            [
-                'label' => __('Need Single Category', 'dservice-core'),
-            ]
-        );
-
-        $this->add_control(
-            'types',
-            [
-                'label'    => __('Specify Listing Types', 'dservice-core'),
-                'type'     => Controls_Manager::SELECT2,
-                'multiple' => true,
-                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
-                'default'  => ['need-listings'],
-            ]
-        );
-
-        $this->add_control(
-            'default_types',
-            [
-                'label'    => __('Set Default Listing Type', 'dservice-core'),
-                'type'     => Controls_Manager::SELECT,
-                'multiple' => true,
-                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
-                'default'  => 'need-listings',
-            ]
-        );
-
-        $this->add_control(
-            'number',
-            [
-                'label' => __('Number of Needs to Show:', 'dservice-core'),
-                'type' => Controls_Manager::NUMBER,
-                'min' => 1,
-                'max' => 100,
-                'default' => 3,
-            ]
-        );
-
-        $this->add_control(
-            'pagination',
-            [
-                'label' => __('Show Pagination?', 'dservice-core'),
-                'type' => Controls_Manager::SWITCHER,
-                'default' => 'yes',
-            ]
-        );
-
-        $this->end_controls_section();
-    }
-
-    protected function render()
-    {
-        $settings = $this->get_settings_for_display();
-        $default_types = $settings['default_types'];
-        $types = $settings['types'] ? implode( ',', $settings['types'] ) : '';
-        $number = $settings['number'];
-        $pagination = $settings['pagination'];
-
-        echo do_shortcode('[directorist_category listings_per_page="' . $number . '" show_pagination="' . $pagination . '" directory_type="' . $types . '" default_directory_type="' . $default_types . '" header="no" action_before_after_loop="no" display_preview_image="no"]');
-    }
-}
-
-//Need single location
-class dservice_NeedSingleLoc extends Widget_Base
-{
-    public function get_name()
-    {
-        return 'need_single_location';
-    }
-
-    public function get_title()
-    {
-        return __('Need Single Location', 'dservice-core');
-    }
-
-    public function get_icon()
-    {
-        return ' far fa-question-circle';
-    }
-
-    public function get_keywords()
-    {
-        return ['single location', 'need location', 'location',];
-    }
-
-    public function get_categories()
-    {
-        return ['dservice_category'];
-    }
-
-    protected function _register_controls()
-    {
-        $this->start_controls_section(
-            'need_single_location',
-            [
-                'label' => __('Need Single Location', 'dservice-core'),
-            ]
-        );
-
-        $this->add_control(
-            'types',
-            [
-                'label'    => __('Specify Listing Types', 'dservice-core'),
-                'type'     => Controls_Manager::SELECT2,
-                'multiple' => true,
-                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
-                'default'  => ['need-listings'],
-            ]
-        );
-
-        $this->add_control(
-            'default_types',
-            [
-                'label'    => __('Set Default Listing Type', 'dservice-core'),
-                'type'     => Controls_Manager::SELECT,
-                'multiple' => true,
-                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
-                'default'  => 'need-listings',
-            ]
-        );
-
-        $this->add_control(
-            'number',
-            [
-                'label' => __('Number of Needs to Show:', 'dservice-core'),
-                'type' => Controls_Manager::NUMBER,
-                'min' => 1,
-                'max' => 100,
-                'default' => 3,
-            ]
-        );
-
-        $this->add_control(
-            'pagination',
-            [
-                'label' => __('Show Pagination?', 'dservice-core'),
-                'type' => Controls_Manager::SWITCHER,
-                'default' => 'yes',
-            ]
-        );
-
-        $this->end_controls_section();
-    }
-
-    protected function render()
-    {
-        $settings = $this->get_settings_for_display();
-        $default_types = $settings['default_types'];
-        $types = $settings['types'] ? implode( ',', $settings['types'] ) : '';
-        $number = $settings['number'];
-        $pagination = $settings['pagination'];
-
-        echo do_shortcode('[directorist_location listings_per_page="' . $number . '" show_pagination="' . $pagination . '" directory_type="' . $types . '" default_directory_type="' . $default_types . '"]');
-    }
-}
-
-//Needs
-class dservice_Needs extends Widget_Base
-{
-    public function get_name()
-    {
-        return 'needs';
-    }
-
-    public function get_title()
-    {
-        return __('All Needs', 'dservice-core');
-    }
-
-    public function get_icon()
-    {
-        return ' far fa-question-circle';
-    }
-
-    public function get_keywords()
-    {
-        return ['need',];
-    }
-
-    public function get_categories()
-    {
-        return ['dservice_category'];
-    }
-
-    protected function _register_controls()
-    {
-        $this->start_controls_section(
-            'needs',
-            [
-                'label' => __('All Needs', 'dservice-core'),
-            ]
-        );
-
-        $this->add_control(
-            'types',
-            [
-                'label'    => __('Specify Listing Types', 'dservice-core'),
-                'type'     => Controls_Manager::SELECT2,
-                'multiple' => true,
-                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
-                'default'  => ['need-listings'],
-            ]
-        );
-
-        $this->add_control(
-            'default_types',
-            [
-                'label'    => __('Set Default Listing Type', 'dservice-core'),
-                'type'     => Controls_Manager::SELECT,
-                'multiple' => true,
-                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
-                'default'  => 'need-listings',
-            ]
-        );
-
-        $this->add_control(
-            'columns',
-            [
-                'label' => __('Needs Per Row', 'dservice-core'),
-                'type' => Controls_Manager::SELECT,
-                'default' => '3',
-                'options' => [
-                    '5' => esc_html__('5 Items / Row', 'dservice-core'),
-                    '4' => esc_html__('4 Items / Row', 'dservice-core'),
-                    '3' => esc_html__('3 Items / Row', 'dservice-core'),
-                    '2' => esc_html__('2 Items / Row', 'dservice-core'),
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'order_by',
-            [
-                'label' => __('Order by', 'dservice-core'),
-                'type' => Controls_Manager::SELECT,
-                'default' => 'date',
-                'options' => [
-                    'ID' => esc_html__(' Post ID', 'dservice-core'),
-                    'author' => esc_html__(' Author', 'dservice-core'),
-                    'title' => esc_html__(' Title', 'dservice-core'),
-                    'name' => esc_html__(' Post name (post slug)', 'dservice-core'),
-                    'type' => esc_html__(' Post type (available since Version 4.0)', 'dservice-core'),
-                    'date' => esc_html__(' Date', 'dservice-core'),
-                    'modified' => esc_html__(' Last modified date', 'dservice-core'),
-                    'rand' => esc_html__(' Random order', 'dservice-core'),
-                    'comment_count' => esc_html__(' Number of comments', 'dservice-core')
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'order_list',
-            [
-                'label' => __('Order post', 'dservice-core'),
-                'type' => Controls_Manager::SELECT,
-                'default' => 'DESC',
-                'options' => [
-                    'ASC' => esc_html__(' ASC', 'dservice-core'),
-                    'DESC' => esc_html__(' DESC', 'dservice-core'),
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'number',
-            [
-                'label' => __('Number of Needs to Show:', 'dservice-core'),
-                'type' => Controls_Manager::NUMBER,
-                'min' => 1,
-                'max' => 100,
-                'default' => 3,
-            ]
-        );
-
-        $this->add_control(
-            'pagination',
-            [
-                'label' => __('Show Pagination?', 'dservice-core'),
-                'type' => Controls_Manager::SWITCHER,
-                'default' => 'yes',
-            ]
-        );
-
-        $this->end_controls_section();
-    }
-
-    protected function render()
-    {
-        $settings = $this->get_settings_for_display();
-        $default_types = $settings['default_types'];
-        $types = $settings['types'] ? implode( ',', $settings['types'] ) : '';
-        $avatar = $settings['avatar'];
-        $columns = $settings['columns'];
-        $number = $settings['number'];
-        $order = $settings['order_by'];
-        $order_list = $settings['order_list'];
-        $pagination = $settings['pagination'];
-        
-        echo do_shortcode('[directorist_all_listing view="grid" listings_per_page="' . esc_attr($number) . '" columns="' . esc_attr($columns) . '" show_pagination="' . esc_attr($pagination) . '" display_preview_image="no" display_author="' . esc_attr($avatar) . '" display_category="' . esc_attr($avatar) . '" order_by="' . esc_attr($order) . '" sort_by="' . esc_attr($order_list) . '" directory_type="' . $types . '" default_directory_type="' . $default_types . '" header="no"]');
-
-    }
-}
-
 //Payment
 class dservice_Payment extends Widget_Base
 {
@@ -6235,6 +5493,748 @@ class dservice_Booking extends Widget_Base
         <div class="dservice-directorist_booking_confirmation">
             <?php echo do_shortcode('[directorist_booking_confirmation]'); ?>
         </div>
-<?php
+        <?php
+    }
+}
+
+//Need categories
+class dservice_NeedCategories extends Widget_Base
+{
+    public function get_name()
+    {
+        return 'need_categories';
+    }
+
+    public function get_title()
+    {
+        return __('Need Categories', 'dservice-core');
+    }
+
+    public function get_icon()
+    {
+        return ' far fa-question-circle';
+    }
+
+    public function get_keywords()
+    {
+        return ['need', 'categories', 'need categories',];
+    }
+
+    public function get_categories()
+    {
+        return ['dservice_category'];
+    }
+
+    protected function _register_controls()
+    {
+        $this->start_controls_section(
+            'need_categories',
+            [
+                'label' => __('Need Categories', 'dservice-core'),
+            ]
+        );
+
+        $this->add_control(
+            'types',
+            [
+                'label'    => __('Specify Listing Types', 'dservice-core'),
+                'type'     => Controls_Manager::SELECT2,
+                'multiple' => true,
+                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
+                'default'  => ['need-listings'],
+            ]
+        );
+
+        $this->add_control(
+            'default_types',
+            [
+                'label'    => __('Set Default Listing Type', 'dservice-core'),
+                'type'     => Controls_Manager::SELECT,
+                'multiple' => true,
+                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
+                'default'  => 'need-listings',
+            ]
+        );
+
+        $this->add_control(
+            'layout',
+            [
+                'label' => __('Category Layout', 'dservice-core'),
+                'type' => Controls_Manager::SELECT,
+                'default' => 'grid',
+                'options' => [
+                    'grid' => esc_html__('Grid View', 'dservice-core'),
+                    'list' => esc_html__('List View', 'dservice-core'),
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'cat_style',
+            [
+                'label' => __('Category Style', 'dservice-core'),
+                'type' => Controls_Manager::SELECT,
+                'default' => 'category-style1',
+                'options' => [
+                    'category-style1' => esc_html__('Style 1', 'dservice-core'),
+                    'category-style-two' => esc_html__('Style 2', 'dservice-core'),
+                ],
+                'condition' => [
+                    'layout' => 'grid',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'row',
+            [
+                'label' => __('Categories Per Row', 'dservice-core'),
+                'type' => Controls_Manager::SELECT,
+                'default' => '3',
+                'options' => [
+                    '5' => esc_html__('5 Items / Row', 'dservice-core'),
+                    '4' => esc_html__('4 Items / Row', 'dservice-core'),
+                    '3' => esc_html__('3 Items / Row', 'dservice-core'),
+                    '2' => esc_html__('2 Items / Row', 'dservice-core'),
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'number_cat',
+            [
+                'label' => __('Number of categories to Show:', 'dservice-core'),
+                'type' => Controls_Manager::NUMBER,
+                'min' => 1,
+                'max' => 1000,
+                'step' => 1,
+                'default' => 6,
+            ]
+        );
+
+        $this->add_control(
+            'order_by',
+            [
+                'label' => __('Order by', 'dservice-core'),
+                'type' => Controls_Manager::SELECT,
+                'default' => 'id',
+                'options' => [
+                    'id' => esc_html__(' Cat ID', 'dservice-core'),
+                    'count' => esc_html__('Needs Count', 'dservice-core'),
+                    'name' => esc_html__(' Category name (A-Z)', 'dservice-core'),
+                    'slug' => esc_html__('Select Category', 'dservice-core'),
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'slug',
+            [
+                'label' => __('Specify Locations', 'dservice-core'),
+                'type' => Controls_Manager::SELECT2,
+                'multiple' => true,
+                'options' => function_exists('dservice_listing_category') ? dservice_listing_category() : []
+            ]
+        );
+
+        $this->add_control(
+            'order_list',
+            [
+                'label' => __('Locations Order', 'dservice-core'),
+                'type' => Controls_Manager::SELECT,
+                'default' => 'desc',
+                'options' => [
+                    'asc' => esc_html__(' ASC', 'dservice-core'),
+                    'desc' => esc_html__(' DESC', 'dservice-core'),
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'user',
+            [
+                'label' => __('Only For Logged In User?', 'dservice-core'),
+                'type' => Controls_Manager::SWITCHER,
+                'default' => 'no',
+            ]
+        );
+
+        $this->add_control(
+            'redirect',
+            [
+                'label' => __('Redirect User?', 'dservice-core'),
+                'type' => Controls_Manager::SWITCHER,
+                'default' => 'no',
+            ]
+        );
+
+        $this->add_control(
+            'link',
+            [
+                'label' => __('Redirect Link', 'dservice-core'),
+                'type' => Controls_Manager::URL,
+                'dynamic' => [
+                    'active' => true,
+                ],
+                'default' => [
+                    'url' => '',
+                ],
+                'separator' => 'before',
+                'condition' => [
+                    'redirect' => 'yes'
+                ]
+            ]
+        );
+
+        $this->end_controls_section();
+    }
+
+    protected function render()
+    {
+        $settings = $this->get_settings_for_display();
+        $default_types = $settings['default_types'];
+        $types = $settings['types'] ? implode( ',', $settings['types'] ) : '';
+        $number_cat = $settings['number_cat'];
+        $order_by = $settings['order_by'];
+        $order_list = $settings['order_list'];
+        $row = $settings['row'];
+        $slug = $settings['slug'] ? implode($settings['slug'], []) : '';
+        $cat_style = $settings['cat_style'];
+        ?>
+
+        <div id="<?php echo esc_attr($cat_style); ?>">
+            <?php echo do_shortcode( '[directorist_all_categories view="layout" orderby="' . esc_attr( $order_by ) . '" order="' . esc_attr( $order_list ) . '" cat_per_page="' . esc_attr( $number_cat ) . '" columns="' . esc_attr( $row ) . '" slug="' . esc_attr( $slug ) . '" directory_type="' . $types . '" default_directory_type="' . $default_types . '"]' );
+            ?>
+        </div>
+    <?php
+    }
+}
+
+//Need locations
+class dservice_NeedLocations extends Widget_Base
+{
+    public function get_name()
+    {
+        return 'need_locations';
+    }
+
+    public function get_title()
+    {
+        return __('Need Locations', 'dservice-core');
+    }
+
+    public function get_icon()
+    {
+        return ' far fa-question-circle';
+    }
+
+    public function get_categories()
+    {
+        return ['dservice_category'];
+    }
+
+    public function get_keywords()
+    {
+        return ['locations', 'need locations',];
+    }
+
+    protected function _register_controls()
+    {
+        $this->start_controls_section(
+            'need_locations',
+            [
+                'label' => __('Need Locations', 'dservice-core'),
+            ]
+        );
+
+        $this->add_control(
+            'types',
+            [
+                'label'    => __('Specify Listing Types', 'dservice-core'),
+                'type'     => Controls_Manager::SELECT2,
+                'multiple' => true,
+                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
+                'default'  => ['need-listings'],
+            ]
+        );
+
+        $this->add_control(
+            'default_types',
+            [
+                'label'    => __('Set Default Listing Type', 'dservice-core'),
+                'type'     => Controls_Manager::SELECT,
+                'multiple' => true,
+                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
+                'default'  => 'need-listings',
+            ]
+        );
+
+        $this->add_control(
+            'layout',
+            [
+                'label' => __('Locations Layout', 'dservice-core'),
+                'type' => Controls_Manager::SELECT,
+                'default' => 'grid',
+                'options' => [
+                    'grid' => esc_html__('Grid View', 'dservice-core'),
+                    'list' => esc_html__('List View', 'dservice-core'),
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'row',
+            [
+                'label' => __('Location Per Row', 'dservice-core'),
+                'type' => Controls_Manager::SELECT,
+                'default' => '3',
+                'options' => [
+                    '5' => esc_html__('5 Items / Row', 'dservice-core'),
+                    '4' => esc_html__('4 Items / Row', 'dservice-core'),
+                    '3' => esc_html__('3 Items / Row', 'dservice-core'),
+                    '2' => esc_html__('2 Items / Row', 'dservice-core'),
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'number_loc',
+            [
+                'label' => __('Number of locations to Show:', 'dservice-core'),
+                'type' => Controls_Manager::NUMBER,
+                'min' => 1,
+                'max' => 1000,
+                'step' => 1,
+                'default' => 4,
+            ]
+        );
+
+        $this->add_control(
+            'order_by',
+            [
+                'label' => __('Order by', 'dservice-core'),
+                'type' => Controls_Manager::SELECT,
+                'default' => 'id',
+                'options' => [
+                    'id' => esc_html__(' Cat ID', 'dservice-core'),
+                    'count' => esc_html__('Needs Count', 'dservice-core'),
+                    'name' => esc_html__(' Category name (A-Z)', 'dservice-core'),
+                    'slug' => esc_html__('Select Category', 'dservice-core'),
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'slug',
+            [
+                'label' => __('Specify Locations', 'dservice-core'),
+                'type' => Controls_Manager::SELECT2,
+                'multiple' => true,
+                'options' => function_exists('dservice_listing_locations') ? dservice_listing_locations() : []
+            ]
+        );
+
+        $this->add_control(
+            'order_list',
+            [
+                'label' => __('Locations Order', 'dservice-core'),
+                'type' => Controls_Manager::SELECT,
+                'default' => 'desc',
+                'options' => [
+                    'asc' => esc_html__(' ASC', 'dservice-core'),
+                    'desc' => esc_html__(' DESC', 'dservice-core'),
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'user',
+            [
+                'label' => __('Only For Logged In User?', 'dservice-core'),
+                'type' => Controls_Manager::SWITCHER,
+                'default' => 'no',
+            ]
+        );
+
+        $this->add_control(
+            'redirect',
+            [
+                'label' => __('Redirect User?', 'dservice-core'),
+                'type' => Controls_Manager::SWITCHER,
+                'default' => 'no',
+            ]
+        );
+
+        $this->add_control(
+            'link',
+            [
+                'label' => __('Redirect Link', 'dservice-core'),
+                'type' => Controls_Manager::URL,
+                'dynamic' => [
+                    'active' => true,
+                ],
+                'default' => [
+                    'url' => '',
+                ],
+                'separator' => 'before',
+                'condition' => [
+                    'redirect' => 'yes'
+                ]
+            ]
+        );
+
+        $this->end_controls_section();
+    }
+
+    protected function render()
+    {
+        $settings = $this->get_settings_for_display();
+        $default_types = $settings['default_types'];
+        $types = $settings['types'] ? implode( ',', $settings['types'] ) : '';
+        $number_loc = $settings['number_loc'];
+        $order_by = $settings['order_by'];
+        $order_list = $settings['order_list'];
+        $row = $settings['row'];
+        $slug = $settings['slug'] ? implode($settings['slug'], []) : '';
+        $layout = $settings['layout'];
+        $user = $settings['user'];
+        $web = 'yes' == $user ? $settings['link']['url'] : '';
+
+        echo do_shortcode('[directorist_all_locations view="' . esc_attr($layout) . '" orderby="' . esc_attr($order_by) . '" order="' . esc_attr($order_list) . '" loc_per_page="' . esc_attr($number_loc) . '" columns="' . esc_attr($row) . '" slug="' . esc_attr($slug) . '" logged_in_user_only="' . esc_attr($user) . '" redirect_page_url="' . esc_attr($web) . '" directory_type="' . $types . '" default_directory_type="' . $default_types . '"]');
+    }
+}
+
+//Need single category
+class dservice_NeedSingleCat extends Widget_Base
+{
+    public function get_name()
+    {
+        return 'need_single_category';
+    }
+
+    public function get_title()
+    {
+        return __('Need Single Category', 'dservice-core');
+    }
+
+    public function get_icon()
+    {
+        return ' far fa-question-circle';
+    }
+
+    public function get_keywords()
+    {
+        return ['single category', 'need category', 'category',];
+    }
+
+    public function get_categories()
+    {
+        return ['dservice_category'];
+    }
+
+    protected function _register_controls()
+    {
+        $this->start_controls_section(
+            'need_single_category',
+            [
+                'label' => __('Need Single Category', 'dservice-core'),
+            ]
+        );
+
+        $this->add_control(
+            'types',
+            [
+                'label'    => __('Specify Listing Types', 'dservice-core'),
+                'type'     => Controls_Manager::SELECT2,
+                'multiple' => true,
+                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
+                'default'  => ['need-listings'],
+            ]
+        );
+
+        $this->add_control(
+            'default_types',
+            [
+                'label'    => __('Set Default Listing Type', 'dservice-core'),
+                'type'     => Controls_Manager::SELECT,
+                'multiple' => true,
+                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
+                'default'  => 'need-listings',
+            ]
+        );
+
+        $this->add_control(
+            'number',
+            [
+                'label' => __('Number of Needs to Show:', 'dservice-core'),
+                'type' => Controls_Manager::NUMBER,
+                'min' => 1,
+                'max' => 100,
+                'default' => 3,
+            ]
+        );
+
+        $this->add_control(
+            'pagination',
+            [
+                'label' => __('Show Pagination?', 'dservice-core'),
+                'type' => Controls_Manager::SWITCHER,
+                'default' => 'yes',
+            ]
+        );
+
+        $this->end_controls_section();
+    }
+
+    protected function render()
+    {
+        $settings = $this->get_settings_for_display();
+        $default_types = $settings['default_types'];
+        $types = $settings['types'] ? implode( ',', $settings['types'] ) : '';
+        $number = $settings['number'];
+        $pagination = $settings['pagination'];
+
+        echo do_shortcode('[directorist_category listings_per_page="' . $number . '" show_pagination="' . $pagination . '" directory_type="' . $types . '" default_directory_type="' . $default_types . '" header="no" action_before_after_loop="no" display_preview_image="no"]');
+    }
+}
+
+//Need single location
+class dservice_NeedSingleLoc extends Widget_Base
+{
+    public function get_name()
+    {
+        return 'need_single_location';
+    }
+
+    public function get_title()
+    {
+        return __('Need Single Location', 'dservice-core');
+    }
+
+    public function get_icon()
+    {
+        return ' far fa-question-circle';
+    }
+
+    public function get_keywords()
+    {
+        return ['single location', 'need location', 'location',];
+    }
+
+    public function get_categories()
+    {
+        return ['dservice_category'];
+    }
+
+    protected function _register_controls()
+    {
+        $this->start_controls_section(
+            'need_single_location',
+            [
+                'label' => __('Need Single Location', 'dservice-core'),
+            ]
+        );
+
+        $this->add_control(
+            'types',
+            [
+                'label'    => __('Specify Listing Types', 'dservice-core'),
+                'type'     => Controls_Manager::SELECT2,
+                'multiple' => true,
+                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
+                'default'  => ['need-listings'],
+            ]
+        );
+
+        $this->add_control(
+            'default_types',
+            [
+                'label'    => __('Set Default Listing Type', 'dservice-core'),
+                'type'     => Controls_Manager::SELECT,
+                'multiple' => true,
+                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
+                'default'  => 'need-listings',
+            ]
+        );
+
+        $this->add_control(
+            'number',
+            [
+                'label' => __('Number of Needs to Show:', 'dservice-core'),
+                'type' => Controls_Manager::NUMBER,
+                'min' => 1,
+                'max' => 100,
+                'default' => 3,
+            ]
+        );
+
+        $this->add_control(
+            'pagination',
+            [
+                'label' => __('Show Pagination?', 'dservice-core'),
+                'type' => Controls_Manager::SWITCHER,
+                'default' => 'yes',
+            ]
+        );
+
+        $this->end_controls_section();
+    }
+
+    protected function render()
+    {
+        $settings = $this->get_settings_for_display();
+        $default_types = $settings['default_types'];
+        $types = $settings['types'] ? implode( ',', $settings['types'] ) : '';
+        $number = $settings['number'];
+        $pagination = $settings['pagination'];
+
+        echo do_shortcode('[directorist_location listings_per_page="' . $number . '" show_pagination="' . $pagination . '" directory_type="' . $types . '" default_directory_type="' . $default_types . '"]');
+    }
+}
+
+//Needs
+class dservice_Needs extends Widget_Base
+{
+    public function get_name()
+    {
+        return 'needs';
+    }
+
+    public function get_title()
+    {
+        return __('All Needs', 'dservice-core');
+    }
+
+    public function get_icon()
+    {
+        return ' far fa-question-circle';
+    }
+
+    public function get_keywords()
+    {
+        return ['need',];
+    }
+
+    public function get_categories()
+    {
+        return ['dservice_category'];
+    }
+
+    protected function _register_controls()
+    {
+        $this->start_controls_section(
+            'needs',
+            [
+                'label' => __('All Needs', 'dservice-core'),
+            ]
+        );
+
+        $this->add_control(
+            'types',
+            [
+                'label'    => __('Specify Listing Types', 'dservice-core'),
+                'type'     => Controls_Manager::SELECT2,
+                'multiple' => true,
+                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
+                'default'  => ['need-listings'],
+            ]
+        );
+
+        $this->add_control(
+            'default_types',
+            [
+                'label'    => __('Set Default Listing Type', 'dservice-core'),
+                'type'     => Controls_Manager::SELECT,
+                'multiple' => true,
+                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
+                'default'  => 'need-listings',
+            ]
+        );
+
+        $this->add_control(
+            'columns',
+            [
+                'label' => __('Needs Per Row', 'dservice-core'),
+                'type' => Controls_Manager::SELECT,
+                'default' => '3',
+                'options' => [
+                    '5' => esc_html__('5 Items / Row', 'dservice-core'),
+                    '4' => esc_html__('4 Items / Row', 'dservice-core'),
+                    '3' => esc_html__('3 Items / Row', 'dservice-core'),
+                    '2' => esc_html__('2 Items / Row', 'dservice-core'),
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'order_by',
+            [
+                'label' => __('Order by', 'dservice-core'),
+                'type' => Controls_Manager::SELECT,
+                'default' => 'date',
+                'options' => [
+                    'ID' => esc_html__(' Post ID', 'dservice-core'),
+                    'author' => esc_html__(' Author', 'dservice-core'),
+                    'title' => esc_html__(' Title', 'dservice-core'),
+                    'name' => esc_html__(' Post name (post slug)', 'dservice-core'),
+                    'type' => esc_html__(' Post type (available since Version 4.0)', 'dservice-core'),
+                    'date' => esc_html__(' Date', 'dservice-core'),
+                    'modified' => esc_html__(' Last modified date', 'dservice-core'),
+                    'rand' => esc_html__(' Random order', 'dservice-core'),
+                    'comment_count' => esc_html__(' Number of comments', 'dservice-core')
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'order_list',
+            [
+                'label' => __('Order post', 'dservice-core'),
+                'type' => Controls_Manager::SELECT,
+                'default' => 'DESC',
+                'options' => [
+                    'ASC' => esc_html__(' ASC', 'dservice-core'),
+                    'DESC' => esc_html__(' DESC', 'dservice-core'),
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'number',
+            [
+                'label' => __('Number of Needs to Show:', 'dservice-core'),
+                'type' => Controls_Manager::NUMBER,
+                'min' => 1,
+                'max' => 100,
+                'default' => 3,
+            ]
+        );
+
+        $this->add_control(
+            'pagination',
+            [
+                'label' => __('Show Pagination?', 'dservice-core'),
+                'type' => Controls_Manager::SWITCHER,
+                'default' => 'yes',
+            ]
+        );
+
+        $this->end_controls_section();
+    }
+
+    protected function render()
+    {
+        $settings = $this->get_settings_for_display();
+        $default_types = $settings['default_types'];
+        $types = $settings['types'] ? implode( ',', $settings['types'] ) : '';
+        $avatar = $settings['avatar'];
+        $columns = $settings['columns'];
+        $number = $settings['number'];
+        $order = $settings['order_by'];
+        $order_list = $settings['order_list'];
+        $pagination = $settings['pagination'];
+        
+        echo do_shortcode('[directorist_all_listing view="grid" listings_per_page="' . esc_attr($number) . '" columns="' . esc_attr($columns) . '" show_pagination="' . esc_attr($pagination) . '" display_preview_image="no" display_author="' . esc_attr($avatar) . '" display_category="' . esc_attr($avatar) . '" order_by="' . esc_attr($order) . '" sort_by="' . esc_attr($order_list) . '" directory_type="' . $types . '" default_directory_type="' . $default_types . '" header="no"]');
+
     }
 }
