@@ -792,7 +792,7 @@ class dservice_icon_title_widget extends WP_Widget {
 	}
 
 	public function form( $instance ) {
-		 $social = ! empty( $instance['social'] ) ? $instance['social'] : '';
+		$social = ! empty( $instance['social'] ) ? $instance['social'] : '';
 		?>
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'social' ) ); ?>">

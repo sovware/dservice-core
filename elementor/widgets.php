@@ -3409,14 +3409,14 @@ class dservice_SearchForm extends Widget_Base
         $this->add_control(
             'title_color',
             [
-                'label' => __('Title  Color', 'dservice-core'),
+                'label' => __('Title', 'dservice-core'),
                 'type' => Controls_Manager::COLOR,
                 'scheme' => [
                     'type' => Schemes\Color::get_type(),
                     'value' => Schemes\Color::COLOR_2,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .search-form-wrapper h1' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .search-form-wrapper .search-form-title h1' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -3424,14 +3424,14 @@ class dservice_SearchForm extends Widget_Base
         $this->add_control(
             'subtitle_color',
             [
-                'label' => __('Subtitle Color', 'dservice-core'),
+                'label' => __('Subtitle', 'dservice-core'),
                 'type' => Controls_Manager::COLOR,
                 'scheme' => [
                     'type' => Schemes\Color::get_type(),
                     'value' => Schemes\Color::COLOR_3,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .search-form-wrapper span.subtitle' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .search-form-wrapper .search-form-title span.subtitle' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -3439,14 +3439,14 @@ class dservice_SearchForm extends Widget_Base
         $this->add_control(
             'tab_text_color',
             [
-                'label' => __('Tab Text Color', 'dservice-core'),
+                'label' => __('Tab', 'dservice-core'),
                 'type' => Controls_Manager::COLOR,
                 'scheme' => [
                     'type' => Schemes\Color::get_type(),
                     'value' => Schemes\Color::COLOR_3,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .search-form-wrapper .pyn-search-group .pyn-search-radio label' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .search-form-wrapper .directorist-listing-type-selection__link, .search-form-wrapper .directorist-listing-type-selection__link span' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -3454,15 +3454,15 @@ class dservice_SearchForm extends Widget_Base
         $this->add_control(
             'active_tab_text_color',
             [
-                'label' => __('Active Tab Text Color', 'dservice-core'),
+                'label' => __('Active Tab', 'dservice-core'),
                 'type' => Controls_Manager::COLOR,
                 'scheme' => [
                     'type' => Schemes\Color::get_type(),
                     'value' => Schemes\Color::COLOR_1,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .search-form-wrapper .pyn-search-group .pyn-search-radio input:checked + label' => 'color: {{VALUE}};',
-                    '{{WRAPPER}} .search-form-wrapper.search-form-wrapper--one .directory_search_area .pyn-search-group .pyn-search-radio input:checked + label' => 'border-color: {{VALUE}};',
+                    '{{WRAPPER}} .search-form-wrapper .directorist-listing-type-selection__link--current, .search-form-wrapper .directorist-listing-type-selection__link--current span, .directorist-search-contents .directorist-search-form-wrap .directorist-search-form-box .directorist-search-form-top .directorist-search-form-action .directorist-filter-btn, .directorist-search-contents .directorist-search-form-wrap .directorist-search-form-box .directorist-search-form-top .directorist-search-form-action .directorist-filter-btn span' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .search-form-wrapper .directorist-listing-type-selection__link--current:after' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -3470,14 +3470,14 @@ class dservice_SearchForm extends Widget_Base
         $this->add_control(
             'popular_cat_color',
             [
-                'label' => __('Popular Category Color', 'dservice-core'),
+                'label' => __('Popular Category', 'dservice-core'),
                 'type' => Controls_Manager::COLOR,
                 'scheme' => [
                     'type' => Schemes\Color::get_type(),
                     'value' => Schemes\Color::COLOR_4,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .search-form-wrapper .directory_search_area .directory_home_category_area ul.categories li a' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .search-form-wrapper .directorist-listing-category-top ul a p, .search-form-wrapper .directorist-listing-category-top ul li a span' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -3496,6 +3496,19 @@ class dservice_SearchForm extends Widget_Base
         $style = $settings['style'];
         $image = $settings['image'] ? $settings['image']['url'] : '';
         $id = $settings['image'] ? $settings['image']['id'] : '';
+
+        wp_enqueue_script( 'directorist-search-form-listing' );
+        wp_enqueue_script( 'directorist-range-slider' );
+        wp_enqueue_script( 'directorist-search-listing' );
+
+        $data = Directorist\Script_Helper::get_search_script_data();
+        wp_localize_script( 'directorist-search-form-listing', 'atbdp_search_listing', $data );
+        wp_localize_script( 'directorist-search-listing', 'atbdp_search', [
+        'ajaxnonce' => wp_create_nonce('bdas_ajax_nonce'),
+        'ajax_url' => admin_url('admin-ajax.php'),
+        ]);
+        wp_localize_script( 'directorist-search-listing', 'atbdp_search_listing', $data );
+        wp_localize_script( 'directorist-range-slider', 'atbdp_range_slider', $data );
         ?>
             <div class="search-form-wrapper <?php echo esc_attr($style); ?>">
                 <div class="row align-items-center">

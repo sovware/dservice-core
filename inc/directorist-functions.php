@@ -478,7 +478,6 @@ function my_login_fail()
 
 add_action('wp_login_failed', 'my_login_fail');
 
-
 /*========================================================
     Login and Register popup
 ========================================================*/

@@ -1,10 +1,8 @@
 <?php
-
 //===========dservice Color Control Customizer Panel=============
 
 function dservice_custom_style()
 {
-
     $primary = get_theme_mod('p_color', '#377dff');
     $primary_g = get_theme_mod('p_g_color', 'rgba(55,125,255,0.9)');
     $secondary = get_theme_mod('s_color', '#23c8b9');
@@ -18,7 +16,7 @@ function dservice_custom_style()
         <?php if('#377dff' != $primary){ ?>
 
         /*Primary color*/
-        .color-primary, .woocommerce ul.products li.product .price,
+        .directorist-pricing.directorist-pricing-special .atbd_popular_badge, .directorist-listing-single .directorist-listing-single__meta .directorist-listing-category__popup__content a:hover, .directorist-listings-header .directorist-listings-header__right .view-mode .action-btn.active span.la, .directorist-select__dropdown .directorist-select__dropdown--inner ul li:hover, .search-form-wrapper.search-form-wrapper--two .directorist-search-form .directorist-search-form-box .directorist-search-form-top .directorist-search-form-action__filter .directorist-filter-btn span.la, .atbd_listing_info .atbd_listing_meta ul i, .atbd_listing_info .atbd_listing_meta ul .rate_active, .search-form-wrapper.search-form-wrapper--two .directorist-search-form .directorist-search-form-box .directorist-search-form-top .directorist-search-form-action__filter .directorist-filter-btn, .color-primary, .woocommerce ul.products li.product .price,
         .woocommerce .woocommerce-pagination ul.page-numbers li .page-numbers:hover,
         .woocommerce table.shop_table .product-name a:hover,
         .woocommerce .woocommerce-MyAccount-navigation ul li.is-active a,
@@ -48,7 +46,7 @@ function dservice_custom_style()
         .atbd_categorized_listings .listings > li .directory_tag span .atbd_cat_popup .atbd_cat_popup_wrapper span a:hover,
         .atbd_categorized_listings .listings > li .listing_value span,
         .atbd_contact_information_module .atbd_contact_info ul .atbd_info_title span,
-        .atbd_categorized_listings .listings > li .cate_title .atbd_listing_average_pricing,
+        .atbd_categorized_listings .listings > li .cate_title .atbd_listing_average_pricing,                                                               
         .sidebar .widget_product_categories ul li:before,
         .sidebar .widget_archive ul li:before,
         .sidebar .widget_pages ul li:before,
@@ -184,12 +182,12 @@ function dservice_custom_style()
         .atbd_listting_category .atbd_cat_popup .atbd_cat_popup_wrapper span a:hover, #directorist.atbd_wrapper.directorist-checkout-form .alert-info, .atbd_listing_data_list ul p span.la, .atbd_listing_bottom_content .atbd_content_left .atbd_listting_category a span,
         .atbd_listing_bottom_content .atbd_content_left .atbd_listting_category a:hover, .directory_search_area .directory_home_category_area ul.categories li a:hover span, .directory_search_area .directory_home_category_area ul.categories li a:hover p, .atbd_category_single figure figcaption .icon span, .ads-advanced .more-less, .ads-advanced .more-or-less, .post--card .card-body .post-meta li a:hover, .post--card2 .card-body .post-meta li a:hover, figure figcaption a, #show-sidebar, .app-rated .download-content__head--end, .listing-carousel .owl-nav button:hover, .list-features_two .list-content .icon span, .author__access_area ul li .author-info ul li a:hover,
         .atbd_listting_category .atbd_cat_popup .atbd_cat_popup_wrapper span i,
-        .app-rated .download-content__head p strong, .btn-outline-primary, #footer_text_color p a, .woocommerce-info a, .woocommerce-MyAccount-content a, .woocommerce div.product .price .woocommerce-Price-amount, .pricing .pricing__features .price_action .price_action--btn, .atbd_widget .default-ad-search button[type="reset"]:hover, .page-template-default .atbd_generic_header .atbd_listing_action_btn .view-mode a.active span, .section-title h1 span, .section-title h2 span, .section-title h3 span, .section-title h4 span, .section-title h5 span, .section-title h6 span, .current-menu-parent > a, .current-menu-parent .current-menu-item > a, .search-form-wrapper.search-form-wrapper--two .directory_search_area .pyn-search-group .pyn-search-radio input:checked + label, .block-single__icon i, .single-at_biz_dir .widget-wrapper .post-title:hover, .single-post .sidebar .widget-wrapper .post-title:hover, .blog .sidebar .widget-wrapper .post-title:hover, .blog-area .sidebar .widget-wrapper .post-title:hover, .site-title a, .atbd_authors_listing .author-listing-header .atbd-auth-listing-types a.active, .atbdp-res-btns .dlm-res-btn.active span, .atbd_author_info_widget .btn, .single-at_biz_dir .widget ul li a:hover, .single-post .sidebar .widget ul li a:hover, .blog .sidebar .widget ul li a:hover, .blog-area .sidebar .widget ul li a:hover, .post-author .author-info h5 span, .post-pagination .next-post .title:hover, .post-pagination .prev-post p a, .post-pagination .prev-post .title:hover, .related-post .single-post p a:hover, .single-post #directorist.atbd_wrapper .atbd_generic_header .atbd_generic_header_title .more-filter span.la, .atbd_manage_fees_wrapper table .btn.btn-block a{
+        .app-rated .download-content__head p strong, .btn-outline-primary, #footer_text_color p a, .woocommerce-info a, .woocommerce-MyAccount-content a, .woocommerce div.product .price .woocommerce-Price-amount, .pricing .pricing__features .price_action .price_action--btn, .atbd_widget .default-ad-search button[type="reset"]:hover, .page-template-default .atbd_generic_header .atbd_listing_action_btn .view-mode a.active span, .section-title h1 span, .section-title h2 span, .section-title h3 span, .section-title h4 span, .section-title h5 span, .section-title h6 span, .current-menu-parent > a, .current-menu-parent .current-menu-item > a, .search-form-wrapper.search-form-wrapper--two .directory_search_area .pyn-search-group .pyn-search-radio input:checked + label, .block-single__icon i, .single-at_biz_dir .widget-wrapper .post-title:hover, .single-post .sidebar .widget-wrapper .post-title:hover, .blog .sidebar .widget-wrapper .post-title:hover, .blog-area .sidebar .widget-wrapper .post-title:hover, .site-title a, .atbd_authors_listing .author-listing-header .atbd-auth-listing-types a.active, .atbdp-res-btns .dlm-res-btn.active span, .atbd_author_info_widget .btn, .single-at_biz_dir .widget ul li a:hover, .single-post .sidebar .widget ul li a:hover, .blog .sidebar .widget ul li a:hover, .blog-area .sidebar .widget ul li a:hover, .post-author .author-info h5 span, .post-pagination .next-post .title:hover, .post-pagination .prev-post p a, .post-pagination .prev-post .title:hover, .related-post .single-post p a:hover, .single-post #directorist.atbd_wrapper .atbd_generic_header .atbd_generic_header_title .more-filter span.la, .atbd_manage_fees_wrapper table .btn.btn-block a, .atbd_category_single .cat-box .icon span.la:before, .atbd_category_single .cat-box .icon span.las:before, .directorist-listing-single .directorist-listing-single__info .directorist-listing-single__info--list ul li i.directorist-icon, .directorist-listing-single .directorist-listing-single__meta .directorist-listing-single__meta--left .directorist-listing-category a span.la, .directorist-archive-contents .directorist-listing-single.directorist-need-listings .directorist-listing-single__header .directorist-listing-single__title .directorist-listing-title a:hover, .search-form-wrapper.search-form-wrapper--two .directorist-search-form .directorist-listing-type-selection__item .directorist-listing-type-selection__link--current, .search-form-wrapper.search-form-wrapper--two .directorist-search-form .directorist-listing-type-selection__item .directorist-listing-type-selection__link--current span.fa, .directorist-details-info-wrap .directorist-single-info__label .directorist-icon, .atbd_wallet-table__top h3, .atbd-wallet-title, .directorist-pricing .directorist-pricing__features .directorist-pricing__action .directorist-pricing__action--btn, .directorist-btn.directorist-btn-dark:hover {
             color: <?php echo esc_attr($primary); ?> !important;
         }
 
-        /* prrmary background */
-        .bg-primary,
+        /* primary background */
+        .directorist-checkbox input[type=checkbox]:checked + .directorist-checkbox__label:after, #directorist-pricing-plan-container .directorist-pricing .directorist-pricing__action--btn:hover, #directorist-pricing-plan-container .directorist-pricing.directorist-pricing-special .directorist-pricing__action--btn, #ChatForm button[type="submit"], .directorist-archive-contents .directorist-pagination .page-numbers.current, .directorist-checkbox.directorist-checkbox-primary input[type=checkbox]:checked+.directorist-checkbox__label:after, .directorist-listing-single.directorist-listing-list .directorist-mark-as-favorite .directorist-mark-as-favorite__btn.directorist-added-to-favorite, .directorist-btn.directorist-btn-primary, .bg-primary, .at-modal .atm-contents-inner .at-modal-close, .at-modal .atm-contents-inner .at-modal-close, 
         .keep_signed input[type="checkbox"]:checked + label:before,
         .keep_signed label input[type="checkbox"]:checked + span:before,
         .woocommerce ul.products li.product a.button:hover,
@@ -293,8 +291,8 @@ function dservice_custom_style()
         #atpp-plan-change-modal .atm-contents-inner .at-modal-close,
         #dwpp-plan-renew-modal .atm-contents-inner .at-modal-close,
         footer .subscribe-widget form .btn,
-        .single_area .sidebar .social.social--small ul li a:hover, .btn-primary, .btn-outline-primary:hover, .more-filter:hover, .atbdp_mark_as_fav.atbdp_fav_isActive, .select2-container--default .select2-results__option--highlighted[aria-selected], .bdmv_wrapper .default-ad-search .dlm-action-wrapper .btn-bordered:hover, .bdmv_wrapper .default-ad-search .submit_btn .btn-bordered:hover, .blog-single.sticky .card .card-body h3:before, .atbd_category_single figure figcaption:before, .atbd_manage_fees_wrapper table .btn:hover, .listing-carousel .owl-dots .owl-dot.active span, .listing-carousel .owl-dots .owl-dot span, .pricing .pricing__features .price_action .price_action--btn:hover, .atbd_category_single figure figcaption:before, .btn-gradient, .more-filter:hover, .ads-advanced .price-frequency .pf-btn input:checked + span, .btn-checkbox label input:checked + span, .listing-carousel .owl-dots .owl-dot.active span, .listing-carousel .owl-dots .owl-dot span, .offcanvas-menu__contents ul li a:hover, .atbd_listing_type_list a.choose-type-btn.ctb--one, .woocommerce .widget_price_filter .ui-slider .ui-slider-range, .woocommerce .widget_price_filter .ui-slider .ui-slider-handle, .dropdown-item.active, .dropdown-item:active,
-        .bdb_widget #form-booking .book-now, .bdb_widget #form-booking .login-booking {
+        .single_area .sidebar .social.social--small ul li a:hover, .btn-primary, .btn-outline-primary:hover, .more-filter:hover, .atbdp_mark_as_fav.atbdp_fav_isActive, .select2-container--default .select2-results__option--highlighted[aria-selected], .bdmv_wrapper .default-ad-search .dlm-action-wrapper .btn-bordered:hover, .bdmv_wrapper .default-ad-search .submit_btn .btn-bordered:hover, .blog-single.sticky .card .card-body h3:before, .atbd_category_single figure figcaption:before, .atbd_manage_fees_wrapper table .btn:hover, .listing-carousel .owl-dots .owl-dot.active span, .listing-carousel .owl-dots .owl-dot span, .pricing .pricing__features .price_action .price_action--btn:hover, .atbd_category_single figure figcaption:before, .btn-gradient, .more-filter:hover, .ads-advanced .price-frequency .pf-btn input:checked + span, .btn-checkbox label input:checked + span, .listing-carousel .owl-dots .owl-dot.active span, .listing-carousel .owl-dots .owl-dot span, .offcanvas-menu__contents ul li a:hover, .atbd_listing_type_list a.choose-type-btn.ctb--one, .woocommerce .widget_price_filter .ui-slider .ui-slider-range, .woocommerce .widget_price_filter .ui-slider .ui-slider-handle, .dropdown-item.active, .dropdown-item:active, 
+        .bdb_widget #form-booking .book-now, .bdb_widget #form-booking .login-booking, .directorist-search-contents .directorist-search-form-wrap .directorist-search-form-box .directorist-search-form-top .directorist-search-form-action .directorist-filter-btn:hover, .directorist-btn.directorist-btn-dark, .atbd-child, .directorist-advanced-filter__action .directorist-btn.directorist-btn-dark, .directorist-advanced-filter__action .directorist-btn#atbdp_reset:hover, .directorist-search-contents .directorist-price-ranges__price-frequency--btn input[type=radio]:checked + .directorist-pf-range, .directorist-search-contents .directorist-checkbox.directorist-checkbox-primary input[type="checkbox"]:checked + .directorist-checkbox__label:after, .directorist-listing-single .directorist-mark-as-favorite__btn.directorist-added-to-favorite, .search-form-wrapper.search-form-wrapper--two .directorist-search-form .directorist-listing-type-selection__item .directorist-listing-type-selection__link--current:after, .directorist-price-ranges__item.directorist-price-ranges__price-frequency .directorist-price-ranges__price-frequency--btn input[type=radio]:checked+.directorist-pf-range, #directorist.atbd_wrapper .pagination .nav-links .current, .directorist-archive-contents .directorist-pagination .page-numbers:hover {
             background: <?php echo esc_attr($primary); ?> !important;
         }
 
@@ -406,7 +404,7 @@ function dservice_custom_style()
         footer input.search-submit:hover,
         .blog-area .post-details .post-content .post-body input,
         .blog-area .post-details .post-content .post-body input:hover, #atpp-plan-change-modal .atm-contents-inner .atbd_modal-footer .atbd_modal_btn,
-        #dwpp-plan-renew-modal .atm-contents-inner .atbd_modal-footer .atbd_modal_btn, .atbd_content_active .widget.atbd_widget + #dcl-claim-modal .modal-footer .btn:hover, .btn-primary, .btn-outline-primary:hover, .btn-outline-primary, .atbd_authors_listing .author-listing-header .atbd-auth-listing-types a.active, .atbdp-res-btns .dlm-res-btn.active {
+        #dwpp-plan-renew-modal .atm-contents-inner .atbd_modal-footer .atbd_modal_btn, .atbd_content_active .widget.atbd_widget + #dcl-claim-modal .modal-footer .btn:hover, .btn-primary, .btn-outline-primary:hover, .btn-outline-primary, .atbd_authors_listing .author-listing-header .atbd-auth-listing-types a.active, .atbdp-res-btns .dlm-res-btn.active, .directorist-search-contents .directorist-search-form-wrap .directorist-search-form-box .directorist-search-form-top .directorist-search-form-action .directorist-filter-btn, .atbd-slide1, .directorist-advanced-filter__action .directorist-btn#atbdp_reset:hover, .directorist-search-contents .directorist-checkbox.directorist-checkbox-primary input[type="checkbox"]:checked + .directorist-checkbox__label:after, .directorist-checkbox.directorist-checkbox-primary input[type=checkbox]:checked+.directorist-checkbox__label:after, .bdmv_wrapper .default-ad-search .dlm-action-wrapper .btn-bordered:hover, .directorist-listings-header .directorist-listings-header__right .view-mode .action-btn.active, .directorist-listings-header .directorist-listings-header__right .view-mode .action-btn.active span.la, .directorist-listings-header .directorist-listings-header__left .directorist-filter-btn:hover, .directorist-archive-contents .directorist-pagination .page-numbers.current, .directorist-archive-contents .directorist-pagination .page-numbers:hover, .directorist-pricing .directorist-pricing__features .directorist-pricing__action .directorist-pricing__action--btn, .directorist-checkbox input[type=checkbox]:checked + .directorist-checkbox__label:after, .directorist-btn.directorist-btn-dark:hover {
             border-color: <?php echo esc_attr($primary); ?> !important;
         }
 
@@ -464,8 +462,8 @@ function dservice_custom_style()
             background: linear-gradient(to right, <?php echo esc_attr($primary); ?>, <?php echo esc_attr($secondary); ?>);
         }
 
-        .about-wrapper {
-            background: linear-gradient(to right, <?php echo esc_attr($secondary); ?>, <?php echo esc_attr($primary); ?>);
+        .about-wrapper, .directorist-add-listing-types__single .directorist-add-listing-types__single__link {
+            background: linear-gradient(to right, <?php echo esc_attr($secondary); ?>, <?php echo esc_attr($primary); ?>) !important;
         }
 
         .btn-gradient.btn-gradient-one, blockquote.wp-block-quote, blockquote {
@@ -493,50 +491,18 @@ function dservice_custom_style()
         if('#23c8b9' != $secondary){ ?>
 
         /*secondary color*/
-        .atbd_listting_category .atbd_cat_popup .atbd_cat_popup_wrapper span,
-        #login_modal .modal-body .form-excerpts label,
-        #signup_modal .modal-body .form-excerpts label,
-        #moda_claim_listing .modal-body .form-excerpts label,
-        .blog-posts__single__contents ul li a,
-        footer .atbd_categorized_listings .listings > li .cate_title h4 a,
-        .footer-top .calendar_wrap table tfoot tr td a,
-        footer .atbd_categorized_listings .listings > li .atbd_right_content .cate_title h4 a:hover,
-        footer .footer-top ul li a:hover,
-        footer .footer-top ul li a span::before,
-        .atbd_listing_bottom_content a.dservice-grid-cont-btn,
-        .grid-single .post--card .card-body .post-meta li a:hover,
-        .widget_social .social-list li .title,
-        .atbdpr-range .atbdpr_amount, .service-delivery ul li i,
-        .service-delivery ul li.service-delivery_deadline span, .card-grid__content--list span, .delivery_button_link li.delivery_button_inner.save_listing > span > a:hover, .delivery_button_link li.delivery_button_inner.listing_share > div > span:hover, .delivery_button_link .atbd_report a:hover, .delivery_button_link li.delivery_button_inner.listing_share > div > span > span, .delivery_button_link li.delivery_button_inner.listing_share > div > span .atbd_report a span, .delivery_button_link .atbd_report a > span, .delivery_button_link .atbd_report a .atbd_report a span {
+        .delivery_button_link li.delivery_button_inner.save_listing > span > span, .atbd_listting_category .atbd_cat_popup .atbd_cat_popup_wrapper span, #login_modal .modal-body .form-excerpts label, #signup_modal .modal-body .form-excerpts label, #moda_claim_listing .modal-body .form-excerpts label, .blog-posts__single__contents ul li a, footer .atbd_categorized_listings .listings > li .cate_title h4 a, .footer-top .calendar_wrap table tfoot tr td a, footer .atbd_categorized_listings .listings > li .atbd_right_content .cate_title h4 a:hover, footer .footer-top ul li a:hover,
+        footer .footer-top ul li a span::before, .atbd_listing_bottom_content a.dservice-grid-cont-btn, .grid-single .post--card .card-body .post-meta li a:hover, .widget_social .social-list li .title, .atbdpr-range .atbdpr_amount, .service-delivery ul li i, .service-delivery ul li.service-delivery_deadline span, .card-grid__content--list span, .delivery_button_link li.delivery_button_inner.save_listing > span > a:hover, .delivery_button_link li.delivery_button_inner.listing_share > div > span:hover, .delivery_button_link .atbd_report a:hover, .delivery_button_link li.delivery_button_inner.listing_share > div > span > span, .delivery_button_link li.delivery_button_inner.listing_share > div > span .atbd_report a span, .delivery_button_link .atbd_report a > span, .delivery_button_link .atbd_report a .atbd_report a span, .directorist-listing-single .directorist-listing-single__meta .directorist-listing-single__meta--right .dservice-grid-cont-btn {
             color: <?php echo esc_attr($secondary); ?> !important;
         }
 
-        .atbd_listing_thumbnail_area .atbd_upper_budget .atbd_service_budget,
-        .atbdb_content_module_contents .pagination .active a,
-        .atbd_listing_bottom_content a.dservice-grid-cont-btn:hover,
-        footer .footer-bottom--social a:hover,
-        .app-rated .store-btns .store-btns-inline:last-child a,
-        .footer-top form button:hover:not(.btn-default),
-        .pagination .nav-links .page-numbers.current,
-        .pagination .nav-links .page-numbers:hover,
-        .page .atbd_sidebar .widget form button:hover,
-        .cart_module .cart__items .cart_info a.button:hover,
-        .cart_module .cart__items .cart_info a.checkout,
-        .atbdb_content_module_contents .pagination .page-item a:hover,
-        .woocommerce .woocommerce-pagination .button,
-        .woocommerce table.shop_table td.actions button[name="update_cart"],
-        .woocommerce .woocommerce-shipping-calculator .shipping-calculator-form p button[name="calc_shipping"],
-        .woocommerce form.checkout_coupon .form-row .button,
-        .woocommerce .woocommerce-form-login .woocommerce-form-login__submit:hover,
-        .woocommerce .return-to-shop a.wc-backward,
-        .dservice_product-details .product-info form.variations_form .variations .reset_variations,
-        .atbdpr-range .ui-slider-horizontal .ui-slider-range, .page .atbd_sidebar .social.social--small ul li a:hover, .btn-secondary, .atbd_listing_type_list a.choose-type-btn.ctb--two {
+        .atbd_listing_thumbnail_area .atbd_upper_budget .atbd_service_budget, .access_area ul .author-info ul li a:hover, .atbdb_content_module_contents .pagination .active a, .atbd_listing_bottom_content a.dservice-grid-cont-btn:hover,
+        footer .footer-bottom--social a:hover, .app-rated .store-btns .store-btns-inline:last-child a, .footer-top form button:hover:not(.btn-default), .pagination .nav-links .page-numbers.current, .pagination .nav-links .page-numbers:hover, .page .atbd_sidebar .widget form button:hover, .cart_module .cart__items .cart_info a.button:hover, .cart_module .cart__items .cart_info a.checkout, .atbdb_content_module_contents .pagination .page-item a:hover, .woocommerce .woocommerce-pagination .button, .woocommerce table.shop_table td.actions button[name="update_cart"], .woocommerce .woocommerce-shipping-calculator .shipping-calculator-form p button[name="calc_shipping"], .woocommerce form.checkout_coupon .form-row .button, .woocommerce .woocommerce-form-login .woocommerce-form-login__submit:hover, .woocommerce .return-to-shop a.wc-backward, .dservice_product-details .product-info form.variations_form .variations .reset_variations, .atbdpr-range .ui-slider-horizontal .ui-slider-range, .page .atbd_sidebar .social.social--small ul li a:hover, .btn-secondary, .atbd_listing_type_list a.choose-type-btn.ctb--two, .directorist-listing-single__thumb .directorist-pricing-meta, .directorist-listing-single .directorist-listing-single__meta .directorist-listing-single__meta--right .dservice-grid-cont-btn:hover, .elementor-widget-call_to_action .app-rated .store-btns a, .directorist-pagination .page-numbers.current, .directorist-pagination .page-numbers:hover {
             background: <?php echo esc_attr($secondary); ?> !important;
         }
 
 
-        .atbd_listing_bottom_content a.dservice-grid-cont-btn:hover,
-        .pagination .nav-links .page-numbers.current,
+        .atbd_listing_bottom_content a.dservice-grid-cont-btn:hover, .pagination .nav-links .page-numbers.current,
         .pagination .nav-links .page-numbers:hover {
             border: 1px solid <?php echo esc_attr($secondary); ?> !important;
         }
@@ -545,20 +511,20 @@ function dservice_custom_style()
             border: 4px solid <?php echo esc_attr($secondary); ?> !important;
         }
 
-        .atbdb_content_module_contents .pagination .active a {
+        .atbdb_content_module_contents .pagination .active a, .directorist-listing-single .directorist-listing-single__meta .directorist-listing-single__meta--right .dservice-grid-cont-btn, .directorist-pagination .page-numbers.current, .directorist-pagination .page-numbers:hover {
             border-color: <?php echo esc_attr($secondary); ?> !important;
         }
 
         <?php }
 
         if('rgba(35,200,185,0.7)' != $secondary_g){ ?>
-        .app-rated .store-btns .store-btns-inline:last-child a:hover, {
+        .app-rated .store-btns .store-btns-inline:last-child a:hover {
             background-color: <?php echo esc_attr($secondary_g); ?> !important;
         }
 
         <?php }
 
-        if('#53ca2e' != $success){?>
+        if('#53ca2e' != $success){ ?>
 
         /* success color */
         .woocommerce ul.products li.product .onsale,
@@ -573,7 +539,7 @@ function dservice_custom_style()
             background: <?php echo esc_attr($success); ?> !important;
         }
 
-        .woocommerce .woocommerce-message:before,
+        .atbd_upper_badge .directorist-badge.directorist-badge-open, .woocommerce .woocommerce-message:before,
         .woocommerce ul.products li.product a.button.added,
         .woocommerce .woocommerce-order .woocommerce-thankyou-order-received,
         .sidebar .widget_calendar tr td#prev a,
@@ -604,7 +570,7 @@ function dservice_custom_style()
 
         <?php }
 
-        if('#2c99ff' != $info){?>
+        if('#2c99ff' != $info){ ?>
 
         /*//info color*/
         .woocommerce .woocommerce-info:before {
@@ -618,13 +584,12 @@ function dservice_custom_style()
 
         .woocommerce .woocommerce-info {
             border-top-color: <?php echo esc_attr($info); ?> !important;
-
         }
 
         <?php }
 
 
-        if('#fa8b0c' != $warnning){?>
+        if('#fa8b0c' != $warnning){ ?>
 
 
         /*//warning color*/
@@ -643,11 +608,11 @@ function dservice_custom_style()
         .woocommerce .star-rating span::before,
         blockquote.wp-block-quote code,
         blockquote code,
-        .comments-area blockquote code {
+        .comments-area blockquote code, .directorist-rating-meta i {
             color: <?php echo esc_attr($warnning); ?> !important;
         }
 
-        .dservice-dashboard-no-listing, .atbd_upper_badge .atbd_badge.atbd_badge_featured, .atbd_listing_thumbnail_area .atbd_lower_badge .atbd_badge_featured {
+        .directorist-listing-single .directorist-badge.directorist-badge-featured, .dservice-dashboard-no-listing, .atbd_upper_badge .atbd_badge.atbd_badge_featured, .atbd_listing_thumbnail_area .atbd_lower_badge .atbd_badge_featured {
             background: <?php echo esc_attr($warnning); ?> !important;
         }
 
@@ -657,7 +622,7 @@ function dservice_custom_style()
         if('#f51957' != $danger){ ?>
 
         /* danger color*/
-        .woocommerce .woocommerce-error:before,
+        .atbd_upper_badge .directorist-badge.directorist-badge-closed, .woocommerce .woocommerce-error:before,
         .widget .atbd_widget_title h4 .atbd_badge_close,
         .atbd_add_listing_wrapper .atbdp_make_str_red,
         .atbdb_content_module_contents .table-inner .table tbody tr td .expired,
@@ -669,7 +634,7 @@ function dservice_custom_style()
         .color-danger,
         .woocommerce .woocommerce-error:before,
         .directory_open_hours ul li.atbd_closed span,
-        .pricing .pricing__features ul li > span.unavailable:first-child {
+        .pricing .pricing__features ul li > span.unavailable:first-child, .directorist-listing-single .directorist-listing-single__info .directorist-listing-single__info--top .directorist-badge.directorist-badge-close {
             color: <?php echo esc_attr($danger); ?> !important;
         }
 
