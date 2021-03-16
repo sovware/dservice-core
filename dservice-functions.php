@@ -7,7 +7,7 @@ Author: wpWax
 Author URI: https://wpwax.com
 Domain Path: /languages
 Text Domain: dservice-core
-Version: 1.7
+Version: 1.8
 */
 
 if ( ! defined( 'ABSPATH' ) ) {
