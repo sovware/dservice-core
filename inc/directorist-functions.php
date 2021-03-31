@@ -1263,10 +1263,10 @@ function dservice_listing_gallery()
                     </ul>
                 </div>
             </div>
-        <?php
+            <?php
         } ?>
     </div>
-<?php
+    <?php
 }
 
 add_shortcode('dservice_listing_gallery', 'dservice_listing_gallery');
