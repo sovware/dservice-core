@@ -46,12 +46,12 @@ function dservice_meta_box_callback( $post ) {
 	$type           = get_post_meta( $post->ID, 'menu_type', true );
 	$type_checked   = empty( $type ) ? 'checked' : ''; ?>
 
-	<p><label for="wdm_new_field"><b><?php _e( 'Menu Type', 'dlist-core' ); ?></b></label></p>
+	<p><label for="wdm_new_field"><b><?php _e( 'Menu Type', 'dservice-core' ); ?></b></label></p>
 	<input id="wdm_new_field" type="radio" name="type" value="sticky"
 	<?php checked( $type, 'sticky' ); echo esc_attr( $type_checked ); ?>>
-	<?php _e( 'Sticky Menu', 'dlist-core' ); ?> <br>
+	<?php _e( 'Sticky Menu', 'dservice-core' ); ?> <br>
 	<input id="wdm_new_field" type="radio" name="type" value="fixed" <?php checked( $type, 'fixed' ); ?>>
-	<?php _e( 'Fixed Menu', 'dlist-core' ); ?><br><br>
+	<?php _e( 'Fixed Menu', 'dservice-core' ); ?><br><br>
 
 	<div id="menu-option">
 		<p><label for="menu"> <b><?php esc_html_e( 'Menu Area', 'dservice-core' ); ?></b> </label></p>
@@ -129,12 +129,12 @@ function dservice_single_meta_box_callback( $post ) {
 	$type          = get_post_meta( $post->ID, 'menu_type', true );
 	$type_checked  = empty( $type ) ? 'checked' : ''; ?>
 
-	<p><label for="wdm_new_field"><b><?php _e( 'Menu Type', 'dlist-core' ); ?></b></label></p>
+	<p><label for="wdm_new_field"><b><?php _e( 'Menu Type', 'dservice-core' ); ?></b></label></p>
 	<input id="wdm_new_field" type="radio" name="type" value="sticky"
 	<?php checked( $type, 'sticky' ); echo esc_attr( $type_checked ); ?>>
-	<?php _e( 'Sticky Menu', 'dlist-core' ); ?> <br>
+	<?php _e( 'Sticky Menu', 'dservice-core' ); ?> <br>
 	<input id="wdm_new_field" type="radio" name="type" value="fixed" <?php checked( $type, 'fixed' ); ?>>
-	<?php _e( 'Fixed Menu', 'dlist-core' ); ?> <br>
+	<?php _e( 'Fixed Menu', 'dservice-core' ); ?> <br>
 
 	<p><label for="dservice_new_field"> <b><?php esc_html_e( 'Menu Area', 'dservice-core' ); ?></b> </label></p>
 	<input type="radio" name="menu_styles" value="bg-white" <?php checked( $value, 'bg-white' ); ?> checked>
@@ -250,44 +250,78 @@ add_action( 'wp_enqueue_scripts', 'vb_register_user_scripts', 100 );
  * New User registration
  */
 function vb_reg_new_user() {
-	$display_password = get_directorist_option( 'display_password_reg', 1 );
 	// Verify nonce
 	if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], 'vb_new_user' ) ) {
-		echo __( 'Ooops, something went wrong, please try again later.', 'dservice-core' );
-		die();
+		die( 'Ooops, something went wrong, please try again later.' );
 	}
+
+	$redirection_after_reg = get_directorist_option( 'redirection_after_reg' );
+	$auto_login = get_directorist_option( 'auto_login' );
+	$redirect_url = 'previous_page' == $redirection_after_reg ? wp_get_referer() : get_the_permalink( $redirection_after_reg );
 	// Post values
-	$username = $_POST['user'];
-	$email    = $_POST['mail'];
-	if ( empty( $display_password ) ) {
-		$password = wp_generate_password( 12, false );
-	} elseif ( empty( $_POST['password'] ) ) {
-		$password = wp_generate_password( 12, false );
-	} else {
-		$password = sanitize_text_field( $_POST['password'] );
+	$username         = isset( $_POST['user'] ) ? $_POST['user'] : '';
+	$email            = isset( $_POST['mail'] ) ? $_POST['mail'] : '';
+	$pass             = isset( $_POST['pass'] ) ? $_POST['pass'] : '';
+	$privacy_policy   = isset( $_POST['privacy_policy'] ) ? esc_attr( $_POST['privacy_policy'] ) : '';
+	$require_password = class_exists( 'Directorist_Base' ) ? get_directorist_option( 'require_password_reg', 1 ) : '';
+	$policy           = get_directorist_option( 'registration_privacy', 1 );
+	$terms            = get_directorist_option( 'regi_terms_condition', 1 );
+	$data = [];
+	$data['state'] = true;
+	if ( $require_password && ! $pass ) {
+		$data['state'] = false;
+		$data['message'] = __( 'Password field is required', 'dservice-core' );
 	}
-	if ( ! empty( $password ) && 5 > strlen( $password ) ) {
-		echo __( 'Password length must be greater than 5', 'dservice-core' );
-		die();
+
+	if ( ! $email ) {
+		$data['state'] = false;
+		$data['message'] = __( 'Email field is required', 'dservice-core' );
 	}
+
+	if ( ! $username ) {
+		$data['state'] = false;
+		$data['message'] = __( 'Username field is required', 'dservice-core' );
+	}
+
+	if ( $policy || $terms ) {
+		if ( ! $privacy_policy ) {
+			$data['state'] = false;
+			$data['message'] = __( 'Make sure all the required fields are not empty!', 'dservice-core' );
+		}
+	}
+
 	/**
 	 * IMPORTANT: You should make server side validation here!
 	 */
-	$userdata = array(
-		'user_login' => $username,
-		'user_email' => $email,
-		'user_pass'  => $password,
-	);
-	$user_id  = wp_insert_user( $userdata );
-	if ( ! is_wp_error( $user_id ) ) {
-		update_user_meta( $user_id, '_atbdp_generated_password', $password );
-		wp_new_user_notification( $user_id, null, 'admin' ); // send activation to the admin
-		ATBDP()->email->custom_wp_new_user_notification_email( $user_id );
-		echo '1';
-	} else {
-		echo $user_id->get_error_message();
+	if( !empty( $data['state'] ) ){
+		$generated_pass = wp_generate_password( 12, false );
+		$password       = ! empty( $pass ) ? $pass : $generated_pass;
+		$userdata       = array(
+			'user_login' => $username,
+			'user_email' => $email,
+			'user_pass'  => $password,
+		);
+		$user_id        = wp_insert_user( $userdata );
+		if ( ! is_wp_error( $user_id ) ) {
+			update_user_meta( $user_id, '_atbdp_generated_password', $password );
+			wp_new_user_notification($user_id, null, 'admin');
+			ATBDP()->email->custom_wp_new_user_notification_email($user_id);
+			$data['state'] 			= true;
+			$data['message'] 		= __( 'Registration completed, redirecting..', 'dservice-core' );
+			$data['redirect_url'] 	= $redirect_url;
+
+			if( ! empty( $auto_login ) ) {
+				wp_clear_auth_cookie();
+                wp_set_current_user($user_id);
+                wp_set_auth_cookie($user_id, true);
+			}
+		} else {
+			$data['state'] = false;
+			$data['message'] = $user_id->get_error_message();
+		}
 	}
-	die();
+
+	wp_send_json( $data );
 }
 
 add_action( 'wp_ajax_register_user', 'vb_reg_new_user' );
@@ -633,7 +667,6 @@ function dservice_ajax_login_init() {
 			'redirecturl'               => ( class_exists( 'Directorist_Base' ) ) ? ATBDP_Permalink::get_login_redirection_page_link() : home_url( '/' ),
 			'loadingmessage'            => esc_html__( 'Sending user info, please wait...', 'dservice-core' ),
 			'registration_confirmation' => $confirmation,
-			'login_failed'              => esc_html__( 'Sorry! Login failed', 'dservice-core' ),
 		)
 	);
 
