@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: dservice-core\n"
-"POT-Creation-Date: 2021-03-15 22:17+0600\n"
+"POT-Creation-Date: 2021-04-08 15:52+0600\n"
 "PO-Revision-Date: 2019-11-27 14:20+0600\n"
 "Last-Translator: \n"
 "Language-Team: aazztech\n"
@@ -81,154 +81,162 @@ msgstr ""
 msgid "Footer Options"
 msgstr ""
 
-#: dservice-functions.php:256
-msgid "Ooops, something went wrong, please try again later."
+#: dservice-functions.php:273
+msgid "Password field is required"
 msgstr ""
 
-#: dservice-functions.php:270
-msgid "Password length must be greater than 5"
+#: dservice-functions.php:278
+msgid "Email field is required"
 msgstr ""
 
-#: dservice-functions.php:302 dservice-functions.php:374
-#: dservice-functions.php:500
+#: dservice-functions.php:283
+msgid "Username field is required"
+msgstr ""
+
+#: dservice-functions.php:289
+msgid "Make sure all the required fields are not empty!"
+msgstr ""
+
+#: dservice-functions.php:310
+msgid "Registration completed, redirecting.."
+msgstr ""
+
+#: dservice-functions.php:336 dservice-functions.php:408
+#: dservice-functions.php:534
 msgid ", "
 msgstr ""
 
-#: dservice-functions.php:306
+#: dservice-functions.php:340
 msgid "Next Post:"
 msgstr ""
 
-#: dservice-functions.php:312 dservice-functions.php:321
+#: dservice-functions.php:346 dservice-functions.php:355
 msgid "- In"
 msgstr ""
 
-#: dservice-functions.php:317
+#: dservice-functions.php:351
 msgid "Previous Post:"
 msgstr ""
 
-#: dservice-functions.php:356
+#: dservice-functions.php:390
 msgid "Related Posts"
 msgstr ""
 
-#: dservice-functions.php:373
+#: dservice-functions.php:407
 msgid "in "
 msgstr ""
 
-#: dservice-functions.php:396
+#: dservice-functions.php:430
 msgid "Share Post:"
 msgstr ""
 
-#: dservice-functions.php:400
+#: dservice-functions.php:434
 msgid "Facebook"
 msgstr ""
 
-#: dservice-functions.php:405
+#: dservice-functions.php:439
 msgid "Tweet"
 msgstr ""
 
-#: dservice-functions.php:410
+#: dservice-functions.php:444
 msgid "LinkedIn"
 msgstr ""
 
-#: dservice-functions.php:428
+#: dservice-functions.php:462
 msgid "Twitter Username"
 msgstr ""
 
-#: dservice-functions.php:429
+#: dservice-functions.php:463
 msgid "Google plus profile"
 msgstr ""
 
-#: dservice-functions.php:430
+#: dservice-functions.php:464
 msgid "Facebook Profile"
 msgstr ""
 
-#: dservice-functions.php:431
+#: dservice-functions.php:465
 msgid "Linkedin Profile"
 msgstr ""
 
-#: dservice-functions.php:502 inc/directorist-functions.php:1500
+#: dservice-functions.php:536 inc/directorist-functions.php:1500
 msgid "in"
 msgstr ""
 
-#: dservice-functions.php:527
+#: dservice-functions.php:561
 msgid "Enter valid e-mail address"
 msgstr ""
 
-#: dservice-functions.php:529
+#: dservice-functions.php:563
 msgid "Invalid e-mail address."
 msgstr ""
 
-#: dservice-functions.php:531
+#: dservice-functions.php:565
 msgid "There is no user registered with that email address."
 msgstr ""
 
-#: dservice-functions.php:539
+#: dservice-functions.php:573
 msgid "\tPassword Reset Request"
 msgstr ""
 
-#: dservice-functions.php:543
+#: dservice-functions.php:577
 msgid "Someone has requested a password reset for the following account:"
 msgstr ""
 
-#: dservice-functions.php:545
+#: dservice-functions.php:579
 #, php-format
 msgid "Site Name: %s"
 msgstr ""
 
-#: dservice-functions.php:547
+#: dservice-functions.php:581
 #, php-format
 msgid "User: %s"
 msgstr ""
 
-#: dservice-functions.php:548
+#: dservice-functions.php:582
 msgid "If this was a mistake, just ignore this email and nothing will happen."
 msgstr ""
 
-#: dservice-functions.php:549
+#: dservice-functions.php:583
 msgid "To reset your password, visit the following address:"
 msgstr ""
 
-#: dservice-functions.php:561
+#: dservice-functions.php:595
 msgid "A password reset email has been sent to the email address on file for your account, but may take several minutes to show up in your inbox."
 msgstr ""
 
-#: dservice-functions.php:563
+#: dservice-functions.php:597
 msgid "Password updated! But something went wrong sending email."
 msgstr ""
 
-#: dservice-functions.php:566
+#: dservice-functions.php:600
 msgid "Oops something went wrong updaing your account."
 msgstr ""
 
-#: dservice-functions.php:603
+#: dservice-functions.php:637
 msgid "Wrong username or password."
 msgstr ""
 
-#: dservice-functions.php:615
+#: dservice-functions.php:649
 msgid "Login successful"
 msgstr ""
 
-#: dservice-functions.php:627
+#: dservice-functions.php:661
 msgid " Go to your inbox or spam/junk and get your password."
 msgstr ""
 
-#: dservice-functions.php:627
+#: dservice-functions.php:661
 msgid " Congratulations! Registration completed."
 msgstr ""
 
-#: dservice-functions.php:634
+#: dservice-functions.php:668
 msgid "Sending user info, please wait..."
 msgstr ""
 
-#: dservice-functions.php:636
-msgid "Sorry! Login failed"
-msgstr ""
-
-#: dservice-functions.php:650
+#: dservice-functions.php:683
 msgid "Link appears to be invalid."
 msgstr ""
 
-#: dservice-functions.php:658
+#: dservice-functions.php:691
 msgid "Renewed successfully."
 msgstr ""
 
