@@ -2501,7 +2501,9 @@ class dservice_ListingsCarousel extends Widget_Base
                         $feature_badge_text = get_directorist_option('feature_badge_text', 'Featured');
                         $address_location = get_directorist_option('address_location', 'location');
                         /*Code for Business Hour Extensions*/
-                        $author_id = get_the_author_meta('ID');
+                        $author_id = isset( $_GET['author_id'] ) ? $_GET['author_id'] : '';
+                        $author_id = $author_id ? $author_id : get_current_user_id();
+                        $author_id = rtrim( $author_id, '/' );
                         $u_pro_pic_id = get_user_meta($author_id, 'pro_pic', true);
                         $u_pro_pic = wp_get_attachment_image_src($u_pro_pic_id, 'thumbnail');
                         $thumbnail_cropping = get_directorist_option('thumbnail_cropping', 1);
@@ -2512,7 +2514,6 @@ class dservice_ListingsCarousel extends Widget_Base
                         $default_image = get_directorist_option('default_preview_image', ATBDP_PUBLIC_ASSETS . 'images/grid.jpg');
                         $prv_image = $gallery_img = '';
                         if ($listing_prv_img) {
-
                             if ($thumbnail_cropping) {
                                 $prv_image = atbdp_image_cropping($listing_prv_img, $crop_width, $crop_height, true, 100)['url'];
                             } else {
