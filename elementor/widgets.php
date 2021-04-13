@@ -2349,23 +2349,36 @@ class dservice_ListingsCarousel extends Widget_Base
     protected function _register_controls()
     {
         $this->start_controls_section(
-            'listings_carousel',
+            'listings',
             [
                 'label' => __('Listings Carousel', 'dservice-core'),
             ]
         );
 
         $this->add_control(
-            'featured',
+            'types',
             [
-                'label' => __('Show Featured Listing Only?', 'dservice-core'),
-                'type' => Controls_Manager::SWITCHER,
-                'default' => 'no',
+                'label'    => __('Specify Listing Types', 'dservice-core'),
+                'type'     => Controls_Manager::SELECT2,
+                'multiple' => true,
+                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
+                'default'  => ['general'],
             ]
         );
 
         $this->add_control(
-            'listing_count',
+            'default_types',
+            [
+                'label'    => __('Set Default Listing Type', 'dservice-core'),
+                'type'     => Controls_Manager::SELECT,
+                'multiple' => true,
+                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
+                'default'  => 'general',
+            ]
+        );
+
+        $this->add_control(
+            'number_cat',
             [
                 'label' => __('Number of Listings to Show:', 'dservice-core'),
                 'type' => Controls_Manager::NUMBER,
@@ -2376,25 +2389,27 @@ class dservice_ListingsCarousel extends Widget_Base
         );
 
         $this->add_control(
-            'contact',
+            'featured',
             [
-                'label' => __('Show Address?', 'dservice-core'),
+                'label' => __('Show Featured Only?', 'dservice-core'),
                 'type' => Controls_Manager::SWITCHER,
-                'default' => 'yes',
+                'default' => 'no',
             ]
         );
+
         $this->add_control(
-            'phone',
+            'popular',
             [
-                'label' => __('Show Phone?', 'dservice-core'),
+                'label' => __('Show Popular Only?', 'dservice-core'),
                 'type' => Controls_Manager::SWITCHER,
-                'default' => 'yes',
+                'default' => 'no',
             ]
         );
+
         $this->add_control(
-            'date',
+            'show_pagination',
             [
-                'label' => __('Show Listing Publish Date?', 'dservice-core'),
+                'label' => __('Show Pagination?', 'dservice-core'),
                 'type' => Controls_Manager::SWITCHER,
                 'default' => 'yes',
             ]
@@ -2406,254 +2421,16 @@ class dservice_ListingsCarousel extends Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
+        $default_types = $settings['default_types'];
+        $types = $settings['types'] ? implode( ',', $settings['types'] ) : '';
+        $number_cat = $settings['number_cat'];
         $featured = $settings['featured'];
-        $listing_count = $settings['listing_count'];
-        $contact = $settings['contact'];
-        $phone = $settings['phone'];
-        $date = $settings['date'];
+        $popular = $settings['popular'];
 
-        $has_featured = get_directorist_option('enable_featured_listing');
-        if ($has_featured || is_fee_manager_active()) {
-            $has_featured = true;
-        }
-        $args = array(
-            'post_type' => ATBDP_POST_TYPE,
-            'post_status' => 'publish',
-            'posts_per_page' => $listing_count,
-        );
-        $meta_queries = array();
-
-        if ($has_featured) {
-            $args['meta_key'] = '_featured';
-            $args['orderby'] = array(
-                'meta_value_num' => 'DESC',
-                'date' => 'DESC',
-            );
-        }
-        if ('yes' == $featured) {
-            $meta_queries['_featured'] = array(
-                'key' => '_featured',
-                'value' => 1,
-                'type' => 'NUMERIC',
-                'compare' => 'EXISTS',
-            );
-            $meta_queries['need_post'] = array(
-                array(
-                    'relation' => 'OR',
-                    array(
-                        'key' => '_need_post',
-                        'value' => 'no',
-                        'compare' => '=',
-                    ),
-                    array(
-                        'key' => '_need_post',
-                        'compare' => 'NOT EXISTS',
-                    )
-                )
-            );
-        } else {
-            $meta_queries['need_post'] = array(
-                array(
-                    'relation' => 'OR',
-                    array(
-                        'key' => '_need_post',
-                        'value' => 'no',
-                        'compare' => '=',
-                    ),
-                    array(
-                        'key' => '_need_post',
-                        'compare' => 'NOT EXISTS',
-                    )
-                )
-            );
-        }
-
-        $count_meta_queries = count($meta_queries);
-        if ($count_meta_queries) {
-            $args['meta_query'] = ($count_meta_queries > 1) ? array_merge(array('relation' => 'AND'), $meta_queries) : $meta_queries;
-        }
-
-        $all_listings = new WP_Query($args); ?>
-
-
-        <div id="directorist" class="listing-carousel-wrapper atbd_wrapper">
-            <div class="listing-carousel owl-carousel">
-                <?php
-                if ($all_listings->have_posts()) {
-                    while ($all_listings->have_posts()) {
-                        $all_listings->the_post();
-
-                        $locs = get_the_terms(get_the_ID(), ATBDP_LOCATION);
-                        $featured = get_post_meta(get_the_ID(), '_featured', true);
-                        $listing_img = get_post_meta(get_the_ID(), '_listing_img', true);
-                        $listing_prv_img = get_post_meta(get_the_ID(), '_listing_prv_img', true);
-                        $address = get_post_meta(get_the_ID(), '_address', true);
-                        $phone_number = get_post_meta(get_the_Id(), '_phone', true);
-                        $display_title = get_directorist_option('display_title', 1);
-                        $display_review = get_directorist_option('enable_review', 1);
-                        $display_price = get_directorist_option('display_price', 1);
-                        $display_mark_as_fav = get_directorist_option('display_mark_as_fav', 1);
-                        $display_author_image = get_directorist_option('display_author_image', 1);
-                        $display_publish_date = get_directorist_option('display_publish_date', 1);
-                        $display_contact_info = get_directorist_option('display_contact_info', 1);
-                        $display_feature_badge_cart = get_directorist_option('display_feature_badge_cart', 1);
-                        $popular_badge_text = get_directorist_option('popular_badge_text', 'Popular');
-                        $feature_badge_text = get_directorist_option('feature_badge_text', 'Featured');
-                        $address_location = get_directorist_option('address_location', 'location');
-                        /*Code for Business Hour Extensions*/
-                        $author_id = isset( $_GET['author_id'] ) ? $_GET['author_id'] : '';
-                        $author_id = $author_id ? $author_id : get_current_user_id();
-                        $author_id = rtrim( $author_id, '/' );
-                        $u_pro_pic_id = get_user_meta($author_id, 'pro_pic', true);
-                        $u_pro_pic = wp_get_attachment_image_src($u_pro_pic_id, 'thumbnail');
-                        $thumbnail_cropping = get_directorist_option('thumbnail_cropping', 1);
-                        $crop_width = get_directorist_option('crop_width', 360);
-                        $crop_height = get_directorist_option('crop_height', 300);
-                        $display_address_field = get_directorist_option('display_address_field', 1);
-                        $display_phone_field = get_directorist_option('display_phone_field', 1);
-                        $default_image = get_directorist_option('default_preview_image', ATBDP_PUBLIC_ASSETS . 'images/grid.jpg');
-                        $prv_image = $gallery_img = '';
-                        if ($listing_prv_img) {
-                            if ($thumbnail_cropping) {
-                                $prv_image = atbdp_image_cropping($listing_prv_img, $crop_width, $crop_height, true, 100)['url'];
-                            } else {
-                                $prv_image = wp_get_attachment_image_src($listing_prv_img, 'large')[0];
-                            }
-                        }
-
-                        if ($listing_img) {
-                            if ($thumbnail_cropping) {
-                                $gallery_img = atbdp_image_cropping($listing_img[0], $crop_width, $crop_height, true, 100)['url'];
-                            } else {
-                                $gallery_img = wp_get_attachment_image_src($listing_img[0], 'medium')[0];
-                            }
-                        } ?>
-                        <div class="atbdp_column_carousel">
-                            <div class="atbd_single_listing atbd_listing_card ">
-                                <article class="atbd_single_listing_wrapper <?php echo !empty($featured) ? esc_html('directorist-featured-listings') : ''; ?>">
-                                    <figure class="atbd_listing_thumbnail_area">
-
-                                        <div class="atbd_listing_image">
-                                            <?php
-                                            $disable_single_listing = get_directorist_option('disable_single_listing');
-
-                                            echo empty($disable_single_listing) ? sprintf('<a href="%s">', esc_url(get_post_permalink(get_the_ID()))) : '';
-                                            $image_alt = function_exists('dservice_get_image_alt') ? dservice_get_image_alt($listing_prv_img) : '';
-                                            if ($listing_prv_img) {
-                                                echo sprintf('<img src="%s" alt="%s">', esc_url($prv_image), $image_alt);
-                                            }
-                                            if ($listing_img && !$listing_prv_img) {
-                                                echo sprintf('<img src="%s" alt="%s">', esc_url($gallery_img), $image_alt);
-                                            }
-                                            if (!$listing_img && !$listing_prv_img) {
-                                                echo sprintf('<img src="%s" alt="%s">', esc_url($default_image), $image_alt);
-                                            }
-
-                                            echo empty($disable_single_listing) ? wp_kses_post('</a>') : '';
-
-                                            if ($display_author_image) {
-                                                $image_alt = function_exists('dservice_get_image_alt') ? dservice_get_image_alt($u_pro_pic_id) : '';
-                                                $author = get_userdata($author_id);
-                                                $author_link = class_exists('Directorist_Base') ? ATBDP_Permalink::get_user_profile_page_link($author_id) : '';
-                                                $author_avatar = $u_pro_pic ? sprintf('<img src="%s" alt="%s">', esc_url($u_pro_pic[0]), $image_alt) : get_avatar($author_id, 32);
-
-                                                echo sprintf('<div class="atbd_author"> <a href="%s" aria-label="%s" class="atbd_tooltip">%s</a> </div>', esc_url($author_link), esc_attr($author->first_name . ' ' . $author->last_name), $author_avatar);
-                                            } ?>
-                                        </div>
-
-                                        <span class="atbd_lower_badge">
-                                            <?php
-                                            if ($featured && $display_feature_badge_cart) {
-                                                echo sprintf('<span class="atbd_badge atbd_badge_featured">%s</span>', esc_attr($feature_badge_text));
-                                            }
-
-                                            $popular_listing_id = atbdp_popular_listings(get_the_ID());
-
-                                            if ($popular_listing_id === get_the_ID()) {
-                                                echo sprintf('<span class="atbd_badge atbd_badge_popular">%s</span>', esc_attr($popular_badge_text));
-                                            }
-
-                                            echo new_badge(); ?>
-                                        </span>
-
-                                        <?php echo listings_budget(); ?>
-
-                                        <?php echo !empty($display_mark_as_fav) ? atbdp_listings_mark_as_favourite(get_the_ID()) : ''; ?>
-
-                                    </figure>
-
-                                    <div class="atbd_listing_info">
-                                        <?php if ($display_title || $display_review || $display_price) { ?>
-                                            <div class="atbd_content_upper">
-                                                <?php
-                                                $listing_title = $disable_single_listing ? stripslashes(get_the_title()) : sprintf('<a href="%s">%s</a>', esc_url(get_post_permalink(get_the_ID())), stripslashes(get_the_title()));
-                                                echo !empty($display_title) ? sprintf('<h4 class="atbd_listing_title">%s</h4>', wp_kses_post($listing_title)) : '';
-
-                                                function_exists('dservice_listings_review_price') ? dservice_listings_review_price() : '';
-
-                                                if ($display_contact_info || $display_publish_date || $display_phone_field) { ?>
-                                                    <div class="atbd_listing_data_list">
-                                                        <ul>
-                                                            <?php
-                                                            if ($display_contact_info) {
-                                                                if ($address && ('contact' == $address_location) && $display_address_field && $contact) {
-                                                                    echo sprintf('<li> <p> <span class="%s-map-marker"></span>%s</p> </li>', atbdp_icon_type(false), stripslashes($address));
-                                                                } elseif ($locs && ('location' == $address_location) && $contact) {
-                                                                    $output = $link = [];
-                                                                    foreach ($locs as $loc) {
-                                                                        $link = class_exists('Directorist_Base') ? ATBDP_Permalink::atbdp_get_location_page($loc) : '';
-                                                                        $space = str_repeat(' ', 1);
-                                                                        $output[] = sprintf('%s<a href=%s>%s</a>', esc_attr($space), esc_url($link), esc_attr($loc->name));
-                                                                    }
-                                                                    wp_reset_postdata();
-
-                                                                    echo sprintf('<li><p><span class="%s-map-marker"></span>%s</span></p></li>', atbdp_icon_type(), join(',', $output));
-                                                                }
-                                                                if ($phone_number && $display_phone_field && $phone) {
-                                                                    echo sprintf('<li> <p> <span class="%s-phone"></span> <a href="tel:%s">%s</a> </p> </li>', atbdp_icon_type(), stripslashes($phone_number), stripslashes($phone_number));
-                                                                }
-                                                            }
-
-                                                            if ($display_publish_date && $date) { ?>
-                                                                <li>
-                                                                    <p>
-                                                                        <span class="<?php atbdp_icon_type(true); ?>-clock-o"></span>
-                                                                        <?php
-                                                                        $publish_date_format = get_directorist_option('publish_date_format', 'time_ago');
-                                                                        if ('time_ago' === $publish_date_format) {
-                                                                            printf(esc_html__('Posted %s ago', 'dservice-core'), human_time_diff(get_the_time('U'), current_time('timestamp')));
-                                                                        } else {
-                                                                            echo get_the_date();
-                                                                        } ?>
-                                                                    </p>
-                                                                </li>
-                                                            <?php
-                                                            } ?>
-                                                        </ul>
-                                                    </div>
-                                                <?php
-                                                } ?>
-                                            </div>
-                                        <?php
-                                        }
-
-                                        function_exists('dservice_listings_grid_view_footer_content') ? dservice_listings_grid_view_footer_content() : ''; ?>
-
-                                </article>
-                            </div>
-                        </div>
-                    <?php
-                    }
-                    wp_reset_postdata();
-                } else { ?>
-                    <p class="atbdp_nlf">
-                        <?php esc_html_e('No listing found.', 'dservice-core'); ?>
-                    </p>
-                <?php
-                } ?>
-            </div>
-        </div>
-        <?php
+        add_filter( 'all_listings_wrapper', 'all_listings_wrapper' );
+        add_filter( 'all_listings_column', function(){ return ''; } );
+        
+        echo do_shortcode( '[directorist_all_listing view="grid" header="no" columns="6" action_before_after_loop="no" show_pagination="no" display_preview_image="yes" listings_per_page="' . esc_attr( $number_cat ) . '" directory_type="' . $types . '" featured_only="' . esc_attr( $featured ) . '" popular_only="' . esc_attr( $popular ) . '" default_directory_type="' . $default_types . '"]' );
     }
 }
 

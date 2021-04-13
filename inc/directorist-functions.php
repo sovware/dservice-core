@@ -1284,7 +1284,7 @@ function dservice_listing_description()
     } else {
         $title = get_directorist_option('listing_details_text', esc_html__('Listing Detail', 'dservice-core'));
     }
-?>
+    ?>
 
     <div class="atbd_content_module atbd_listing_details atbdp_listing_ShortCode">
 
@@ -1802,4 +1802,8 @@ function directory_listing_type() {
     $listing_type = ! empty($_GET['directory_type']) ? $_GET['directory_type'] : directorist_default_directory();
     $term = get_term_by( is_numeric( $listing_type ) ? 'id' : 'slug' , $listing_type, ATBDP_TYPE );
     return $term->term_id;
+}
+
+function all_listings_wrapper() {
+	echo ' all-listings-carousel owl-carousel ';
 }
