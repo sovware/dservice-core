@@ -550,9 +550,7 @@ class dservice_sponsor_widget extends WP_Widget {
 							$display_popular_badge_cart = get_directorist_option( 'display_popular_badge_cart', 1 );
 							$popular_listing_id         = atbdp_popular_listings( get_the_ID() );
 							/*Code for Business Hour Extensions*/
-							$author_id 			   = isset( $_GET['author_id'] ) ? $_GET['author_id'] : '';
-							$author_id 			   = $author_id ? $author_id : get_current_user_id();
-							$author_id 			   = rtrim( $author_id, '/' );
+							$author_id   		   = get_the_author_meta( 'ID' );
 							$u_pro_pic_id          = get_user_meta( $author_id, 'pro_pic', true );
 							$u_pro_pic             = wp_get_attachment_image_src( $u_pro_pic_id, 'thumbnail' );
 							$thumbnail_cropping    = get_directorist_option( 'thumbnail_cropping', 1 );

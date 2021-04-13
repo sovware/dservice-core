@@ -2501,9 +2501,8 @@ class dservice_ListingsCarousel extends Widget_Base
                         $feature_badge_text = get_directorist_option('feature_badge_text', 'Featured');
                         $address_location = get_directorist_option('address_location', 'location');
                         /*Code for Business Hour Extensions*/
-                        $author_id = isset( $_GET['author_id'] ) ? $_GET['author_id'] : '';
-                        $author_id = $author_id ? $author_id : get_current_user_id();
-                        $author_id = rtrim( $author_id, '/' );
+
+                        $author_id   = get_the_author_meta( 'ID' );
                         $u_pro_pic_id = get_user_meta($author_id, 'pro_pic', true);
                         $u_pro_pic = wp_get_attachment_image_src($u_pro_pic_id, 'thumbnail');
                         $thumbnail_cropping = get_directorist_option('thumbnail_cropping', 1);
