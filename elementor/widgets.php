@@ -778,11 +778,11 @@ class dservice_Categories extends Widget_Base
                 'type' => Controls_Manager::SELECT,
                 'default' => '4',
                 'options' => [
-                    '6' => esc_html__('6 Items / Row', 'dlist-core'),
-                    '5' => esc_html__('5 Items / Row', 'dlist-core'),
-                    '4' => esc_html__('4 Items / Row', 'dlist-core'),
-                    '3' => esc_html__('3 Items / Row', 'dlist-core'),
-                    '2' => esc_html__('2 Items / Row', 'dlist-core'),
+                    '6' => esc_html__('6 Items / Row', 'dservice-core'),
+                    '5' => esc_html__('5 Items / Row', 'dservice-core'),
+                    '4' => esc_html__('4 Items / Row', 'dservice-core'),
+                    '3' => esc_html__('3 Items / Row', 'dservice-core'),
+                    '2' => esc_html__('2 Items / Row', 'dservice-core'),
                 ],
                 'condition' => [
                     'cat_style' => 'grid',
