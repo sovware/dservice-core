@@ -229,7 +229,6 @@ function dservice_footer_style_control( $post_id ) {
 
 add_action( 'save_post', 'dservice_footer_style_control' );
 
-
 /*
 =====================================
 		Login Form popup Ajax

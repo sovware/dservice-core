@@ -1,6 +1,5 @@
 <?php
 use \Directorist\Directorist_Listing_Search_Form;
-use Directorist\Helper;
 use Elementor\Controls_Manager;
 use Elementor\Core\Schemes;
 use Elementor\Repeater;
@@ -3343,6 +3342,24 @@ class dservice_SearchForm extends Widget_Base
         );
 
         $this->add_control(
+            'logged_in',
+            [
+                'label'   => __('Show Only For Logging User?', 'findbiz-core'),
+                'type'    => Controls_Manager::SWITCHER,
+                'default' => 'no',
+            ]
+        );
+
+        $this->add_control(
+            'title_subtitle',
+            [
+                'label'   => __('Show Title & Subtitle?', 'findbiz-core'),
+                'type'    => Controls_Manager::SWITCHER,
+                'default' => 'yes',
+            ]
+        );
+
+        $this->add_control(
             'title',
             [
                 'label' => __('Title', 'dservice-core'),
@@ -3359,6 +3376,79 @@ class dservice_SearchForm extends Widget_Base
                 'type' => Controls_Manager::TEXTAREA,
                 'placeholder' => __('Enter your subtitle', 'dservice-core'),
                 'default' => __('Get notified about services that match your requirement', 'dservice-core'),
+            ]
+        );
+
+        $this->add_control(
+            'types',
+            [
+                'label'    => __('Specify Listing Types', 'findbiz-core'),
+                'type'     => Controls_Manager::SELECT2,
+                'multiple' => true,
+                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
+            ]
+        );
+
+        $this->add_control(
+            'default_types',
+            [
+                'label'    => __('Set Default Listing Type', 'findbiz-core'),
+                'type'     => Controls_Manager::SELECT,
+                'multiple' => true,
+                'options'  => function_exists('directorist_listing_types') ? directorist_listing_types() : [],
+            ]
+        );
+
+        $this->add_control(
+            'search',
+            [
+                'label'       => __('Search Button Label', 'findbiz-core'),
+                'type'        => Controls_Manager::TEXT,
+                'placeholder' => __('Enter search button label', 'findbiz-core'),
+                'default'     => __('Search', 'findbiz-core'),
+            ]
+        );
+
+        $this->add_control(
+            'more_btn',
+            [
+                'label'   => __('Advance Search Field?', 'findbiz-core'),
+                'type'    => Controls_Manager::SWITCHER,
+                'default' => 'no',
+            ]
+        );
+
+        $this->add_control(
+            'more_btn_text',
+            [
+                'label'   => __('Advance Button Text?', 'findbiz-core'),
+                'type'        => Controls_Manager::TEXT,
+                'placeholder' => __('More Filter', 'findbiz-core'),
+                'default'     => __('More Filter', 'findbiz-core'),
+            ]
+        );
+
+        $this->add_control(
+            'reset',
+            [
+                'label'   => __('Reset Button Label', 'findbiz-core'),
+                'type'    => Controls_Manager::TEXT,
+                'default' => 'Reset',
+                'condition'   => [
+                    'more_btn' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'apply',
+            [
+                'label'   => __('Apply Button Label', 'findbiz-core'),
+                'type'    => Controls_Manager::TEXT,
+                'default' => 'Apply',
+                'condition'   => [
+                    'more_btn' => 'yes',
+                ],
             ]
         );
 
@@ -3416,7 +3506,7 @@ class dservice_SearchForm extends Widget_Base
                     'value' => Schemes\Color::COLOR_2,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .search-form-wrapper .search-form-title h1' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .directorist-search-top .directorist-search-top__title' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -3431,7 +3521,7 @@ class dservice_SearchForm extends Widget_Base
                     'value' => Schemes\Color::COLOR_3,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .search-form-wrapper .search-form-title span.subtitle' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .directorist-search-top .directorist-search-top__subtitle' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -3446,7 +3536,7 @@ class dservice_SearchForm extends Widget_Base
                     'value' => Schemes\Color::COLOR_3,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .search-form-wrapper .directorist-listing-type-selection__link, .search-form-wrapper .directorist-listing-type-selection__link span' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .search-form-wrapper .directorist-listing-type-selection__link' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -3477,7 +3567,7 @@ class dservice_SearchForm extends Widget_Base
                     'value' => Schemes\Color::COLOR_4,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .search-form-wrapper .directorist-listing-category-top ul a p, .search-form-wrapper .directorist-listing-category-top ul li a span' => 'color: {{VALUE}};',
+                    '.directorist-content-active {{WRAPPER}} .directorist-listing-category-top ul li a p, .directorist-content-active {{WRAPPER}} .directorist-listing-category-top ul li a span.la' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -3488,87 +3578,41 @@ class dservice_SearchForm extends Widget_Base
 
     protected function render()
     {
-        $searchform = new Directorist_Listing_Search_Form( 'search_form', directorist_default_directory() );
         $settings = $this->get_settings_for_display();
+        $title_subtitle = $settings['title_subtitle'];
         $title = $settings['title'];
         $subtitle = $settings['subtitle'];
+        $search         = $settings['search'];
+        $more_btn       = $settings['more_btn'];
+        $more_btn_text  = $settings['more_btn_text'];
+        $reset	        = $settings['reset'];
+        $apply	        = $settings['apply'];
         $popular = $settings['popular'];
+        $logged_in	    = $settings['logged_in'];
+        $default_types	= $settings['default_types'];
+        $types          = $settings['types'] ? implode( ',', $settings['types'] ) : '';
         $style = $settings['style'];
         $image = $settings['image'] ? $settings['image']['url'] : '';
         $id = $settings['image'] ? $settings['image']['id'] : '';
-
-        wp_enqueue_script( 'directorist-search-form-listing' );
-        wp_enqueue_script( 'directorist-range-slider' );
-        wp_enqueue_script( 'directorist-search-listing' );
-
-        $data = Directorist\Script_Helper::get_search_script_data();
-        wp_localize_script( 'directorist-search-form-listing', 'atbdp_search_listing', $data );
-        wp_localize_script( 'directorist-search-listing', 'atbdp_search', [
-        'ajaxnonce' => wp_create_nonce('bdas_ajax_nonce'),
-        'ajax_url' => admin_url('admin-ajax.php'),
-        ]);
-        wp_localize_script( 'directorist-search-listing', 'atbdp_search_listing', $data );
-        wp_localize_script( 'directorist-range-slider', 'atbdp_range_slider', $data );
         ?>
-            <div class="search-form-wrapper <?php echo esc_attr($style); ?>">
-                <div class="row align-items-center">
-                    <div class="col-lg-<?php echo 'search-form-wrapper--one' == $style ? esc_html('12') : esc_html('9'); ?>">
-                        <div class="directorist-search-contents atbd_wrapper directory_search_area ads-advaced--wrapper">
-                            <div class="search-form-title">
-                                <?php
-                                echo !empty($title) ? sprintf('<h1>%s</h1>', wp_kses($title, array('span' => ''))) : '';
-                                echo !empty($subtitle) ? sprintf('<span class="subtitle">%s</span>', esc_attr($subtitle)) : ''; ?>
-                            </div>
-                            <form action="<?php echo esc_url( ATBDP_Permalink::get_search_result_page_link() ); ?>" class="directorist-search-form">
-                                <div class="directorist-search-form-wrap directorist-with-search-border">
-                                    <?php $searchform->directory_type_nav_template(); ?>
 
-                                    <input type="hidden" name="directory_type" id="listing_type" value="<?php echo esc_attr( $searchform->listing_type_slug() ); ?>">
+        <div class="search-form-wrapper <?php echo esc_attr($style); ?>">
+            <div class="row align-items-center">
+                <div class="col-lg-<?php echo 'search-form-wrapper--one' == $style ? esc_html('12') : esc_html('9'); ?>">
+                    <?php echo do_shortcode( '[directorist_search_listing show_title_subtitle="'.$title_subtitle.'" search_bar_title="'.$title.'" search_bar_sub_title="'.$subtitle.'" search_button="yes" search_button_text="'.$search.'" more_filters_button="'.$more_btn.'" more_filters_text="'.$more_btn_text.'" reset_filters_button="yes" apply_filters_button="yes" reset_filters_text="'.$reset.'" apply_filters_text="'.$apply.'" more_filters_display="overlapping" logged_in_user_only="'.$logged_in.'" directory_type="'.$types.'" default_directory_type="'.$default_types.'" show_popular_category="'.$popular.'"]' ); ?>
+                </div>
 
-                                    <div class="directorist-search-form-box">
-                                        <div class="directorist-search-form-top directorist-flex directorist-align-center directorist-search-form-inline">
-
-                                            <?php
-                                            foreach ( $searchform->form_data[0]['fields'] as $field ){
-                                                $searchform->field_template( $field );
-                                            }
-                                            if ( $searchform->more_filters_display !== 'always_open' ){
-                                                $searchform->more_buttons_template();
-                                            }
-                                            ?>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <?php
-                                if ( $searchform->more_filters_display == 'always_open' ){
-                                    $searchform->advanced_search_form_fields_template();
-                                }
-                                else {
-                                    if ($searchform->has_more_filters_button) { ?>
-                                        <div class="<?php Helper::search_filter_class( $searchform->more_filters_display ); ?>">
-                                            <?php $searchform->advanced_search_form_fields_template();?>
-                                        </div>
-                                        <?php
-                                    }
-                                }
-                                ?>
-                            </form>
-                            <?php if ('yes' == $popular) : $searchform->top_categories_template(); endif; ?>
+                <?php if ('search-form-wrapper--two' == $style) {
+                    $image_alt = function_exists('dservice_get_image_alt') ? dservice_get_image_alt($id) : ''; ?>
+                    <div class="col-lg-3 search-img-wrapper">
+                        <div class="search-form-img">
+                            <?php echo sprintf('<img src="%s" alt="%s">', esc_url($image), $image_alt); ?>
                         </div>
                     </div>
-                    <?php
-                    if ('search-form-wrapper--two' == $style) {
-                        $image_alt = function_exists('dservice_get_image_alt') ? dservice_get_image_alt($id) : ''; ?>
-                        <div class="col-lg-3 search-img-wrapper">
-                            <div class="search-form-img">
-                                <?php echo sprintf('<img src="%s" alt="%s">', esc_url($image), $image_alt); ?>
-                            </div>
-                        </div>
-                        <?php
-                    } ?>
-                </div>
+                <?php } ?>
             </div>
+        </div>
+
         <?php
     }
 }
@@ -3872,7 +3916,6 @@ class Dservice_SingleCat extends Widget_Base
                 'condition'   => [
                     'header' => 'yes'
                 ]
-
             ]
         );
 

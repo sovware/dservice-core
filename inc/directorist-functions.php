@@ -419,7 +419,6 @@ function dservice_upper_badge($content)
 
 add_filter('atbdp_upper_badges', 'dservice_upper_badge', 20, 1);
 
-
 //Directorist single listing details title .
 function dservice_single_listings_settings_fields($settings)
 {
@@ -434,7 +433,6 @@ function dservice_single_listings_settings_fields($settings)
 }
 
 add_filter('atbdp_single_listings_settings_fields', 'dservice_single_listings_settings_fields');
-
 
 
 function dservice_all_need_categories_after_category_name($html, $term)
@@ -837,14 +835,14 @@ function dservice_listing_footer_catViewCount()
                     } ?>
                 </div>
             </div>
-        <?php
+            <?php
         } else { ?>
             <div class="atbd_content_left">
                 <div class="atbd_listting_category">
                     <?php echo sprintf('<a href="#"> <span class="%s-tags"></span>%s</a>', atbdp_icon_type(false), esc_html__('Uncategorized', 'dservice-core')) ?>
                 </div>
             </div>
-    <?php
+            <?php
         }
     }
 }

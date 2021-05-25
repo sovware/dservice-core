@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: dservice-core\n"
-"POT-Creation-Date: 2021-04-08 15:52+0600\n"
+"POT-Creation-Date: 2021-04-13 14:42+0600\n"
 "PO-Revision-Date: 2019-11-27 14:20+0600\n"
 "Last-Translator: \n"
 "Language-Team: aazztech\n"

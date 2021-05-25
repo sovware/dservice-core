@@ -614,8 +614,7 @@ class dservice_sponsor_widget extends WP_Widget {
 												<?php
 												echo new_badge();
 												if ( $featured && ! empty( $display_feature_badge_cart ) ) {
-													$featured = sprintf( '<span class="atbd_badge atbd_badge_featured">%s</span>', esc_attr( $feature_badge_text ) );
-													echo apply_filters( 'atbdp_featured_badge', $featured );
+													echo sprintf( '<span class="atbd_badge atbd_badge_featured">%s</span>', esc_attr( $feature_badge_text ) );
 												}
 												if ( $display_popular_badge_cart && ( $popular_listing_id === get_the_ID() ) ) {
 													echo sprintf( '<span class="atbd_badge atbd_badge_popular">%s</span>', esc_attr( $popular_badge_text ) );
