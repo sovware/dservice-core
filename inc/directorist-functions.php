@@ -569,12 +569,12 @@ add_filter('atbdp_cat_container_fluid', 'dservice_cat_container_fluid');
 /*========================================================
     removed all section container-fluid
 ========================================================*/
-function dservice_remove_unnecessary_hook_for_need()
+function dservice_remove_unnecessary_hook_for_need( $display_map_info = true )
 {
     $is_need = get_post_meta(get_the_ID(), '_need_post', true);
-    if ('yes' === $is_need) {
-        return;
-    }
+    if ( 'yes' === $is_need )  return false;
+    
+    return $display_map_info;
 }
 
 add_filter('atbdp_listing_map_info_window', 'dservice_remove_unnecessary_hook_for_need');
