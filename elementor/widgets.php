@@ -1,5 +1,4 @@
 <?php
-use \Directorist\Directorist_Listing_Search_Form;
 use Elementor\Controls_Manager;
 use Elementor\Core\Schemes;
 use Elementor\Repeater;
@@ -4308,7 +4307,7 @@ class dservice_SingleCatMap extends Widget_Base
 
         <input type="hidden" id="listing-listings_with_map">
 
-    <?php echo do_shortcode('[directorist_category view="listings_with_map" orderby="' . esc_attr($order_by) . '" order="' . esc_attr($order_list) . '" listings_per_page="' . esc_attr($number_cat) . '" header="yes" header_title ="' . esc_attr($title) . '" show_pagination="' . esc_attr($show_pagination) . '" logged_in_user_only="' . esc_attr($user) . '" redirect_page_url="' . esc_attr($web) . '" listings_with_map_columns="' . esc_attr($layout) . '"]');
+        <?php echo do_shortcode('[directorist_category view="listings_with_map" orderby="' . esc_attr($order_by) . '" order="' . esc_attr($order_list) . '" listings_per_page="' . esc_attr($number_cat) . '" header="yes" header_title ="' . esc_attr($title) . '" show_pagination="' . esc_attr($show_pagination) . '" logged_in_user_only="' . esc_attr($user) . '" redirect_page_url="' . esc_attr($web) . '" listings_with_map_columns="' . esc_attr($layout) . '"]');
     }
 }
 
@@ -4598,11 +4597,11 @@ class Dservice_SingleLoc extends Widget_Base
     protected function render()
     {
         $settings        = $this->get_settings_for_display();
-        $default_types = $settings['default_types'];
-        $types = $settings['types'] ? implode( ',', $settings['types'] ) : '';
+        $default_types   = $settings['default_types'];
+        $types           = $settings['types'] ? implode( ',', $settings['types'] ) : '';
         $header          = $settings['header'];
-        $default_types = $settings['default_types'];
-        $types = $settings['types'] ? implode( ',', $settings['types'] ) : '';
+        $default_types   = $settings['default_types'];
+        $types           = $settings['types'] ? implode( ',', $settings['types'] ) : '';
         $filter          = 'yes' == $settings['filter'] ? $settings['filter'] : 'no';
         $sidebar         = $settings['sidebar'];
         $show_pagination = $settings['show_pagination'];
@@ -4784,7 +4783,7 @@ class dservice_SingleLocMap extends Widget_Base
 
         <input type="hidden" id="listing-listings_with_map">
 
-    <?php echo do_shortcode('[directorist_location view="listings_with_map" orderby="' . esc_attr($order_by) . '" order="' . esc_attr($order_list) . '" listings_per_page="' . esc_attr($number_cat) . '" header="yes" header_title ="' . esc_attr($title) . '" show_pagination="' . esc_attr($show_pagination) . '" logged_in_user_only="' . esc_attr($user) . '" redirect_page_url="' . esc_attr($web) . '" listings_with_map_columns="' . esc_attr($layout) . '"]');
+        <?php echo do_shortcode('[directorist_location view="listings_with_map" orderby="' . esc_attr($order_by) . '" order="' . esc_attr($order_list) . '" listings_per_page="' . esc_attr($number_cat) . '" header="yes" header_title ="' . esc_attr($title) . '" show_pagination="' . esc_attr($show_pagination) . '" logged_in_user_only="' . esc_attr($user) . '" redirect_page_url="' . esc_attr($web) . '" listings_with_map_columns="' . esc_attr($layout) . '"]');
     }
 }
 
