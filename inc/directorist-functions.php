@@ -569,16 +569,6 @@ add_filter('atbdp_cat_container_fluid', 'dservice_cat_container_fluid');
 /*========================================================
     removed all section container-fluid
 ========================================================*/
-function dservice_remove_unnecessary_hook_for_need()
-{
-    $is_need = get_post_meta(get_the_ID(), '_need_post', true);
-    if ('yes' === $is_need) {
-        return;
-    }
-}
-
-add_filter('atbdp_listing_map_info_window', 'dservice_remove_unnecessary_hook_for_need');
-
 add_filter('atbdp_search_home_container_fluid', '__return_false');
 add_filter('atbdp_public_profile_container_fluid', '__return_false');
 add_filter('atbdp_payment_receipt_container_fluid', '__return_false');
@@ -645,7 +635,6 @@ function dservice_remove_extension_promotion_settings($settings)
 }
 
 add_filter('atbdp_extension_settings_fields', 'dservice_remove_extension_promotion_settings');
-
 
 function dservice_search_result_settings_fields($settings)
 {
