@@ -2547,8 +2547,8 @@ class dservice_ListingsCarousel extends Widget_Base
                                             }
 
                                             echo empty($disable_single_listing) ? wp_kses_post('</a>') : '';
-
-                                            if ($display_author_image) {
+                                            
+                                            if ( $display_author_image && $author_id ) {
                                                 $image_alt = function_exists('dservice_get_image_alt') ? dservice_get_image_alt($u_pro_pic_id) : '';
                                                 $author = get_userdata($author_id);
                                                 $author_link = class_exists('Directorist_Base') ? ATBDP_Permalink::get_user_profile_page_link($author_id) : '';

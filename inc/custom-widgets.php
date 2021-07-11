@@ -601,7 +601,7 @@ class dservice_sponsor_widget extends WP_Widget {
 
 												echo empty( $disable_single_listing ) ? wp_kses_post( '</a>' ) : '';
 
-												if ( $display_author_image ) {
+												if ( $display_author_image && $author_id ) {
 													$author        = get_userdata( $author_id );
 													$author_avatar = $u_pro_pic ? sprintf( '<img src="%s" alt="%s">', esc_url( $u_pro_pic[0] ), dservice_get_image_alt( $u_pro_pic_id ) ) : get_avatar( $author_id, 32 );
 
