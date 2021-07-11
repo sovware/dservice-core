@@ -9,7 +9,6 @@
  */
 
 use \Directorist\Directorist_Listing_Search_Form;
-use \Directorist\Helper;
 //Listings view as .
 function dservice_listings_view_as(){
 ?>
@@ -27,65 +26,87 @@ function dservice_listings_view_as(){
     <?php
 }
 
-add_filter('atbdp_listings_header_sort_by_button', 'dservice_listings_view_as', 10, 3);
+add_filter('atbdp_listings_header_sort_by_button', 'dservice_listings_view_as');
 
 //View as of "listing with map view" .
 function dservice_listings_map_view_as()
 {
-    $listing_map_view = get_directorist_option('listing_map_view', 'grid');
-    $view_as          = isset($_POST['view_as']) ? $_POST['view_as'] : $listing_map_view;
-?>
-    <div class="view-mode-2 view-as">
-        <a data-view="grid" class="action-btn-2 ab-grid map-view-grid <?php echo 'grid' == $view_as ? esc_html('active') : ''; ?>">
-            <span class="la la-th-large"></span>
-        </a>
-        <a data-view="list" class="action-btn-2 ab-list map-view-list <?php echo 'list' == $view_as ? esc_html('active') : ''; ?>">
-            <span class="la la-list"></span>
-        </a>
-    </div>
-<?php
+    $view_as = isset( $_POST['view_as'] ) ? $_POST['view_as'] : 'grid';
+	?>
+	<div class="view-mode-2 view-as">
+		<a data-view="grid" class="action-btn-2 ab-grid map-view-grid <?php echo 'grid' == $view_as ? esc_html( 'active' ) : ''; ?>">
+			<span class="la la-th-large"></span>
+		</a>
+		<a data-view="list" class="action-btn-2 ab-list map-view-list <?php echo 'list' == $view_as ? esc_html( 'active' ) : ''; ?>">
+			<span class="la la-list"></span>
+		</a>
+	</div>
+	<?php
 }
 
 add_filter('atbdp_listings_with_map_header_sort_by_button', 'dservice_listings_map_view_as');
+
+function listings_with_map_short_by(){
+	global $bdmv_listings;
+
+	$sort_html = '';
+	$sort_by = isset( $_POST['sort_by'] ) ? $_POST['sort_by'] : '';
+	$title_asc_active = ('title-asc' == $sort_by) ? "active" : '';
+	$title_desc_active = ('title-desc' == $sort_by) ? "active" : '';
+	$date_desc_active = ('date-desc' == $sort_by) ? "active" : '';
+	$date_asc_active = ('date-asc' == $sort_by) ? "active" : '';
+	$price_asc_active = ('price-asc' == $sort_by) ? "active" : '';
+	$price_desc_active = ('price-desc' == $sort_by) ? "active" : '';
+	$rand_active = ('rand' == $sort_by) ? "active" : '';
+	$sort_html.= '<h5>'.__( 'Sort by:', 'dservice-core' ).'</h5>';
+	$sort_html .= '<div class="directorist-dropdown directorist-dropdown-js directorist-dropdown-right">
+					<a class="directorist-dropdown__toggle directorist-dropdown__toggle-js directorist-btn directorist-btn-sm directorist-btn-px-15 directorist-btn-outline-primary directorist-toggle-has-icon" href="#" role="button" id="sortByDropdownMenuLink"> ' . __('Default Order', 'dservice-core') . ' <span class="atbd_drop-caret"></span>
+					</a>';
+	$sort_html .= '<div class="directorist-dropdown__links directorist-dropdown__links-js sort-by" aria-labelledby="sortByDropdownMenuLink">';
+
+	$sort_html .= sprintf('<a class="directorist-dropdown__links--single sort-title-asc %s" data-sort="title-asc">%s</a>', $title_asc_active, __("A to Z ( title )", 'directorist-listings-map'));
+	$sort_html .= sprintf('<a class="directorist-dropdown__links--single sort-title-desc %s" data-sort="title-desc">%s</a>', $title_desc_active,  __("Z to A ( title )", 'directorist-listings-map'));
+	$sort_html .= sprintf('<a class="directorist-dropdown__links--single sort-date-desc %s" data-sort="date-desc">%s</a>', $date_desc_active, __("Latest listings", 'directorist-listings-map'));
+	$sort_html .= sprintf('<a class="directorist-dropdown__links--single sort-date-asc %s" data-sort="date-asc">%s</a>', $date_asc_active, __("Oldest listings", 'directorist-listings-map'));
+	$sort_html .= sprintf('<a class="directorist-dropdown__links--single sort-price-asc %s" data-sort="price-asc">%s</a>',$price_asc_active, __("Price ( low to high )", 'directorist-listings-map'));
+	$sort_html .= sprintf('<a class="directorist-dropdown__links--single sort-price-desc %s" data-sort="price-desc">%s</a>', $price_desc_active, __("Price ( high to low )", 'directorist-listings-map'));
+	$sort_html .= sprintf('<a class="directorist-dropdown__links--single sort-rand %s" data-sort="rand">%s</a>',$rand_active, __("Random listings", 'directorist-listings-map'));
+	$sort_html .= ' </div>';
+	$sort_html .= ' </div>';
+
+	return $sort_html;
+}
 
 //All listing header short by naming.
 function dservice_get_listings_orderby_options($sort_by_items)
 {
     $options = array(
-        'title-asc'  => esc_html__('A to Z Order', 'dservice-core'),
-        'title-desc' => esc_html__('Z to A Order', 'dservice-core'),
-        'date-desc'  => esc_html__('Latest Order', 'dservice-core'),
-        'date-asc'   => esc_html__('Oldest Order', 'dservice-core'),
-        'views-desc' => esc_html__('Popular Order', 'dservice-core'),
-        'price-asc' => esc_html__('Price (low to high)', 'dservice-core'),
-        'price-desc' => esc_html__('Price (high to low)', 'dservice-core'),
-        'rand'       => esc_html__('Random Order', 'dservice-core'),
+        'date-desc'  => esc_html__( 'Default Order', 'dservice-core' ),
+		'views-desc' => esc_html__( 'Popular Order', 'dservice-core' ),
+		'date-asc'   => esc_html__( 'Oldest Order', 'dservice-core' ),
+		'title-asc'  => esc_html__( 'A to Z Order', 'dservice-core' ),
+		'title-desc' => esc_html__( 'Z to A Order', 'dservice-core' ),
+		'rand'       => esc_html__( 'Random Order', 'dservice-core' ),
     );
 
-    if (!in_array('a_z', $sort_by_items)) {
-        unset($options['title-asc']);
-    }
-    if (!in_array('z_a', $sort_by_items)) {
-        unset($options['title-desc']);
-    }
-    if (!in_array('latest', $sort_by_items)) {
-        unset($options['date-desc']);
-    }
-    if (!in_array('oldest', $sort_by_items)) {
-        unset($options['date-asc']);
-    }
-    if (!in_array('popular', $sort_by_items)) {
-        unset($options['views-desc']);
-    }
-    if (!in_array('price_low_high', $sort_by_items)) {
-        unset($options['price-asc']);
-    }
-    if (!in_array('price_high_low', $sort_by_items)) {
-        unset($options['price-desc']);
-    }
-    if (!in_array('random', $sort_by_items)) {
-        unset($options['rand']);
-    }
+    if ( ! in_array( 'a_z', $sort_by_items ) ) {
+		unset( $options['title-asc'] );
+	}
+	if ( ! in_array( 'z_a', $sort_by_items ) ) {
+		unset( $options['title-desc'] );
+	}
+	if ( ! in_array( 'latest', $sort_by_items ) ) {
+		unset( $options['date-desc'] );
+	}
+	if ( ! in_array( 'oldest', $sort_by_items ) ) {
+		unset( $options['date-asc'] );
+	}
+	if ( ! in_array( 'popular', $sort_by_items ) ) {
+		unset( $options['views-desc'] );
+	}
+	if ( ! in_array( 'random', $sort_by_items ) ) {
+		unset( $options['rand'] );
+	}
 
     return $options;
 }
@@ -93,8 +114,10 @@ function dservice_get_listings_orderby_options($sort_by_items)
 //All listing header short by Config .
 function dservice_after_filter_button_in_listings_header()
 {
-    $sort_by_items = get_directorist_option('listings_sort_by_items', array('a_z', 'z_a', 'latest', 'oldest', 'popular', 'price_low_high', 'price_high_low', 'random'));
+    $sort_by_items = get_directorist_option( 'listings_sort_by_items', array( 'a_z', 'z_a', 'latest', 'oldest', 'popular', 'price_low_high', 'price_high_low', 'random' ) );
+
     $options = dservice_get_listings_orderby_options($sort_by_items);
+
     if( !empty( $options ) ){ 
         $current_order = atbdp_get_listings_current_order('date' . '-' . 'desc');
         $current_order = !empty($current_order) ? $current_order : '';
@@ -127,7 +150,7 @@ function dservice_after_filter_button_in_listings_header()
 $display_sortby_dropdown = class_exists('Directorist_Base') ? get_directorist_option('display_sort_by', 1) : '';
 
 if ( $display_sortby_dropdown ) {
-    add_filter('bdmv_view_as', 'dservice_after_filter_button_in_listings_header', 10, 3);
+    add_filter('bdmv_view_as', 'listings_with_map_short_by', 10, 3);
     add_filter('atbdp_listings_view_as', 'dservice_after_filter_button_in_listings_header', 10, 3);
 }
 
