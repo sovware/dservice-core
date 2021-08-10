@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: dservice-core\n"
-"POT-Creation-Date: 2021-05-31 09:24+0600\n"
+"POT-Creation-Date: 2021-07-13 17:42+0600\n"
 "PO-Revision-Date: 2019-11-27 14:20+0600\n"
 "Last-Translator: \n"
 "Language-Team: aazztech\n"
@@ -158,7 +158,7 @@ msgstr ""
 msgid "Linkedin Profile"
 msgstr ""
 
-#: dservice-functions.php:535 inc/directorist-functions.php:1487
+#: dservice-functions.php:535 inc/directorist-functions.php:1510
 msgid "in"
 msgstr ""
 
@@ -1087,7 +1087,7 @@ msgstr ""
 msgid "Enter search button label"
 msgstr ""
 
-#: elementor/widgets.php:3407 inc/directorist-functions.php:164
+#: elementor/widgets.php:3407 inc/directorist-functions.php:187
 msgid "Search"
 msgstr ""
 
@@ -1221,7 +1221,7 @@ msgstr ""
 msgid "Client Logo"
 msgstr ""
 
-#: elementor/widgets.php:5420 inc/directorist-functions.php:1518
+#: elementor/widgets.php:5420 inc/directorist-functions.php:1541
 msgid "Name"
 msgstr ""
 
@@ -1420,242 +1420,262 @@ msgstr ""
 msgid "Home Three"
 msgstr ""
 
-#: inc/directorist-functions.php:55
-msgid "A to Z Order"
-msgstr ""
-
-#: inc/directorist-functions.php:56
-msgid "Z to A Order"
-msgstr ""
-
-#: inc/directorist-functions.php:57
-msgid "Latest Order"
-msgstr ""
-
-#: inc/directorist-functions.php:58
-msgid "Oldest Order"
-msgstr ""
-
-#: inc/directorist-functions.php:59
-msgid "Popular Order"
-msgstr ""
-
-#: inc/directorist-functions.php:60
-msgid "Price (low to high)"
-msgstr ""
-
-#: inc/directorist-functions.php:61
-msgid "Price (high to low)"
-msgstr ""
-
-#: inc/directorist-functions.php:62
-msgid "Random Order"
-msgstr ""
-
-#: inc/directorist-functions.php:108
+#: inc/directorist-functions.php:61 inc/directorist-functions.php:131
 msgid "Sort by:"
 msgstr ""
 
-#: inc/directorist-functions.php:161
+#: inc/directorist-functions.php:63 inc/directorist-functions.php:84
+msgid "Default Order"
+msgstr ""
+
+#: inc/directorist-functions.php:67
+msgid "A to Z ( title )"
+msgstr ""
+
+#: inc/directorist-functions.php:68
+msgid "Z to A ( title )"
+msgstr ""
+
+#: inc/directorist-functions.php:69
+msgid "Latest listings"
+msgstr ""
+
+#: inc/directorist-functions.php:70
+msgid "Oldest listings"
+msgstr ""
+
+#: inc/directorist-functions.php:71
+msgid "Price ( low to high )"
+msgstr ""
+
+#: inc/directorist-functions.php:72
+msgid "Price ( high to low )"
+msgstr ""
+
+#: inc/directorist-functions.php:73
+msgid "Random listings"
+msgstr ""
+
+#: inc/directorist-functions.php:85
+msgid "Popular Order"
+msgstr ""
+
+#: inc/directorist-functions.php:86
+msgid "Oldest Order"
+msgstr ""
+
+#: inc/directorist-functions.php:87
+msgid "A to Z Order"
+msgstr ""
+
+#: inc/directorist-functions.php:88
+msgid "Z to A Order"
+msgstr ""
+
+#: inc/directorist-functions.php:89
+msgid "Random Order"
+msgstr ""
+
+#: inc/directorist-functions.php:184
 msgctxt "placeholder"
 msgid "What are you looking for?"
 msgstr ""
 
-#: inc/directorist-functions.php:162
+#: inc/directorist-functions.php:185
 msgid "Select a category"
 msgstr ""
 
-#: inc/directorist-functions.php:163
+#: inc/directorist-functions.php:186
 msgid "Select a location"
 msgstr ""
 
-#: inc/directorist-functions.php:338 inc/directorist-functions.php:1731
+#: inc/directorist-functions.php:361 inc/directorist-functions.php:1754
 msgid " Review"
 msgstr ""
 
-#: inc/directorist-functions.php:338 inc/directorist-functions.php:1729
+#: inc/directorist-functions.php:361 inc/directorist-functions.php:1752
 msgid " Reviews"
 msgstr ""
 
-#: inc/directorist-functions.php:378
+#: inc/directorist-functions.php:401
 msgid "Open Now"
 msgstr ""
 
-#: inc/directorist-functions.php:428
+#: inc/directorist-functions.php:451
 msgid "Section Title of Listing Gallery"
 msgstr ""
 
-#: inc/directorist-functions.php:429 inc/directorist-functions.php:1198
+#: inc/directorist-functions.php:452 inc/directorist-functions.php:1221
 msgid "Gallery"
 msgstr ""
 
-#: inc/directorist-functions.php:447 inc/directorist-functions.php:1768
+#: inc/directorist-functions.php:470 inc/directorist-functions.php:1791
 msgid " Listings"
 msgstr ""
 
-#: inc/directorist-functions.php:447 inc/directorist-functions.php:1768
+#: inc/directorist-functions.php:470 inc/directorist-functions.php:1791
 msgid " Listing"
 msgstr ""
 
-#: inc/directorist-functions.php:488 inc/directorist-functions.php:490
+#: inc/directorist-functions.php:511 inc/directorist-functions.php:513
 msgid "Logins for Booking"
 msgstr ""
 
-#: inc/directorist-functions.php:723
+#: inc/directorist-functions.php:746
 msgid "/hr"
 msgstr ""
 
-#: inc/directorist-functions.php:729
+#: inc/directorist-functions.php:752
 msgid "Budget:"
 msgstr ""
 
-#: inc/directorist-functions.php:831
+#: inc/directorist-functions.php:854
 msgid "Uncategorized"
 msgstr ""
 
-#: inc/directorist-functions.php:846 inc/directorist-functions.php:864
+#: inc/directorist-functions.php:869 inc/directorist-functions.php:887
 msgid "Contact"
 msgstr ""
 
-#: inc/directorist-functions.php:970 inc/directorist-functions.php:1011
+#: inc/directorist-functions.php:993 inc/directorist-functions.php:1034
 msgid "Services Offer"
 msgstr ""
 
-#: inc/directorist-functions.php:988
+#: inc/directorist-functions.php:1011
 msgid "Requirements Label"
 msgstr ""
 
-#: inc/directorist-functions.php:989 inc/directorist-functions.php:1032
+#: inc/directorist-functions.php:1012 inc/directorist-functions.php:1055
 msgid "Requirements"
 msgstr ""
 
-#: inc/directorist-functions.php:1004
+#: inc/directorist-functions.php:1027
 msgid "Enable"
 msgstr ""
 
-#: inc/directorist-functions.php:1010
+#: inc/directorist-functions.php:1033
 msgid "Label"
 msgstr ""
 
-#: inc/directorist-functions.php:1012
+#: inc/directorist-functions.php:1035
 msgid "Leave it empty for hiding the label"
 msgstr ""
 
-#: inc/directorist-functions.php:1017
+#: inc/directorist-functions.php:1040
 msgid "Only For Admin Use"
 msgstr ""
 
-#: inc/directorist-functions.php:1034
+#: inc/directorist-functions.php:1057
 msgid "Service Offered"
 msgstr ""
 
-#: inc/directorist-functions.php:1061 inc/directorist-functions.php:1084
+#: inc/directorist-functions.php:1084 inc/directorist-functions.php:1107
 msgid "Only YouTube & Vimeo URLs."
 msgstr ""
 
-#: inc/directorist-functions.php:1068 inc/directorist-functions.php:1087
+#: inc/directorist-functions.php:1091 inc/directorist-functions.php:1110
 msgid "Remove this item"
 msgstr ""
 
-#: inc/directorist-functions.php:1073
+#: inc/directorist-functions.php:1096
 msgid "Add Video"
 msgstr ""
 
-#: inc/directorist-functions.php:1118
+#: inc/directorist-functions.php:1141
 msgid "Video"
 msgstr ""
 
-#: inc/directorist-functions.php:1270
+#: inc/directorist-functions.php:1293
 msgid "Enquire Detail"
 msgstr ""
 
-#: inc/directorist-functions.php:1272
+#: inc/directorist-functions.php:1295
 msgid "Listing Detail"
 msgstr ""
 
-#: inc/directorist-functions.php:1421
+#: inc/directorist-functions.php:1444
 msgid "[{site_name}] Contact via \"{listing_title}\""
 msgstr ""
 
-#: inc/directorist-functions.php:1424
+#: inc/directorist-functions.php:1447
 msgid "Dear Administrator,<br /><br />A listing on your website {site_name} received a message.<br /><br />Listing URL: {listing_url}<br /><br />Name: {sender_name}<br />Email: {sender_email}<br />Message: {message}<br />Time: {now}<br /><br />This is just a copy of the original email and was already sent to the listing owner. You don't have to reply this unless necessary."
 msgstr ""
 
-#: inc/directorist-functions.php:1443
+#: inc/directorist-functions.php:1466
 msgid "Your message sent successfully."
 msgstr ""
 
-#: inc/directorist-functions.php:1447
+#: inc/directorist-functions.php:1470
 msgid "Sorry! Please try again."
 msgstr ""
 
-#: inc/directorist-functions.php:1461
+#: inc/directorist-functions.php:1484
 msgid "Is hourly?"
 msgstr ""
 
-#: inc/directorist-functions.php:1485
+#: inc/directorist-functions.php:1508
 #, php-format
 msgid "%s"
 msgstr ""
 
-#: inc/directorist-functions.php:1486
+#: inc/directorist-functions.php:1509
 #, php-format
 msgid " %s %s "
 msgstr ""
 
-#: inc/directorist-functions.php:1486
+#: inc/directorist-functions.php:1509
 msgid "from"
 msgstr ""
 
-#: inc/directorist-functions.php:1487
+#: inc/directorist-functions.php:1510
 #, php-format
 msgid "%s %s"
 msgstr ""
 
-#: inc/directorist-functions.php:1504
+#: inc/directorist-functions.php:1527
 msgid "All Items"
 msgstr ""
 
-#: inc/directorist-functions.php:1522
+#: inc/directorist-functions.php:1545
 msgid "Email"
 msgstr ""
 
-#: inc/directorist-functions.php:1526
+#: inc/directorist-functions.php:1549
 msgid "Message"
 msgstr ""
 
-#: inc/directorist-functions.php:1530
+#: inc/directorist-functions.php:1553
 msgid "Submit"
 msgstr ""
 
-#: inc/directorist-functions.php:1552
+#: inc/directorist-functions.php:1575
 msgid "Listing Gallery Image Limit"
 msgstr ""
 
-#: inc/directorist-functions.php:1559
+#: inc/directorist-functions.php:1582
 msgid "Upload Gallery Images"
 msgstr ""
 
-#: inc/directorist-functions.php:1626
+#: inc/directorist-functions.php:1649
 msgid "Import Demo"
 msgstr ""
 
-#: inc/directorist-functions.php:1626
+#: inc/directorist-functions.php:1649
 msgid "Generate"
 msgstr ""
 
-#: inc/directorist-functions.php:1626
+#: inc/directorist-functions.php:1649
 msgid " Required Pages"
 msgstr ""
 
-#: inc/directorist-functions.php:1630
+#: inc/directorist-functions.php:1653
 msgid "Page created successfully!"
 msgstr ""
 
-#: inc/directorist-functions.php:1682
+#: inc/directorist-functions.php:1705
 msgid "Review"
 msgstr ""
 
-#: inc/directorist-functions.php:1683
+#: inc/directorist-functions.php:1706
 msgid "Category"
 msgstr ""
