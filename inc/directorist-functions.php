@@ -1706,7 +1706,7 @@ function directorist_dashboard_listing_th_2(){
     if ( $review ) {
         echo '<th class="directorist-table-review">' . __( 'Review', 'dservice-core' ) . '</th>';
     }
-	echo '<th class="directorist-table-review">' . __( 'Category', 'dservice-core' ) . '</th>';
+	echo '<th class="directorist-table-category">' . __( 'Category', 'dservice-core' ) . '</th>';
 }
 add_action( 'directorist_dashboard_listing_th_2', 'directorist_dashboard_listing_th_2' );
 
