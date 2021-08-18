@@ -1531,38 +1531,6 @@ function dservice_bdmv_after_filter_button_in_listings_header($ex_title)
 add_action('bdmv_after_filter_button_in_listings_header', 'dservice_bdmv_after_filter_button_in_listings_header', 10, 2);
 
 
-function dservice_contact_form($listing_id)
-{ ?>
-
-    <div class="atbdp-widget-listing-contact contact-form">
-        <div class="atbd_contdservice_public_send_contact_emailent_module atbd_contact_information_module">
-            <form id="dservice-contact-owner-form" class="form-vertical contact_listing_owner" role="form">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="atbdp-contact-name" placeholder="<?php esc_html_e('Name', 'dservice-core'); ?>" required />
-                </div>
-
-                <div class="form-group">
-                    <input type="email" class="form-control" id="atbdp-contact-email" placeholder="<?php esc_html_e('Email', 'dservice-core'); ?>" required />
-                </div>
-
-                <div class="form-group">
-                    <textarea class="form-control" id="atbdp-contact-message" rows="3" placeholder="<?php esc_html_e('Message', 'dservice-core'); ?>..." required></textarea>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">
-                        <?php esc_html_e('Submit', 'dservice-core'); ?>
-                    </button>
-                </div>
-
-                <p id="atbdp-contact-message-display"></p>
-            </form>
-        </div>
-        <input type="hidden" id="atbdp-post-id" value=" <?php echo esc_attr($listing_id); ?>" />
-        <input type="hidden" id="atbdp-listing-email" value="<?php echo !empty($email) ? sanitize_email($email) : ''; ?>" />
-    </div>
-    <?php
-}
-
 function dservice_avatar_size()
 {
     return 50;
