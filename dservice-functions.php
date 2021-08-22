@@ -277,6 +277,11 @@ function vb_reg_new_user() {
 		$data['message'] = __( 'Email field is required', 'dservice-core' );
 	}
 
+	if ( ! is_email( $email ) ) {
+		$data['state'] = false;
+		$data['message'] = __( 'Email is not valid', 'dservice-core' );
+	}
+
 	if ( ! $username ) {
 		$data['state'] = false;
 		$data['message'] = __( 'Username field is required', 'dservice-core' );

@@ -488,6 +488,7 @@ class dservice_sponsor_widget extends WP_Widget {
 				'post_type'      => ATBDP_POST_TYPE,
 				'post_status'    => 'publish',
 				'posts_per_page' => $posts_per,
+				'post__not_in'	=> array( get_the_ID() ),
 				'meta_query'     => array(
 					'relation' => 'AND',
 					array(
