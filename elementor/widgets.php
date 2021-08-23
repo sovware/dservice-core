@@ -3550,8 +3550,19 @@ class dservice_SearchForm extends Widget_Base
                     'value' => Schemes\Color::COLOR_1,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .search-form-wrapper .directorist-listing-type-selection__link--current, .search-form-wrapper .directorist-listing-type-selection__link--current span, .directorist-search-contents .directorist-search-form-wrap .directorist-search-form-box .directorist-search-form-top .directorist-search-form-action .directorist-filter-btn, .directorist-search-contents .directorist-search-form-wrap .directorist-search-form-box .directorist-search-form-top .directorist-search-form-action .directorist-filter-btn span' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .search-form-wrapper .directorist-listing-type-selection__link--current, .search-form-wrapper .directorist-listing-type-selection__link--current span' => 'color: {{VALUE}};',
                     '{{WRAPPER}} .search-form-wrapper .directorist-listing-type-selection__link--current:after' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'search_field_label_color',
+            [
+                'label' => __('Search Field Label Color', 'dservice-core'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .search-form-wrapper .directorist-search-contents .directorist-search-form .directorist-search-form-wrap .directorist-search-form-box .directorist-search-field .directorist-checkbox-wrapper .directorist-checkbox__label, .directorist-search-contents .directorist-search-form-wrap .directorist-search-form-box .directorist-search-form-top .directorist-search-field .directorist-search-tags .directorist-checkbox .directorist-checkbox__label, .directorist-search-contents .directorist-search-form-wrap .directorist-search-form-box .directorist-search-form-top .directorist-search-field .directorist-radio .directorist-radio__label, .directorist-search-contents .directorist-search-form-wrap .directorist-search-form-box .directorist-search-form-top .directorist-search-field .directorist-range-slider-wrap .atbd-current-value, .directorist-search-contents .directorist-search-form-wrap .directorist-search-form-box .directorist-search-form-top .directorist-search-field .directorist-btn-ml' => 'color: {{VALUE}};',
                 ],
             ]
         );
