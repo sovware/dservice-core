@@ -152,10 +152,6 @@ class dservice_Heading extends Widget_Base
             [
                 'label' => __('Title  Color', 'dservice-core'),
                 'type' => Controls_Manager::COLOR,
-                'scheme' => [
-                    'type' => Schemes\Color::get_type(),
-                    'value' => Schemes\Color::COLOR_2,
-                ],
                 'selectors' => [
                     '{{WRAPPER}} h1, {{WRAPPER}} h2, {{WRAPPER}} h3, {{WRAPPER}} h4, {{WRAPPER}} h5, {{WRAPPER}} h6' => 'color: {{VALUE}};',
                 ],
@@ -167,10 +163,6 @@ class dservice_Heading extends Widget_Base
             [
                 'label' => __('Subtitle  Color', 'dservice-core'),
                 'type' => Controls_Manager::COLOR,
-                'scheme' => [
-                    'type' => Schemes\Color::get_type(),
-                    'value' => Schemes\Color::COLOR_3,
-                ],
                 'selectors' => [
                     '{{WRAPPER}} p' => 'color: {{VALUE}};',
                 ],
@@ -314,10 +306,6 @@ class dservice_Accordion extends Widget_Base
                 'selectors' => [
                     '.atbdp-accordion .dacc_single h3 a' => 'color: {{VALUE}};',
                 ],
-                'scheme' => [
-                    'type' => Schemes\Color::get_type(),
-                    'value' => Schemes\Color::COLOR_2,
-                ],
             ]
         );
 
@@ -328,10 +316,6 @@ class dservice_Accordion extends Widget_Base
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '.atbdp-accordion .dacc_single h3 a.active' => 'color: {{VALUE}};',
-                ],
-                'scheme' => [
-                    'type' => Schemes\Color::get_type(),
-                    'value' => Schemes\Color::COLOR_2,
                 ],
             ]
         );
@@ -353,10 +337,6 @@ class dservice_Accordion extends Widget_Base
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '.atbdp-accordion .dacc_single .dac_body' => 'color: {{VALUE}};',
-                ],
-                'scheme' => [
-                    'type' => Schemes\Color::get_type(),
-                    'value' => Schemes\Color::COLOR_3,
                 ],
             ]
         );
@@ -1538,10 +1518,6 @@ class dservice_CTA extends Widget_Base
             [
                 'label' => __('Button Background Color', 'dservice-core'),
                 'type' => Controls_Manager::COLOR,
-                'scheme' => [
-                    'type' => Schemes\Color::get_type(),
-                    'value' => Schemes\Color::COLOR_2,
-                ],
                 'selectors' => [
                     '{{WRAPPER}} .app-rated .store-btns a' => 'background: {{VALUE}};',
                 ],
@@ -1821,10 +1797,6 @@ class dservice_FeatureBox extends Widget_Base
             [
                 'label' => __('Icon Color', 'dservice-core'),
                 'type' => Controls_Manager::COLOR,
-                'scheme' => [
-                    'type' => Schemes\Color::get_type(),
-                    'value' => Schemes\Color::COLOR_2,
-                ],
                 'selectors' => [
                     '{{WRAPPER}} .block-single__icon i' => 'color: {{VALUE}};',
                 ],
@@ -1839,10 +1811,6 @@ class dservice_FeatureBox extends Widget_Base
             [
                 'label' => __('Icon Background Color', 'dservice-core'),
                 'type' => Controls_Manager::COLOR,
-                'scheme' => [
-                    'type' => Schemes\Color::get_type(),
-                    'value' => Schemes\Color::COLOR_2,
-                ],
                 'selectors' => [
                     '{{WRAPPER}} .block-single__icon' => 'background: {{VALUE}};',
                 ],
@@ -3500,10 +3468,6 @@ class dservice_SearchForm extends Widget_Base
             [
                 'label' => __('Title', 'dservice-core'),
                 'type' => Controls_Manager::COLOR,
-                'scheme' => [
-                    'type' => Schemes\Color::get_type(),
-                    'value' => Schemes\Color::COLOR_2,
-                ],
                 'selectors' => [
                     '{{WRAPPER}} .directorist-search-top .directorist-search-top__title' => 'color: {{VALUE}};',
                 ],
@@ -3515,10 +3479,6 @@ class dservice_SearchForm extends Widget_Base
             [
                 'label' => __('Subtitle', 'dservice-core'),
                 'type' => Controls_Manager::COLOR,
-                'scheme' => [
-                    'type' => Schemes\Color::get_type(),
-                    'value' => Schemes\Color::COLOR_3,
-                ],
                 'selectors' => [
                     '{{WRAPPER}} .directorist-search-top .directorist-search-top__subtitle' => 'color: {{VALUE}};',
                 ],
@@ -3530,10 +3490,6 @@ class dservice_SearchForm extends Widget_Base
             [
                 'label' => __('Tab', 'dservice-core'),
                 'type' => Controls_Manager::COLOR,
-                'scheme' => [
-                    'type' => Schemes\Color::get_type(),
-                    'value' => Schemes\Color::COLOR_3,
-                ],
                 'selectors' => [
                     '{{WRAPPER}} .search-form-wrapper .directorist-listing-type-selection__link' => 'color: {{VALUE}};',
                 ],
@@ -3545,10 +3501,6 @@ class dservice_SearchForm extends Widget_Base
             [
                 'label' => __('Active Tab', 'dservice-core'),
                 'type' => Controls_Manager::COLOR,
-                'scheme' => [
-                    'type' => Schemes\Color::get_type(),
-                    'value' => Schemes\Color::COLOR_1,
-                ],
                 'selectors' => [
                     '{{WRAPPER}} .search-form-wrapper .directorist-listing-type-selection__link--current, .search-form-wrapper .directorist-listing-type-selection__link--current span' => 'color: {{VALUE}};',
                     '{{WRAPPER}} .search-form-wrapper .directorist-listing-type-selection__link--current:after' => 'background-color: {{VALUE}};',
@@ -3562,7 +3514,7 @@ class dservice_SearchForm extends Widget_Base
                 'label' => __('Search Field Label Color', 'dservice-core'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .search-form-wrapper .directorist-search-contents .directorist-search-form .directorist-search-form-wrap .directorist-search-form-box .directorist-search-field .directorist-checkbox-wrapper .directorist-checkbox__label, .directorist-search-contents .directorist-search-form-wrap .directorist-search-form-box .directorist-search-form-top .directorist-search-field .directorist-search-tags .directorist-checkbox .directorist-checkbox__label, .directorist-search-contents .directorist-search-form-wrap .directorist-search-form-box .directorist-search-form-top .directorist-search-field .directorist-radio .directorist-radio__label, .directorist-search-contents .directorist-search-form-wrap .directorist-search-form-box .directorist-search-form-top .directorist-search-field .directorist-range-slider-wrap .atbd-current-value, .directorist-search-contents .directorist-search-form-wrap .directorist-search-form-box .directorist-search-form-top .directorist-search-field .directorist-btn-ml' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .search-form-wrapper .directorist-search-contents .directorist-search-form .directorist-search-form-wrap .directorist-search-form-box .directorist-search-field .directorist-checkbox-wrapper .directorist-checkbox__label, .directorist-search-contents .directorist-search-form-wrap .directorist-search-form-box .directorist-search-form-top .directorist-search-field .directorist-search-tags .directorist-checkbox .directorist-checkbox__label, .directorist-search-contents .directorist-search-form-wrap .directorist-search-form-box .directorist-search-form-top .directorist-search-field .directorist-radio .directorist-radio__label, .directorist-search-contents .directorist-search-form-wrap .directorist-search-form-box .directorist-search-form-top .directorist-search-field .directorist-range-slider-wrap .atbd-current-value, .directorist-search-contents .directorist-search-form-wrap .directorist-search-form-box .directorist-search-form-top .directorist-search-field .directorist-btn-ml, .directorist-search-contents .directorist-search-form-wrap .directorist-search-form-box .directorist-search-form-top .directorist-search-field .directorist-price-ranges .directorist-price-ranges__price-frequency--btn .directorist-pf-range' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -3572,10 +3524,6 @@ class dservice_SearchForm extends Widget_Base
             [
                 'label' => __('Popular Category', 'dservice-core'),
                 'type' => Controls_Manager::COLOR,
-                'scheme' => [
-                    'type' => Schemes\Color::get_type(),
-                    'value' => Schemes\Color::COLOR_4,
-                ],
                 'selectors' => [
                     '.directorist-content-active {{WRAPPER}} .directorist-listing-category-top ul li a p, .directorist-content-active {{WRAPPER}} .directorist-listing-category-top ul li a span.la' => 'color: {{VALUE}};',
                 ],

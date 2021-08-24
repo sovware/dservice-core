@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: dservice-core\n"
-"POT-Creation-Date: 2021-07-13 17:42+0600\n"
+"POT-Creation-Date: 2021-08-24 09:51+0600\n"
 "PO-Revision-Date: 2019-11-27 14:20+0600\n"
 "Last-Translator: \n"
 "Language-Team: aazztech\n"
@@ -90,153 +90,157 @@ msgid "Email field is required"
 msgstr ""
 
 #: dservice-functions.php:282
+msgid "Email is not valid"
+msgstr ""
+
+#: dservice-functions.php:287
 msgid "Username field is required"
 msgstr ""
 
-#: dservice-functions.php:288
+#: dservice-functions.php:293
 msgid "Make sure all the required fields are not empty!"
 msgstr ""
 
-#: dservice-functions.php:309
+#: dservice-functions.php:314
 msgid "Registration completed, redirecting.."
 msgstr ""
 
-#: dservice-functions.php:335 dservice-functions.php:407
-#: dservice-functions.php:533
+#: dservice-functions.php:340 dservice-functions.php:412
+#: dservice-functions.php:538
 msgid ", "
 msgstr ""
 
-#: dservice-functions.php:339
+#: dservice-functions.php:344
 msgid "Next Post:"
 msgstr ""
 
-#: dservice-functions.php:345 dservice-functions.php:354
+#: dservice-functions.php:350 dservice-functions.php:359
 msgid "- In"
 msgstr ""
 
-#: dservice-functions.php:350
+#: dservice-functions.php:355
 msgid "Previous Post:"
 msgstr ""
 
-#: dservice-functions.php:389
+#: dservice-functions.php:394
 msgid "Related Posts"
 msgstr ""
 
-#: dservice-functions.php:406
+#: dservice-functions.php:411
 msgid "in "
 msgstr ""
 
-#: dservice-functions.php:429
+#: dservice-functions.php:434
 msgid "Share Post:"
 msgstr ""
 
-#: dservice-functions.php:433
+#: dservice-functions.php:438
 msgid "Facebook"
 msgstr ""
 
-#: dservice-functions.php:438
+#: dservice-functions.php:443
 msgid "Tweet"
 msgstr ""
 
-#: dservice-functions.php:443
+#: dservice-functions.php:448
 msgid "LinkedIn"
 msgstr ""
 
-#: dservice-functions.php:461
+#: dservice-functions.php:466
 msgid "Twitter Username"
 msgstr ""
 
-#: dservice-functions.php:462
+#: dservice-functions.php:467
 msgid "Google plus profile"
 msgstr ""
 
-#: dservice-functions.php:463
+#: dservice-functions.php:468
 msgid "Facebook Profile"
 msgstr ""
 
-#: dservice-functions.php:464
+#: dservice-functions.php:469
 msgid "Linkedin Profile"
 msgstr ""
 
-#: dservice-functions.php:535 inc/directorist-functions.php:1510
+#: dservice-functions.php:540 inc/directorist-functions.php:1510
 msgid "in"
 msgstr ""
 
-#: dservice-functions.php:560
+#: dservice-functions.php:565
 msgid "Enter valid e-mail address"
 msgstr ""
 
-#: dservice-functions.php:562
+#: dservice-functions.php:567
 msgid "Invalid e-mail address."
 msgstr ""
 
-#: dservice-functions.php:564
+#: dservice-functions.php:569
 msgid "There is no user registered with that email address."
 msgstr ""
 
-#: dservice-functions.php:572
+#: dservice-functions.php:577
 msgid "\tPassword Reset Request"
 msgstr ""
 
-#: dservice-functions.php:576
+#: dservice-functions.php:581
 msgid "Someone has requested a password reset for the following account:"
 msgstr ""
 
-#: dservice-functions.php:578
+#: dservice-functions.php:583
 #, php-format
 msgid "Site Name: %s"
 msgstr ""
 
-#: dservice-functions.php:580
+#: dservice-functions.php:585
 #, php-format
 msgid "User: %s"
 msgstr ""
 
-#: dservice-functions.php:581
+#: dservice-functions.php:586
 msgid "If this was a mistake, just ignore this email and nothing will happen."
 msgstr ""
 
-#: dservice-functions.php:582
+#: dservice-functions.php:587
 msgid "To reset your password, visit the following address:"
 msgstr ""
 
-#: dservice-functions.php:594
+#: dservice-functions.php:599
 msgid "A password reset email has been sent to the email address on file for your account, but may take several minutes to show up in your inbox."
 msgstr ""
 
-#: dservice-functions.php:596
+#: dservice-functions.php:601
 msgid "Password updated! But something went wrong sending email."
 msgstr ""
 
-#: dservice-functions.php:599
+#: dservice-functions.php:604
 msgid "Oops something went wrong updaing your account."
 msgstr ""
 
-#: dservice-functions.php:636
+#: dservice-functions.php:641
 msgid "Wrong username or password."
 msgstr ""
 
-#: dservice-functions.php:648
+#: dservice-functions.php:653
 msgid "Login successful"
 msgstr ""
 
-#: dservice-functions.php:660
+#: dservice-functions.php:665
 msgid " Go to your inbox or spam/junk and get your password."
 msgstr ""
 
-#: dservice-functions.php:660
+#: dservice-functions.php:665
 msgid " Congratulations! Registration completed."
 msgstr ""
 
-#: dservice-functions.php:667
+#: dservice-functions.php:672
 msgid "Sending user info, please wait..."
 msgstr ""
 
-#: dservice-functions.php:682
+#: dservice-functions.php:687
 msgid "Link appears to be invalid."
 msgstr ""
 
-#: dservice-functions.php:690
+#: dservice-functions.php:695
 msgid "Renewed successfully."
 msgstr ""
 
@@ -256,7 +260,7 @@ msgstr ""
 #: elementor/widgets.php:1405 elementor/widgets.php:1745
 #: elementor/widgets.php:3364 elementor/widgets.php:3501
 #: inc/custom-widgets.php:164 inc/custom-widgets.php:279
-#: inc/custom-widgets.php:372 inc/custom-widgets.php:721
+#: inc/custom-widgets.php:372 inc/custom-widgets.php:722
 msgid "Title"
 msgstr ""
 
@@ -314,7 +318,7 @@ msgstr ""
 #: elementor/widgets.php:1664 elementor/widgets.php:2907
 #: elementor/widgets.php:2976 elementor/widgets.php:3051
 #: elementor/widgets.php:3193 elementor/widgets.php:3267
-#: elementor/widgets.php:3493 elementor/widgets.php:5514
+#: elementor/widgets.php:3493 elementor/widgets.php:5525
 msgid "Styling"
 msgstr ""
 
@@ -391,7 +395,7 @@ msgstr ""
 #: elementor/widgets.php:1117 elementor/widgets.php:1672
 #: elementor/widgets.php:2915 elementor/widgets.php:2984
 #: elementor/widgets.php:3059 elementor/widgets.php:3201
-#: elementor/widgets.php:3275 elementor/widgets.php:5522
+#: elementor/widgets.php:3275 elementor/widgets.php:5533
 msgid "margin"
 msgstr ""
 
@@ -399,7 +403,7 @@ msgstr ""
 #: elementor/widgets.php:1129 elementor/widgets.php:1684
 #: elementor/widgets.php:2927 elementor/widgets.php:2996
 #: elementor/widgets.php:3071 elementor/widgets.php:3213
-#: elementor/widgets.php:3287 elementor/widgets.php:5534
+#: elementor/widgets.php:3287 elementor/widgets.php:5545
 msgid "Padding"
 msgstr ""
 
@@ -421,84 +425,84 @@ msgstr ""
 
 #: elementor/widgets.php:607 elementor/widgets.php:806
 #: elementor/widgets.php:1032 elementor/widgets.php:2244
-#: elementor/widgets.php:2814 elementor/widgets.php:3776
-#: elementor/widgets.php:4079 elementor/widgets.php:4260
-#: elementor/widgets.php:4555 elementor/widgets.php:4736
-#: elementor/widgets.php:5027 elementor/widgets.php:5205
-#: elementor/widgets.php:5673 elementor/widgets.php:5870
-#: elementor/widgets.php:6227
+#: elementor/widgets.php:2814 elementor/widgets.php:3787
+#: elementor/widgets.php:4090 elementor/widgets.php:4271
+#: elementor/widgets.php:4566 elementor/widgets.php:4747
+#: elementor/widgets.php:5038 elementor/widgets.php:5216
+#: elementor/widgets.php:5684 elementor/widgets.php:5881
+#: elementor/widgets.php:6238
 msgid "Order by"
 msgstr ""
 
-#: elementor/widgets.php:611 elementor/widgets.php:6231
+#: elementor/widgets.php:611 elementor/widgets.php:6242
 msgid " Post ID"
 msgstr ""
 
-#: elementor/widgets.php:612 elementor/widgets.php:6232
+#: elementor/widgets.php:612 elementor/widgets.php:6243
 msgid " Author"
 msgstr ""
 
 #: elementor/widgets.php:613 elementor/widgets.php:2248
-#: elementor/widgets.php:2818 elementor/widgets.php:3780
-#: elementor/widgets.php:4083 elementor/widgets.php:4264
-#: elementor/widgets.php:4559 elementor/widgets.php:4740
-#: elementor/widgets.php:5031 elementor/widgets.php:5209
-#: elementor/widgets.php:6233
+#: elementor/widgets.php:2818 elementor/widgets.php:3791
+#: elementor/widgets.php:4094 elementor/widgets.php:4275
+#: elementor/widgets.php:4570 elementor/widgets.php:4751
+#: elementor/widgets.php:5042 elementor/widgets.php:5220
+#: elementor/widgets.php:6244
 msgid " Title"
 msgstr ""
 
-#: elementor/widgets.php:614 elementor/widgets.php:6234
+#: elementor/widgets.php:614 elementor/widgets.php:6245
 msgid " Post name (post slug)"
 msgstr ""
 
-#: elementor/widgets.php:615 elementor/widgets.php:6235
+#: elementor/widgets.php:615 elementor/widgets.php:6246
 msgid " Post type (available since Version 4.0)"
 msgstr ""
 
 #: elementor/widgets.php:616 elementor/widgets.php:2249
-#: elementor/widgets.php:2819 elementor/widgets.php:3781
-#: elementor/widgets.php:4084 elementor/widgets.php:4265
-#: elementor/widgets.php:4560 elementor/widgets.php:4741
-#: elementor/widgets.php:5032 elementor/widgets.php:5210
-#: elementor/widgets.php:6236
+#: elementor/widgets.php:2819 elementor/widgets.php:3792
+#: elementor/widgets.php:4095 elementor/widgets.php:4276
+#: elementor/widgets.php:4571 elementor/widgets.php:4752
+#: elementor/widgets.php:5043 elementor/widgets.php:5221
+#: elementor/widgets.php:6247
 msgid " Date"
 msgstr ""
 
-#: elementor/widgets.php:617 elementor/widgets.php:6237
+#: elementor/widgets.php:617 elementor/widgets.php:6248
 msgid " Last modified date"
 msgstr ""
 
-#: elementor/widgets.php:618 elementor/widgets.php:6238
+#: elementor/widgets.php:618 elementor/widgets.php:6249
 msgid " Random order"
 msgstr ""
 
-#: elementor/widgets.php:619 elementor/widgets.php:6239
+#: elementor/widgets.php:619 elementor/widgets.php:6250
 msgid " Number of comments"
 msgstr ""
 
-#: elementor/widgets.php:627 elementor/widgets.php:6247
+#: elementor/widgets.php:627 elementor/widgets.php:6258
 msgid "Order post"
 msgstr ""
 
 #: elementor/widgets.php:631 elementor/widgets.php:838
 #: elementor/widgets.php:1051 elementor/widgets.php:2265
-#: elementor/widgets.php:2835 elementor/widgets.php:3797
-#: elementor/widgets.php:4100 elementor/widgets.php:4278
-#: elementor/widgets.php:4576 elementor/widgets.php:4754
-#: elementor/widgets.php:5048 elementor/widgets.php:5223
-#: elementor/widgets.php:5702 elementor/widgets.php:5899
-#: elementor/widgets.php:6251
+#: elementor/widgets.php:2835 elementor/widgets.php:3808
+#: elementor/widgets.php:4111 elementor/widgets.php:4289
+#: elementor/widgets.php:4587 elementor/widgets.php:4765
+#: elementor/widgets.php:5059 elementor/widgets.php:5234
+#: elementor/widgets.php:5713 elementor/widgets.php:5910
+#: elementor/widgets.php:6262
 msgid " ASC"
 msgstr ""
 
 #: elementor/widgets.php:632 elementor/widgets.php:839
 #: elementor/widgets.php:1052 elementor/widgets.php:2266
-#: elementor/widgets.php:2836 elementor/widgets.php:3798
-#: elementor/widgets.php:4101 elementor/widgets.php:4279
-#: elementor/widgets.php:4577 elementor/widgets.php:4755
-#: elementor/widgets.php:5049 elementor/widgets.php:5224
-#: elementor/widgets.php:5703 elementor/widgets.php:5900
-#: elementor/widgets.php:6252
+#: elementor/widgets.php:2836 elementor/widgets.php:3809
+#: elementor/widgets.php:4112 elementor/widgets.php:4290
+#: elementor/widgets.php:4588 elementor/widgets.php:4766
+#: elementor/widgets.php:5060 elementor/widgets.php:5235
+#: elementor/widgets.php:5714 elementor/widgets.php:5911
+#: elementor/widgets.php:6263
 msgid " DESC"
 msgstr ""
 
@@ -512,21 +516,21 @@ msgstr ""
 
 #: elementor/widgets.php:721 elementor/widgets.php:954
 #: elementor/widgets.php:2021 elementor/widgets.php:3384
-#: elementor/widgets.php:3659 elementor/widgets.php:3880
-#: elementor/widgets.php:4354 elementor/widgets.php:4830
-#: elementor/widgets.php:5595 elementor/widgets.php:5808
-#: elementor/widgets.php:6002 elementor/widgets.php:6096
-#: elementor/widgets.php:6190
-msgid "Specify Listing Types"
-msgstr ""
-
-#: elementor/widgets.php:735 elementor/widgets.php:968
-#: elementor/widgets.php:2032 elementor/widgets.php:3394
 #: elementor/widgets.php:3670 elementor/widgets.php:3891
 #: elementor/widgets.php:4365 elementor/widgets.php:4841
 #: elementor/widgets.php:5606 elementor/widgets.php:5819
 #: elementor/widgets.php:6013 elementor/widgets.php:6107
 #: elementor/widgets.php:6201
+msgid "Specify Listing Types"
+msgstr ""
+
+#: elementor/widgets.php:735 elementor/widgets.php:968
+#: elementor/widgets.php:2032 elementor/widgets.php:3394
+#: elementor/widgets.php:3681 elementor/widgets.php:3902
+#: elementor/widgets.php:4376 elementor/widgets.php:4852
+#: elementor/widgets.php:5617 elementor/widgets.php:5830
+#: elementor/widgets.php:6024 elementor/widgets.php:6118
+#: elementor/widgets.php:6212
 msgid "Set Default Listing Type"
 msgstr ""
 
@@ -554,7 +558,7 @@ msgstr ""
 msgid "Grid"
 msgstr ""
 
-#: elementor/widgets.php:775 elementor/widgets.php:5646
+#: elementor/widgets.php:775 elementor/widgets.php:5657
 msgid "Categories Per Row"
 msgstr ""
 
@@ -563,43 +567,43 @@ msgid "6 Items / Row"
 msgstr ""
 
 #: elementor/widgets.php:780 elementor/widgets.php:999
-#: elementor/widgets.php:2156 elementor/widgets.php:3737
-#: elementor/widgets.php:3992 elementor/widgets.php:4467
-#: elementor/widgets.php:4939 elementor/widgets.php:5650
-#: elementor/widgets.php:5847 elementor/widgets.php:6216
+#: elementor/widgets.php:2156 elementor/widgets.php:3748
+#: elementor/widgets.php:4003 elementor/widgets.php:4478
+#: elementor/widgets.php:4950 elementor/widgets.php:5661
+#: elementor/widgets.php:5858 elementor/widgets.php:6227
 msgid "5 Items / Row"
 msgstr ""
 
 #: elementor/widgets.php:781 elementor/widgets.php:1000
-#: elementor/widgets.php:2157 elementor/widgets.php:3738
-#: elementor/widgets.php:3993 elementor/widgets.php:4468
-#: elementor/widgets.php:4940 elementor/widgets.php:5651
-#: elementor/widgets.php:5848 elementor/widgets.php:6217
+#: elementor/widgets.php:2157 elementor/widgets.php:3749
+#: elementor/widgets.php:4004 elementor/widgets.php:4479
+#: elementor/widgets.php:4951 elementor/widgets.php:5662
+#: elementor/widgets.php:5859 elementor/widgets.php:6228
 msgid "4 Items / Row"
 msgstr ""
 
 #: elementor/widgets.php:782 elementor/widgets.php:1001
-#: elementor/widgets.php:2158 elementor/widgets.php:3739
-#: elementor/widgets.php:3994 elementor/widgets.php:4469
-#: elementor/widgets.php:4941 elementor/widgets.php:5652
-#: elementor/widgets.php:5849 elementor/widgets.php:6218
+#: elementor/widgets.php:2158 elementor/widgets.php:3750
+#: elementor/widgets.php:4005 elementor/widgets.php:4480
+#: elementor/widgets.php:4952 elementor/widgets.php:5663
+#: elementor/widgets.php:5860 elementor/widgets.php:6229
 msgid "3 Items / Row"
 msgstr ""
 
 #: elementor/widgets.php:783 elementor/widgets.php:1002
-#: elementor/widgets.php:2159 elementor/widgets.php:3740
-#: elementor/widgets.php:3995 elementor/widgets.php:4470
-#: elementor/widgets.php:4942 elementor/widgets.php:5653
-#: elementor/widgets.php:5850 elementor/widgets.php:6219
+#: elementor/widgets.php:2159 elementor/widgets.php:3751
+#: elementor/widgets.php:4006 elementor/widgets.php:4481
+#: elementor/widgets.php:4953 elementor/widgets.php:5664
+#: elementor/widgets.php:5861 elementor/widgets.php:6230
 msgid "2 Items / Row"
 msgstr ""
 
-#: elementor/widgets.php:794 elementor/widgets.php:5661
+#: elementor/widgets.php:794 elementor/widgets.php:5672
 msgid "Number of categories to Show:"
 msgstr ""
 
-#: elementor/widgets.php:810 elementor/widgets.php:5677
-#: elementor/widgets.php:5874
+#: elementor/widgets.php:810 elementor/widgets.php:5688
+#: elementor/widgets.php:5885
 msgid " Cat ID"
 msgstr ""
 
@@ -611,8 +615,8 @@ msgstr ""
 msgid "Category name (A-Z)"
 msgstr ""
 
-#: elementor/widgets.php:813 elementor/widgets.php:5680
-#: elementor/widgets.php:5877
+#: elementor/widgets.php:813 elementor/widgets.php:5691
+#: elementor/widgets.php:5888
 msgid "Select Category"
 msgstr ""
 
@@ -637,16 +641,16 @@ msgid "Locations Style"
 msgstr ""
 
 #: elementor/widgets.php:986 elementor/widgets.php:2047
-#: elementor/widgets.php:3723 elementor/widgets.php:3937
-#: elementor/widgets.php:4412 elementor/widgets.php:4925
-#: elementor/widgets.php:5621 elementor/widgets.php:5834
+#: elementor/widgets.php:3734 elementor/widgets.php:3948
+#: elementor/widgets.php:4423 elementor/widgets.php:4936
+#: elementor/widgets.php:5632 elementor/widgets.php:5845
 msgid "Grid View"
 msgstr ""
 
 #: elementor/widgets.php:987 elementor/widgets.php:2048
-#: elementor/widgets.php:3724 elementor/widgets.php:3938
-#: elementor/widgets.php:4413 elementor/widgets.php:4926
-#: elementor/widgets.php:5622 elementor/widgets.php:5835
+#: elementor/widgets.php:3735 elementor/widgets.php:3949
+#: elementor/widgets.php:4424 elementor/widgets.php:4937
+#: elementor/widgets.php:5633 elementor/widgets.php:5846
 msgid "List View"
 msgstr ""
 
@@ -659,9 +663,9 @@ msgid "Number of Locations to Show:"
 msgstr ""
 
 #: elementor/widgets.php:1022 elementor/widgets.php:2216
-#: elementor/widgets.php:2786 elementor/widgets.php:4051
-#: elementor/widgets.php:4527 elementor/widgets.php:4999
-#: elementor/widgets.php:5688 elementor/widgets.php:5885
+#: elementor/widgets.php:2786 elementor/widgets.php:4062
+#: elementor/widgets.php:4538 elementor/widgets.php:5010
+#: elementor/widgets.php:5699 elementor/widgets.php:5896
 msgid "Specify Locations"
 msgstr ""
 
@@ -677,8 +681,8 @@ msgstr ""
 msgid " Location Slug"
 msgstr ""
 
-#: elementor/widgets.php:1047 elementor/widgets.php:5698
-#: elementor/widgets.php:5895
+#: elementor/widgets.php:1047 elementor/widgets.php:5709
+#: elementor/widgets.php:5906
 msgid "Locations Order"
 msgstr ""
 
@@ -843,16 +847,16 @@ msgid "Listings"
 msgstr ""
 
 #: elementor/widgets.php:2043 elementor/widgets.php:2706
-#: elementor/widgets.php:3719 elementor/widgets.php:3933
-#: elementor/widgets.php:4200 elementor/widgets.php:4408
-#: elementor/widgets.php:4676 elementor/widgets.php:4921
-#: elementor/widgets.php:5145
+#: elementor/widgets.php:3730 elementor/widgets.php:3944
+#: elementor/widgets.php:4211 elementor/widgets.php:4419
+#: elementor/widgets.php:4687 elementor/widgets.php:4932
+#: elementor/widgets.php:5156
 msgid "View As"
 msgstr ""
 
-#: elementor/widgets.php:2049 elementor/widgets.php:3725
-#: elementor/widgets.php:3939 elementor/widgets.php:4414
-#: elementor/widgets.php:4927
+#: elementor/widgets.php:2049 elementor/widgets.php:3736
+#: elementor/widgets.php:3950 elementor/widgets.php:4425
+#: elementor/widgets.php:4938
 msgid "Map View"
 msgstr ""
 
@@ -860,9 +864,9 @@ msgstr ""
 msgid "Map Zoom Level"
 msgstr ""
 
-#: elementor/widgets.php:2079 elementor/widgets.php:3681
-#: elementor/widgets.php:3902 elementor/widgets.php:4376
-#: elementor/widgets.php:4852
+#: elementor/widgets.php:2079 elementor/widgets.php:3692
+#: elementor/widgets.php:3913 elementor/widgets.php:4387
+#: elementor/widgets.php:4863
 msgid "Show Header?"
 msgstr ""
 
@@ -871,112 +875,112 @@ msgid "Show Filter Button?"
 msgstr ""
 
 #: elementor/widgets.php:2100 elementor/widgets.php:2697
-#: elementor/widgets.php:3911 elementor/widgets.php:4191
-#: elementor/widgets.php:4385 elementor/widgets.php:4667
-#: elementor/widgets.php:4861 elementor/widgets.php:5136
+#: elementor/widgets.php:3922 elementor/widgets.php:4202
+#: elementor/widgets.php:4396 elementor/widgets.php:4678
+#: elementor/widgets.php:4872 elementor/widgets.php:5147
 msgid "Listings Found Text"
 msgstr ""
 
 #: elementor/widgets.php:2102 elementor/widgets.php:2699
-#: elementor/widgets.php:3913 elementor/widgets.php:4193
-#: elementor/widgets.php:4387 elementor/widgets.php:4669
-#: elementor/widgets.php:4863 elementor/widgets.php:5138
+#: elementor/widgets.php:3924 elementor/widgets.php:4204
+#: elementor/widgets.php:4398 elementor/widgets.php:4680
+#: elementor/widgets.php:4874 elementor/widgets.php:5149
 msgid "Listings Found"
 msgstr ""
 
 #: elementor/widgets.php:2116 elementor/widgets.php:2719
-#: elementor/widgets.php:3690 elementor/widgets.php:3959
-#: elementor/widgets.php:4213 elementor/widgets.php:4434
-#: elementor/widgets.php:4689 elementor/widgets.php:4885
-#: elementor/widgets.php:5158 elementor/widgets.php:5711
-#: elementor/widgets.php:5908
+#: elementor/widgets.php:3701 elementor/widgets.php:3970
+#: elementor/widgets.php:4224 elementor/widgets.php:4445
+#: elementor/widgets.php:4700 elementor/widgets.php:4896
+#: elementor/widgets.php:5169 elementor/widgets.php:5722
+#: elementor/widgets.php:5919
 msgid "Only For Logged In User?"
 msgstr ""
 
 #: elementor/widgets.php:2125 elementor/widgets.php:2728
-#: elementor/widgets.php:3699 elementor/widgets.php:3968
-#: elementor/widgets.php:4222 elementor/widgets.php:4443
-#: elementor/widgets.php:4698 elementor/widgets.php:4894
-#: elementor/widgets.php:5167 elementor/widgets.php:5720
-#: elementor/widgets.php:5917
+#: elementor/widgets.php:3710 elementor/widgets.php:3979
+#: elementor/widgets.php:4233 elementor/widgets.php:4454
+#: elementor/widgets.php:4709 elementor/widgets.php:4905
+#: elementor/widgets.php:5178 elementor/widgets.php:5731
+#: elementor/widgets.php:5928
 msgid "Redirect User?"
 msgstr ""
 
 #: elementor/widgets.php:2134 elementor/widgets.php:2737
-#: elementor/widgets.php:3708 elementor/widgets.php:3977
-#: elementor/widgets.php:4231 elementor/widgets.php:4452
-#: elementor/widgets.php:4707 elementor/widgets.php:4903
-#: elementor/widgets.php:5176 elementor/widgets.php:5729
-#: elementor/widgets.php:5926
+#: elementor/widgets.php:3719 elementor/widgets.php:3988
+#: elementor/widgets.php:4242 elementor/widgets.php:4463
+#: elementor/widgets.php:4718 elementor/widgets.php:4914
+#: elementor/widgets.php:5187 elementor/widgets.php:5740
+#: elementor/widgets.php:5937
 msgid "Redirect Link"
 msgstr ""
 
-#: elementor/widgets.php:2152 elementor/widgets.php:3733
-#: elementor/widgets.php:3988 elementor/widgets.php:4463
-#: elementor/widgets.php:4935
+#: elementor/widgets.php:2152 elementor/widgets.php:3744
+#: elementor/widgets.php:3999 elementor/widgets.php:4474
+#: elementor/widgets.php:4946
 msgid "Listings Per Row"
 msgstr ""
 
-#: elementor/widgets.php:2170 elementor/widgets.php:3751
-#: elementor/widgets.php:4006 elementor/widgets.php:4481
-#: elementor/widgets.php:4953
+#: elementor/widgets.php:2170 elementor/widgets.php:3762
+#: elementor/widgets.php:4017 elementor/widgets.php:4492
+#: elementor/widgets.php:4964
 msgid "Map Height"
 msgstr ""
 
 #: elementor/widgets.php:2185 elementor/widgets.php:2368
-#: elementor/widgets.php:2755 elementor/widgets.php:3765
-#: elementor/widgets.php:4020 elementor/widgets.php:4249
-#: elementor/widgets.php:4496 elementor/widgets.php:4725
-#: elementor/widgets.php:4968 elementor/widgets.php:5194
+#: elementor/widgets.php:2755 elementor/widgets.php:3776
+#: elementor/widgets.php:4031 elementor/widgets.php:4260
+#: elementor/widgets.php:4507 elementor/widgets.php:4736
+#: elementor/widgets.php:4979 elementor/widgets.php:5205
 msgid "Number of Listings to Show:"
 msgstr ""
 
 #: elementor/widgets.php:2196 elementor/widgets.php:2766
-#: elementor/widgets.php:4031 elementor/widgets.php:4507
-#: elementor/widgets.php:4979
+#: elementor/widgets.php:4042 elementor/widgets.php:4518
+#: elementor/widgets.php:4990
 msgid "Specify Categories"
 msgstr ""
 
 #: elementor/widgets.php:2206 elementor/widgets.php:2776
-#: elementor/widgets.php:4041 elementor/widgets.php:4517
-#: elementor/widgets.php:4989
+#: elementor/widgets.php:4052 elementor/widgets.php:4528
+#: elementor/widgets.php:5000
 msgid "Specify Tags"
 msgstr ""
 
 #: elementor/widgets.php:2226 elementor/widgets.php:2796
-#: elementor/widgets.php:4061 elementor/widgets.php:4537
-#: elementor/widgets.php:5009
+#: elementor/widgets.php:4072 elementor/widgets.php:4548
+#: elementor/widgets.php:5020
 msgid "Show Featured Only?"
 msgstr ""
 
 #: elementor/widgets.php:2235 elementor/widgets.php:2805
-#: elementor/widgets.php:4070 elementor/widgets.php:4546
-#: elementor/widgets.php:5018
+#: elementor/widgets.php:4081 elementor/widgets.php:4557
+#: elementor/widgets.php:5029
 msgid "Show Popular Only?"
 msgstr ""
 
 #: elementor/widgets.php:2250 elementor/widgets.php:2820
-#: elementor/widgets.php:3782 elementor/widgets.php:4085
-#: elementor/widgets.php:4266 elementor/widgets.php:4561
-#: elementor/widgets.php:4742 elementor/widgets.php:5033
-#: elementor/widgets.php:5211
+#: elementor/widgets.php:3793 elementor/widgets.php:4096
+#: elementor/widgets.php:4277 elementor/widgets.php:4572
+#: elementor/widgets.php:4753 elementor/widgets.php:5044
+#: elementor/widgets.php:5222
 msgid " Price"
 msgstr ""
 
 #: elementor/widgets.php:2261 elementor/widgets.php:2831
-#: elementor/widgets.php:3793 elementor/widgets.php:4096
-#: elementor/widgets.php:4274 elementor/widgets.php:4572
-#: elementor/widgets.php:4750 elementor/widgets.php:5044
-#: elementor/widgets.php:5219
+#: elementor/widgets.php:3804 elementor/widgets.php:4107
+#: elementor/widgets.php:4285 elementor/widgets.php:4583
+#: elementor/widgets.php:4761 elementor/widgets.php:5055
+#: elementor/widgets.php:5230
 msgid "Listings Order"
 msgstr ""
 
 #: elementor/widgets.php:2277 elementor/widgets.php:2847
-#: elementor/widgets.php:3809 elementor/widgets.php:4112
-#: elementor/widgets.php:4287 elementor/widgets.php:4588
-#: elementor/widgets.php:4763 elementor/widgets.php:5060
-#: elementor/widgets.php:5232 elementor/widgets.php:6035
-#: elementor/widgets.php:6129 elementor/widgets.php:6271
+#: elementor/widgets.php:3820 elementor/widgets.php:4123
+#: elementor/widgets.php:4298 elementor/widgets.php:4599
+#: elementor/widgets.php:4774 elementor/widgets.php:5071
+#: elementor/widgets.php:5243 elementor/widgets.php:6046
+#: elementor/widgets.php:6140 elementor/widgets.php:6282
 msgid "Show Pagination?"
 msgstr ""
 
@@ -1000,12 +1004,12 @@ msgstr ""
 msgid "Show Listing Publish Date?"
 msgstr ""
 
-#: elementor/widgets.php:2621 inc/custom-widgets.php:673
+#: elementor/widgets.php:2621 inc/custom-widgets.php:674
 #, php-format
 msgid "Posted %s ago"
 msgstr ""
 
-#: elementor/widgets.php:2647 inc/custom-widgets.php:704
+#: elementor/widgets.php:2647 inc/custom-widgets.php:705
 msgid "No listing found."
 msgstr ""
 
@@ -1017,13 +1021,13 @@ msgstr ""
 msgid "Listings With Map"
 msgstr ""
 
-#: elementor/widgets.php:2710 elementor/widgets.php:4205
-#: elementor/widgets.php:4681 elementor/widgets.php:5150
+#: elementor/widgets.php:2710 elementor/widgets.php:4216
+#: elementor/widgets.php:4692 elementor/widgets.php:5161
 msgid "3 Column"
 msgstr ""
 
-#: elementor/widgets.php:2711 elementor/widgets.php:4204
-#: elementor/widgets.php:4680 elementor/widgets.php:5149
+#: elementor/widgets.php:2711 elementor/widgets.php:4215
+#: elementor/widgets.php:4691 elementor/widgets.php:5160
 msgid "2 Column"
 msgstr ""
 
@@ -1119,15 +1123,15 @@ msgstr ""
 msgid "Form Style"
 msgstr ""
 
-#: elementor/widgets.php:3470 elementor/widgets.php:5634
+#: elementor/widgets.php:3470 elementor/widgets.php:5645
 msgid "Style 1"
 msgstr ""
 
-#: elementor/widgets.php:3471 elementor/widgets.php:5635
+#: elementor/widgets.php:3471 elementor/widgets.php:5646
 msgid "Style 2"
 msgstr ""
 
-#: elementor/widgets.php:3479 elementor/widgets.php:5312
+#: elementor/widgets.php:3479 elementor/widgets.php:5323
 msgid "Profile picture"
 msgstr ""
 
@@ -1140,157 +1144,161 @@ msgid "Active Tab"
 msgstr ""
 
 #: elementor/widgets.php:3562
+msgid "Search Field Label Color"
+msgstr ""
+
+#: elementor/widgets.php:3573
 msgid "Popular Category"
 msgstr ""
 
-#: elementor/widgets.php:3629 elementor/widgets.php:3652
+#: elementor/widgets.php:3640 elementor/widgets.php:3663
 msgid "Search Result"
 msgstr ""
 
-#: elementor/widgets.php:3850
+#: elementor/widgets.php:3861
 msgid "Single Category"
 msgstr ""
 
-#: elementor/widgets.php:3873
+#: elementor/widgets.php:3884
 msgid "Single Listing Category"
 msgstr ""
 
-#: elementor/widgets.php:3924 elementor/widgets.php:4399
-#: elementor/widgets.php:4877
+#: elementor/widgets.php:3935 elementor/widgets.php:4410
+#: elementor/widgets.php:4888
 msgid "Show More Filter?"
 msgstr ""
 
-#: elementor/widgets.php:3947 elementor/widgets.php:4422
+#: elementor/widgets.php:3958 elementor/widgets.php:4433
 msgid "Show sidebar?"
 msgstr ""
 
-#: elementor/widgets.php:4161 elementor/widgets.php:4184
+#: elementor/widgets.php:4172 elementor/widgets.php:4195
 msgid "Single Category Map View"
 msgstr ""
 
-#: elementor/widgets.php:4324
+#: elementor/widgets.php:4335
 msgid "Single Location"
 msgstr ""
 
-#: elementor/widgets.php:4347
+#: elementor/widgets.php:4358
 msgid "Single Listing Location"
 msgstr ""
 
-#: elementor/widgets.php:4637 elementor/widgets.php:4660
+#: elementor/widgets.php:4648 elementor/widgets.php:4671
 msgid "Single Location Map View"
 msgstr ""
 
-#: elementor/widgets.php:4800
+#: elementor/widgets.php:4811
 msgid "Single Tag"
 msgstr ""
 
-#: elementor/widgets.php:4823
+#: elementor/widgets.php:4834
 msgid "Single Listing Tag"
 msgstr ""
 
-#: elementor/widgets.php:5106 elementor/widgets.php:5129
+#: elementor/widgets.php:5117 elementor/widgets.php:5140
 msgid "Single Tag Map View"
 msgstr ""
 
-#: elementor/widgets.php:5270
+#: elementor/widgets.php:5281
 msgid "Team Members"
 msgstr ""
 
-#: elementor/widgets.php:5293
+#: elementor/widgets.php:5304
 msgid "Team Members Info"
 msgstr ""
 
-#: elementor/widgets.php:5302
+#: elementor/widgets.php:5313
 msgid "Member Name"
 msgstr ""
 
-#: elementor/widgets.php:5320
+#: elementor/widgets.php:5331
 msgid "Designation"
 msgstr ""
 
-#: elementor/widgets.php:5330
+#: elementor/widgets.php:5341
 msgid "Team Member"
 msgstr ""
 
-#: elementor/widgets.php:5379 elementor/widgets.php:5402
-#: elementor/widgets.php:5409
+#: elementor/widgets.php:5390 elementor/widgets.php:5413
+#: elementor/widgets.php:5420
 msgid "Testimonials"
 msgstr ""
 
-#: elementor/widgets.php:5415
+#: elementor/widgets.php:5426
 msgid "Client Logo"
 msgstr ""
 
-#: elementor/widgets.php:5420 inc/directorist-functions.php:1541
+#: elementor/widgets.php:5431
 msgid "Name"
 msgstr ""
 
-#: elementor/widgets.php:5427
+#: elementor/widgets.php:5438
 msgid "Testimonial Text"
 msgstr ""
 
-#: elementor/widgets.php:5432
+#: elementor/widgets.php:5443
 msgid "Author Image"
 msgstr ""
 
-#: elementor/widgets.php:5496
+#: elementor/widgets.php:5507
 msgid "Booking Confirmation"
 msgstr ""
 
-#: elementor/widgets.php:5565 elementor/widgets.php:5588
+#: elementor/widgets.php:5576 elementor/widgets.php:5599
 msgid "Need Categories"
 msgstr ""
 
-#: elementor/widgets.php:5617
+#: elementor/widgets.php:5628
 msgid "Category Layout"
 msgstr ""
 
-#: elementor/widgets.php:5630
+#: elementor/widgets.php:5641
 msgid "Category Style"
 msgstr ""
 
-#: elementor/widgets.php:5678 elementor/widgets.php:5875
+#: elementor/widgets.php:5689 elementor/widgets.php:5886
 msgid "Needs Count"
 msgstr ""
 
-#: elementor/widgets.php:5679 elementor/widgets.php:5876
+#: elementor/widgets.php:5690 elementor/widgets.php:5887
 msgid " Category name (A-Z)"
 msgstr ""
 
-#: elementor/widgets.php:5778 elementor/widgets.php:5801
+#: elementor/widgets.php:5789 elementor/widgets.php:5812
 msgid "Need Locations"
 msgstr ""
 
-#: elementor/widgets.php:5830
+#: elementor/widgets.php:5841
 msgid "Locations Layout"
 msgstr ""
 
-#: elementor/widgets.php:5843
+#: elementor/widgets.php:5854
 msgid "Location Per Row"
 msgstr ""
 
-#: elementor/widgets.php:5858
+#: elementor/widgets.php:5869
 msgid "Number of locations to Show:"
 msgstr ""
 
-#: elementor/widgets.php:5972 elementor/widgets.php:5995
+#: elementor/widgets.php:5983 elementor/widgets.php:6006
 msgid "Need Single Category"
 msgstr ""
 
-#: elementor/widgets.php:6024 elementor/widgets.php:6118
-#: elementor/widgets.php:6260
+#: elementor/widgets.php:6035 elementor/widgets.php:6129
+#: elementor/widgets.php:6271
 msgid "Number of Needs to Show:"
 msgstr ""
 
-#: elementor/widgets.php:6066 elementor/widgets.php:6089
+#: elementor/widgets.php:6077 elementor/widgets.php:6100
 msgid "Need Single Location"
 msgstr ""
 
-#: elementor/widgets.php:6160 elementor/widgets.php:6183
+#: elementor/widgets.php:6171 elementor/widgets.php:6194
 msgid "All Needs"
 msgstr ""
 
-#: elementor/widgets.php:6212
+#: elementor/widgets.php:6223
 msgid "Needs Per Row"
 msgstr ""
 
@@ -1335,7 +1343,7 @@ msgstr ""
 msgid "-[Latest Blog]"
 msgstr ""
 
-#: inc/custom-widgets.php:317 inc/custom-widgets.php:756
+#: inc/custom-widgets.php:317 inc/custom-widgets.php:757
 msgid "You can use it to display social profile with icon."
 msgstr ""
 
@@ -1343,7 +1351,7 @@ msgstr ""
 msgid "-[Social Icon]"
 msgstr ""
 
-#: inc/custom-widgets.php:378 inc/custom-widgets.php:798
+#: inc/custom-widgets.php:378 inc/custom-widgets.php:799
 msgid "How many social field would you want? & hit save."
 msgstr ""
 
@@ -1380,19 +1388,19 @@ msgstr ""
 msgid "-[Featured Listing Carousel]"
 msgstr ""
 
-#: inc/custom-widgets.php:727
+#: inc/custom-widgets.php:728
 msgid "How many listing you want to show ?"
 msgstr ""
 
-#: inc/custom-widgets.php:758
+#: inc/custom-widgets.php:759
 msgid "-[Icon With Title]"
 msgstr ""
 
-#: inc/custom-widgets.php:808
+#: inc/custom-widgets.php:809
 msgid "Please Note: Social Icon Names are just Line Awesome Icon Name in lower case(eg. facebook-f or twitter etc)"
 msgstr ""
 
-#: inc/custom-widgets.php:808
+#: inc/custom-widgets.php:809
 msgid "Line Awesome Icons List"
 msgstr ""
 
@@ -1489,11 +1497,11 @@ msgstr ""
 msgid "Select a location"
 msgstr ""
 
-#: inc/directorist-functions.php:361 inc/directorist-functions.php:1754
+#: inc/directorist-functions.php:361 inc/directorist-functions.php:1726
 msgid " Review"
 msgstr ""
 
-#: inc/directorist-functions.php:361 inc/directorist-functions.php:1752
+#: inc/directorist-functions.php:361 inc/directorist-functions.php:1724
 msgid " Reviews"
 msgstr ""
 
@@ -1509,11 +1517,11 @@ msgstr ""
 msgid "Gallery"
 msgstr ""
 
-#: inc/directorist-functions.php:470 inc/directorist-functions.php:1791
+#: inc/directorist-functions.php:470
 msgid " Listings"
 msgstr ""
 
-#: inc/directorist-functions.php:470 inc/directorist-functions.php:1791
+#: inc/directorist-functions.php:470
 msgid " Listing"
 msgstr ""
 
@@ -1636,46 +1644,34 @@ msgstr ""
 msgid "All Items"
 msgstr ""
 
-#: inc/directorist-functions.php:1545
-msgid "Email"
-msgstr ""
-
-#: inc/directorist-functions.php:1549
-msgid "Message"
-msgstr ""
-
-#: inc/directorist-functions.php:1553
-msgid "Submit"
-msgstr ""
-
-#: inc/directorist-functions.php:1575
+#: inc/directorist-functions.php:1543
 msgid "Listing Gallery Image Limit"
 msgstr ""
 
-#: inc/directorist-functions.php:1582
+#: inc/directorist-functions.php:1550
 msgid "Upload Gallery Images"
 msgstr ""
 
-#: inc/directorist-functions.php:1649
+#: inc/directorist-functions.php:1617
 msgid "Import Demo"
 msgstr ""
 
-#: inc/directorist-functions.php:1649
+#: inc/directorist-functions.php:1617
 msgid "Generate"
 msgstr ""
 
-#: inc/directorist-functions.php:1649
+#: inc/directorist-functions.php:1617
 msgid " Required Pages"
 msgstr ""
 
-#: inc/directorist-functions.php:1653
+#: inc/directorist-functions.php:1621
 msgid "Page created successfully!"
 msgstr ""
 
-#: inc/directorist-functions.php:1705
+#: inc/directorist-functions.php:1675
 msgid "Review"
 msgstr ""
 
-#: inc/directorist-functions.php:1706
+#: inc/directorist-functions.php:1677
 msgid "Category"
 msgstr ""
