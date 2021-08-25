@@ -1771,7 +1771,8 @@ function directorist_listing_types() {
 function directory_listing_type() {
     $listing_type = ! empty($_GET['directory_type']) ? $_GET['directory_type'] : directorist_default_directory();
     $term = get_term_by( is_numeric( $listing_type ) ? 'id' : 'slug' , $listing_type, ATBDP_TYPE );
-    return $term->term_id;
+
+    return ! empty( $term ) ? $term->term_id : false;
 }
 
 function all_listings_wrapper() {

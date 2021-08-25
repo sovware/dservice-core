@@ -311,8 +311,8 @@ function vb_reg_new_user() {
 			wp_new_user_notification($user_id, null, 'admin');
 			ATBDP()->email->custom_wp_new_user_notification_email($user_id);
 			$data['state'] 			= true;
-			$data['message'] 		= __( 'Registration completed, redirecting..', 'dservice-core' );
 			$data['redirect_url'] 	= $redirect_url;
+			$data['message'] 		= __( 'Registration completed', 'dservice-core' );
 
 			if( ! empty( $auto_login ) ) {
 				wp_clear_auth_cookie();
