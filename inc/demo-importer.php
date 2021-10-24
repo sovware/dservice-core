@@ -54,22 +54,22 @@ class DserviceDemo_Importer {
 		$demos_array = array(
 			'demo1' => array(
 				'title'        => __( 'Home One', 'dservice-core' ),
-				'screenshot'   => 'https://demo.directorist.com/theme/demo-content/dservice/dservice-static.png',
-				'preview_link' => 'https://demo.directorist.com/theme/dservice/',
+				'screenshot'   => 'http://demo.directorist.com/theme/demo-content/dservice/dservice-static.png',
+				'preview_link' => 'http://demo.directorist.com/theme/dservice/',
 			),
 			'demo2' => array(
 				'title'        => __( 'Home Two', 'dservice-core' ),
-				'screenshot'   => 'https://demo.directorist.com/theme/demo-content/dservice/dservice-light.png',
-				'preview_link' => 'https://demo.directorist.com/theme/dservice/home-two/',
+				'screenshot'   => 'http://demo.directorist.com/theme/demo-content/dservice/dservice-light.png',
+				'preview_link' => 'http://demo.directorist.com/theme/dservice/home-two/',
 			),
 			'demo3' => array(
 				'title'        => __( 'Home Three', 'dservice-core' ),
-				'screenshot'   => 'https://demo.directorist.com/theme/demo-content/dservice/dservice-video.png',
-				'preview_link' => 'https://demo.directorist.com/theme/dservice/home-three/',
+				'screenshot'   => 'http://demo.directorist.com/theme/demo-content/dservice/dservice-video.png',
+				'preview_link' => 'http://demo.directorist.com/theme/dservice/home-three/',
 			),
 		);
 
-		$remote_server_url = 'https://demo.directorist.com/theme/demo-content/dservice';
+		$remote_server_url = 'http://demo.directorist.com/theme/demo-content/dservice';
 
 		foreach ( $demos_array as $id => $data ) {
 			$demo = new FW_Ext_Backups_Demo(
