@@ -1,32 +1,11 @@
 <?php
 /**
- * Description.
- *
- * @package WordPress
- * @author  AazzTech
+ * @author  wpWax
  * @since   1.0
  * @version 1.0
  */
 
 use \Directorist\Directorist_Listing_Search_Form;
-//Listings view as .
-function dservice_listings_view_as(){
-?>
-    <div class="view-mode">
-        <a class="action-btn ab-grid" href="<?php echo add_query_arg('view', 'grid'); ?>">
-            <span class="la la-th-large"></span>
-        </a>
-        <a class="action-btn ab-list" href="<?php echo add_query_arg('view', 'list'); ?>">
-            <span class="la la-th-list"></span>
-        </a>
-        <a class="action-btn ab-map" href="<?php echo add_query_arg('view', 'map'); ?>">
-            <span class="la la-map"></span>
-        </a>
-    </div>
-    <?php
-}
-
-add_filter('atbdp_listings_header_sort_by_button', 'dservice_listings_view_as');
 
 //View as of "listing with map view" .
 function dservice_listings_map_view_as()
@@ -592,53 +571,6 @@ add_filter('atbdp_cat_container_fluid', 'dservice_cat_container_fluid');
 /*========================================================
     removed all section container-fluid
 ========================================================*/
-add_filter('atbdp_search_home_container_fluid', '__return_false');
-add_filter('atbdp_public_profile_container_fluid', '__return_false');
-add_filter('atbdp_payment_receipt_container_fluid', '__return_false');
-add_filter('atbdp_login_message_container_fluid', '__return_false');
-add_filter('atbdp_add_listing_container_fluid', '__return_false');
-add_filter('atbdp_listings_header_container_fluid', '__return_false');
-add_filter('atbdp_registration_container_fluid', '__return_false');
-add_filter('atbdp_single_loc_grid_container_fluid', '__return_false');
-add_filter('atbdp_deshboard_container_fluid', '__return_false');
-add_filter('atbdp_listings_grid_container_fluid', '__return_false');
-add_filter('atbdp_single_cat_header_container_fluid', '__return_false');
-add_filter('atbdp_single_cat_grid_container_fluid', '__return_false');
-add_filter('atbdp_single_cat_grid_container_fluid', '__return_false');
-add_filter('atbdp_single_loc_header_container_fluid', '__return_false');
-add_filter('atbdp_single_tag_header_container_fluid', '__return_false');
-add_filter('atbdp_single_tag_header_container_fluid', '__return_false');
-add_filter('atbdp_single_tag_grid_container_fluid', '__return_false');
-add_filter('atbdp_search_result_header_container_fluid', '__return_false');
-add_filter('atbdp_search_result_grid_container_fluid', '__return_false');
-add_filter('atbdp_map_container', '__return_false');
-add_filter('atbdp_single_lower_badges', '__return_false', 10, 1);
-add_filter('atbdp_listing_title', '__return_false');
-add_filter('atbdp_listing_tagline', '__return_false');
-add_filter('atbdp_before_listing_title', '__return_false');
-add_filter('atbdp_header_before_image_slider', '__return_false');
-add_filter('atbdp_single_listing_gallery_section', '__return_false');
-add_filter('include_style_settings', '__return_false');
-add_filter('atbdp_mark_as_fav_for_list_view', '__return_false');
-add_filter('atbdp_listing_form_view_count_field', '__return_false');
-add_filter('atbdp_show_gallery_image_in_plan', '__return_false');
-add_filter('atbdp_plan_gallery_compare', '__return_true');
-
-add_action('atbdp_user_dashboard_booking_header_area', '__return_false');
-//Removed extensions licence key's
-add_filter('atbdp_licence_menu_for_booking', '__return_false');
-add_filter('atbdp_licence_menu_for_business_hours', '__return_false');
-add_filter('atbdp_licence_menu_for_claim_listing', '__return_false');
-add_filter('atbdp_licence_menu_for_faqs', '__return_false');
-add_filter('atbdp_licence_menu_for_recaptcha', '__return_false');
-add_filter('atbdp_licence_menu_for_listings_map', '__return_false');
-add_filter('atbdp_licence_menu_for_live_chat', '__return_false');
-add_filter('atbdp_licence_menu_for_paypal', '__return_false');
-add_filter('atbdp_licence_menu_for_post_your_need', '__return_false');
-add_filter('atbdp_licence_menu_for_pricing_plan', '__return_false');
-add_filter('atbdp_licence_menu_for_social_login', '__return_false');
-add_filter('atbdp_licence_menu_for_stripe', '__return_false');
-add_filter('atbdp_licence_menu_for_woo_pricing_plans', '__return_false');
 
 /*========================================================
     removed all unnecessary options
