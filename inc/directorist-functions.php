@@ -1424,7 +1424,6 @@ function dservice_add_listing_before_price_field($listing_id)
 
 add_action('atbdp_add_listing_before_price_field', 'dservice_add_listing_before_price_field');
 
-
 /*====================================================
 Search Listing found title
 ======================================================== */
