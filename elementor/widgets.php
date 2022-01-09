@@ -2607,7 +2607,7 @@ class dservice_ListingsCarousel extends Widget_Base
                                 </article>
                             </div>
                         </div>
-                    <?php
+                        <?php
                     }
                     wp_reset_postdata();
                 } else { ?>
