@@ -37,7 +37,7 @@ class dservice_Heading extends Widget_Base
         return ['heading', 'pro', 'Heading Pro'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'heading_pro',
@@ -221,7 +221,7 @@ class dservice_Accordion extends Widget_Base
         return ['accordion', 'tabs', 'faq'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'section_title',
@@ -415,7 +415,7 @@ class dservice_AddListing_Form extends Widget_Base
         return ['Listing form', 'form', 'add listing'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'add_listing_form',
@@ -486,7 +486,7 @@ class dservice_Profile extends Widget_Base
         return ['profile', 'author', 'author profile'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'author_profile',
@@ -560,7 +560,7 @@ class dservice_Blogs extends Widget_Base
         return ['blog', 'post', 'blog post'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'blog_posts',
@@ -686,7 +686,7 @@ class dservice_Categories extends Widget_Base
         return ['popular categories', 'popular'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'categories',
@@ -919,7 +919,7 @@ class dservice_Locations extends Widget_Base
         return ['locations', 'all location', 'listing locations'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'locations',
@@ -1081,7 +1081,7 @@ class dservice_Checkout extends Widget_Base
         return ['checkout', 'payment', 'checkout payment'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'checkout',
@@ -1155,7 +1155,7 @@ class dservice_ContactForm extends Widget_Base
         return ['contact', 'form', 'contact form'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'contact_form',
@@ -1238,7 +1238,7 @@ class dservice_ContactItems extends Widget_Base
         return ['address', 'list', 'item', 'contact items'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'contact_items',
@@ -1347,7 +1347,7 @@ class dservice_Counter extends Widget_Base
         return ['count', 'counter', 'count down'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'section_counter',
@@ -1442,7 +1442,7 @@ class dservice_CTA extends Widget_Base
         return ['cta', 'call to action', 'action'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'call_to_action',
@@ -1632,7 +1632,7 @@ class dservice_Dashboard extends Widget_Base
         return ['dashboard', 'author dashboard'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'dashboard',
@@ -1706,7 +1706,7 @@ class dservice_FeatureBox extends Widget_Base
         return ['feature', 'feature box', 'all features'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'feature_box',
@@ -1881,7 +1881,7 @@ class dservice_VideoPopup extends Widget_Base
         return ['video', 'video popup'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'video_popup',
@@ -1974,7 +1974,7 @@ class Dservice_Listings extends Widget_Base
         return ['listings', 'all listings'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'listings',
@@ -2312,7 +2312,7 @@ class dservice_ListingsCarousel extends Widget_Base
         return ['carousel', 'listing carousel'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'listings_carousel',
@@ -2650,7 +2650,7 @@ class dservice_ListingsMap extends Widget_Base
         return ['map', 'listings map', 'listing map'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'listings_map',
@@ -2867,7 +2867,7 @@ class dservice_Registration extends Widget_Base
         return ['dservice_category'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'Registration',
@@ -2936,7 +2936,7 @@ class dservice_Login extends Widget_Base
         return ['dservice_category'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'login',
@@ -3011,7 +3011,7 @@ class dservice_Transaction extends Widget_Base
     }
 
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'transaction',
@@ -3085,7 +3085,7 @@ class dservice_Logos extends Widget_Base
         return ['logo', 'logos', 'carousel',];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'logos',
@@ -3153,7 +3153,7 @@ class dservice_Payment extends Widget_Base
         return ['dservice_category'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'payment',
@@ -3227,7 +3227,7 @@ class dservice_PricingPlan extends Widget_Base
         return ['dservice_category'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'pricing_plan',
@@ -3299,7 +3299,7 @@ class dservice_SearchForm extends Widget_Base
         return ['dservice_category'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'hero_area',
@@ -3603,7 +3603,7 @@ class Dservice_SearchResult extends Widget_Base
         return ['dservice_category'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'search_result',
@@ -3824,7 +3824,7 @@ class Dservice_SingleCat extends Widget_Base
         return ['dservice_category'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'single_cat',
@@ -4135,7 +4135,7 @@ class dservice_SingleCatMap extends Widget_Base
         return ['dservice_category'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'single_cat',
@@ -4298,7 +4298,7 @@ class Dservice_SingleLoc extends Widget_Base
         return ['dservice_category'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'single_loc',
@@ -4611,7 +4611,7 @@ class dservice_SingleLocMap extends Widget_Base
         return ['dservice_category'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'single_loc_map',
@@ -4774,7 +4774,7 @@ class dservice_SingleTag extends Widget_Base
         return ['dservice_category'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'single_tag',
@@ -5080,7 +5080,7 @@ class dservice_SingleTagMap extends Widget_Base
         return ['dservice_category'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'single_tag_map',
@@ -5244,7 +5244,7 @@ class dservice_Team extends Widget_Base
         return ['dservice_category'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'team',
@@ -5353,7 +5353,7 @@ class dservice_Testimonial extends Widget_Base
         return ['testimonial', 'client', 'testi'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'Testimonials',
@@ -5465,7 +5465,7 @@ class dservice_Booking extends Widget_Base
         return ['dservice_category'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'booking',
@@ -5539,7 +5539,7 @@ class dservice_NeedCategories extends Widget_Base
         return ['dservice_category'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'need_categories',
@@ -5752,7 +5752,7 @@ class dservice_NeedLocations extends Widget_Base
         return ['locations', 'need locations',];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'need_locations',
@@ -5946,7 +5946,7 @@ class dservice_NeedSingleCat extends Widget_Base
         return ['dservice_category'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'need_single_category',
@@ -6040,7 +6040,7 @@ class dservice_NeedSingleLoc extends Widget_Base
         return ['dservice_category'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'need_single_location',
@@ -6134,7 +6134,7 @@ class dservice_Needs extends Widget_Base
         return ['dservice_category'];
     }
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         $this->start_controls_section(
             'needs',
